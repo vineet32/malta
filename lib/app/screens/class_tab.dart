@@ -44,16 +44,16 @@ class ClassTab extends StatelessWidget {
           SizedBox(
             height: 20,
           ),
-          Container(
-            height: 400,
-            child: ListView.builder(
-              key: PageStorageKey<String>("jw"),
-              itemCount: subjects.length,
-              itemBuilder: (context, index) {
-                RandomColor _randomColor = RandomColor();
-                Color _color = _randomColor.randomColor(
-                    colorBrightness: ColorBrightness.light);
-                return Padding(
+          Column(
+            children: subjects.map((e) {
+              RandomColor _randomColor = RandomColor();
+              Color _color = _randomColor.randomColor(
+                  colorBrightness: ColorBrightness.light);
+              return FlatButton(
+                onPressed: () {
+                  print("button pressed");
+                },
+                child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
                     padding: EdgeInsets.all(15),
@@ -63,12 +63,12 @@ class ClassTab extends StatelessWidget {
                     ),
                     alignment: Alignment.center,
                     child: Text(
-                      subjects[index].name,
+                      e.name,
                     ),
                   ),
-                );
-              },
-            ),
+                ),
+              );
+            }).toList(),
           )
         ],
       ),
@@ -79,37 +79,45 @@ class ClassTab extends StatelessWidget {
     RandomColor _randomColor = RandomColor();
     Color _color =
         _randomColor.randomColor(colorBrightness: ColorBrightness.light);
-    return Container(
-      decoration: BoxDecoration(
-        color: _color,
-        borderRadius: BorderRadius.circular(40),
-      ),
-      width: 100,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Text(session.subject.name),
-          ClipOval(
-            child: Image.network(
-              session.image,
-              width: 40,
-              height: 40,
-              fit: BoxFit.cover,
-              loadingBuilder: (BuildContext context, Widget child,
-                  ImageChunkEvent loadingProgress) {
-                if (loadingProgress == null) return child;
-                return Center(
-                  child: CircularProgressIndicator(
-                    value: loadingProgress.expectedTotalBytes != null
-                        ? loadingProgress.cumulativeBytesLoaded /
-                            loadingProgress.expectedTotalBytes
-                        : null,
-                  ),
-                );
-              },
+        double imageSize=50;
+    return FlatButton(
+      onPressed: () {
+        print("pressed");
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          color: _color,
+          borderRadius: BorderRadius.circular(40),
+        ),
+        // width: 130,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Text(
+              session.subject.name,
             ),
-          ),
-        ],
+            ClipOval(
+              child: Image.network(
+                session.image,
+                width: imageSize,
+                height: imageSize,
+                fit: BoxFit.cover,
+                loadingBuilder: (BuildContext context, Widget child,
+                    ImageChunkEvent loadingProgress) {
+                  if (loadingProgress == null) return child;
+                  return Center(
+                    child: CircularProgressIndicator(
+                      value: loadingProgress.expectedTotalBytes != null
+                          ? loadingProgress.cumulativeBytesLoaded /
+                              loadingProgress.expectedTotalBytes
+                          : null,
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
