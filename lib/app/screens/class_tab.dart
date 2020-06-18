@@ -11,26 +11,34 @@ class ClassTab extends StatelessWidget {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-          child: Text("Ongoing"),
-        ),
-        Wrap(
-          children: session.map((e) {
-            return period(e);
-          }).toList(),
-        )
-      ],
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            alignment: Alignment.topLeft,
+            child: Text("Ongoing: "),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Wrap(
+            runSpacing: 10,
+            children: session.map((e) {
+              return period(e);
+            }).toList(),
+          )
+        ],
+      ),
     );
   }
 
   Widget period(Session subject) {
     return Container(
+      width: 100,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(subject.name),
           SizedBox(

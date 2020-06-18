@@ -21,12 +21,7 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
-<<<<<<< Updated upstream
-  cloud_firestore_web: ^0.1.1+2
-  cloud_firestore: ^0.13.6
-=======
   storyboard: ^0.0.6
->>>>>>> Stashed changes
   flutter:
     sdk: flutter
 
