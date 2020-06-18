@@ -4,11 +4,11 @@ import 'package:malta/models/session.dart';
 import 'package:malta/models/subject.dart';
 import 'package:random_color/random_color.dart';
 
-class ClassTab extends StatelessWidget {
+class CurrentSessions extends StatelessWidget {
   final List<Session> session;
   final List<Subject> subjects;
 
-  const ClassTab({
+  const CurrentSessions({
     Key key,
     this.session,
     this.subjects,
@@ -89,7 +89,7 @@ class ClassTab extends StatelessWidget {
           color: _color,
           borderRadius: BorderRadius.circular(40),
         ),
-        // width: 130,
+        width: 130,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [

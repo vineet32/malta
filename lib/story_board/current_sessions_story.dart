@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
-import 'package:malta/app/screens/class_tab.dart';
+import 'package:malta/app/screens/current_sessions.dart';
 import 'package:malta/models/session.dart';
 import 'package:malta/models/subject.dart';
 import 'package:storyboard/storyboard.dart';
 
-class ClassTabStory extends Story {
+class CurrentSessionsStory extends Story {
   @override
   List<Widget> get storyContent {
     return [
-      ClassTab(
+      CurrentSessions(
         session: [
           Session(
             subject: Subject(name: "Maths"),
