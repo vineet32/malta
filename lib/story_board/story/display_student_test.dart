@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:malta/screen/students_session.dart';
-import 'file:///C:/Users/User/Documents/GitHub/malta/lib/models/student.dart';
+import 'package:malta/app/home/models/student.dart';
+import 'package:malta/app/home/screens/students_session.dart';
 import 'package:storyboard/storyboard.dart';
 
 class StudentsSessionStory extends Story {

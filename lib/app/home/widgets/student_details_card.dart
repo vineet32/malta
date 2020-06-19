@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'file:///C:/Users/User/Documents/GitHub/malta/lib/models/student.dart';
+import 'package:malta/app/home/models/student.dart';
+
 
 class StudentDetailsCard extends StatelessWidget {
   final Student student;
