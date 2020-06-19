@@ -1,10 +1,13 @@
 import 'package:flutter/cupertino.dart';
-import 'package:malta/app/screens/current_sessions.dart';
+import 'package:malta/app/home/screens/current_sessions/current_sessions.dart';
 import 'package:malta/models/session.dart';
 import 'package:malta/models/subject.dart';
 import 'package:storyboard/storyboard.dart';
 
 class CurrentSessionsStory extends Story {
+  @override
+  bool get isFullScreen => true;
+
   @override
   List<Widget> get storyContent {
     return [
@@ -42,6 +45,12 @@ class CurrentSessionsStory extends Story {
           ),
         ],
         subjects: [
+          Subject(name: "English"),
+          Subject(name: "Hindi"),
+          Subject(name: "Telugu"),
+          Subject(name: "Maths"),
+          Subject(name: "English"),
+          Subject(name: "Hindi"),
           Subject(name: "English"),
           Subject(name: "Hindi"),
           Subject(name: "Telugu"),
