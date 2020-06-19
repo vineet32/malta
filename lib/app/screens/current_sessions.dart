@@ -27,12 +27,17 @@ class CurrentSessions extends StatelessWidget {
           SizedBox(
             height: 20,
           ),
-          Wrap(
-            spacing: 10,
-            runSpacing: 10,
-            children: session.map((e) {
-              return showSession(e);
-            }).toList(),
+          Container(
+            key: PageStorageKey<String>(session.toString()),
+            height: 100,
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: session.map((e) {
+                  return showSession(e);
+                }).toList(),
+              ),
+            ),
           ),
           SizedBox(
             height: 20,
@@ -87,34 +92,35 @@ class CurrentSessions extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           color: _color,
-          borderRadius: BorderRadius.circular(40),
+          borderRadius: BorderRadius.all(Radius.circular(4)),
         ),
         // width: 140,
-        child: Row(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
+            // ClipOval(
+            //   child:
+            Image.network(
+              session.image,
+              width: imageSize,
+              height: imageSize,
+              fit: BoxFit.cover,
+              loadingBuilder: (BuildContext context, Widget child,
+                  ImageChunkEvent loadingProgress) {
+                if (loadingProgress == null) return child;
+                return Center(
+                  child: CircularProgressIndicator(
+                    value: loadingProgress.expectedTotalBytes != null
+                        ? loadingProgress.cumulativeBytesLoaded /
+                            loadingProgress.expectedTotalBytes
+                        : null,
+                  ),
+                );
+              },
+            ),
+            // ),
             Text(
               session.subject.name,
-            ),
-            ClipOval(
-              child: Image.network(
-                session.image,
-                width: imageSize,
-                height: imageSize,
-                fit: BoxFit.cover,
-                loadingBuilder: (BuildContext context, Widget child,
-                    ImageChunkEvent loadingProgress) {
-                  if (loadingProgress == null) return child;
-                  return Center(
-                    child: CircularProgressIndicator(
-                      value: loadingProgress.expectedTotalBytes != null
-                          ? loadingProgress.cumulativeBytesLoaded /
-                              loadingProgress.expectedTotalBytes
-                          : null,
-                    ),
-                  );
-                },
-              ),
             ),
           ],
         ),
