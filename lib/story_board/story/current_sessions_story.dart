@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
-import 'package:malta/app/home/screens/current_sessions/current_sessions.dart';
-import 'package:malta/models/session.dart';
-import 'package:malta/models/subject.dart';
+import 'package:malta/app/home/models/session.dart';
+import 'package:malta/app/home/models/subject.dart';
+import 'package:malta/app/home/screens/current_sessions.dart';
 import 'package:storyboard/storyboard.dart';
 
 class CurrentSessionsStory extends Story {

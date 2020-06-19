@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:malta/app/home/screens/current_sessions/ongoing.dart';
-import 'package:malta/models/session.dart';
+import 'package:malta/app/home/models/session.dart';
+import 'package:malta/app/home/widgets/current_sessions/ongoing.dart';
 
 class OngoingList extends StatelessWidget {
   final List<Session> session;

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:malta/app/home/screens/current_sessions/start_class.dart';
-import 'package:malta/models/subject.dart';
+import 'package:malta/app/home/models/subject.dart';
+import 'package:malta/app/home/widgets/current_sessions/start_class.dart';
 import 'package:random_color/random_color.dart';
 
 class StartClassList extends StatelessWidget {

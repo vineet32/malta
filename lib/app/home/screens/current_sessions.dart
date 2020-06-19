@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:malta/app/home/screens/current_sessions/ongoing_list.dart';
-import 'package:malta/app/home/screens/current_sessions/start_class_list.dart';
-import 'package:malta/models/session.dart';
-import 'package:malta/models/subject.dart';
+import 'package:malta/app/home/models/session.dart';
+import 'package:malta/app/home/models/subject.dart';
+import 'package:malta/app/home/widgets/current_sessions/ongoing_list.dart';
+import 'package:malta/app/home/widgets/current_sessions/start_class_list.dart';
 
 class CurrentSessions extends StatelessWidget {
   final List<Session> session;

@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:malta/models/session.dart';
 import 'package:random_color/random_color.dart';
 
 class Ongoing extends StatelessWidget {
