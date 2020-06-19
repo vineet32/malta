@@ -45,16 +45,16 @@ class CurrentSessions extends StatelessWidget {
             height: 20,
           ),
           Column(
-            children: subjects.map((e) {
+            children: subjects.map((element) {
               RandomColor _randomColor = RandomColor();
               Color _color = _randomColor.randomColor(
                   colorBrightness: ColorBrightness.light);
-              return FlatButton(
-                onPressed: () {
-                  print("button pressed");
-                },
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: FlatButton(
+                  onPressed: () {
+                    print("pressed");
+                  },
                   child: Container(
                     padding: EdgeInsets.all(15),
                     decoration: BoxDecoration(
@@ -63,7 +63,7 @@ class CurrentSessions extends StatelessWidget {
                     ),
                     alignment: Alignment.center,
                     child: Text(
-                      e.name,
+                      element.name,
                     ),
                   ),
                 ),
@@ -79,7 +79,7 @@ class CurrentSessions extends StatelessWidget {
     RandomColor _randomColor = RandomColor();
     Color _color =
         _randomColor.randomColor(colorBrightness: ColorBrightness.light);
-        double imageSize=50;
+    double imageSize = 80;
     return FlatButton(
       onPressed: () {
         print("pressed");
@@ -89,7 +89,7 @@ class CurrentSessions extends StatelessWidget {
           color: _color,
           borderRadius: BorderRadius.circular(40),
         ),
-        width: 130,
+        width: 140,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
