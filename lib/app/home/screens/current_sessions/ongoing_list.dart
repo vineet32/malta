@@ -20,7 +20,8 @@ class OngoingList extends StatelessWidget {
         child: Row(
           children: session.map((session) {
             return Ongoing(
-              session: session,
+              image: session.image,
+              name: session.subject.name,
               width: width,
             );
           }).toList(),

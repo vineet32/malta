@@ -19,8 +19,11 @@ class CurrentSessions extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.height;
 
-    return Material(
-      child: Container(
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Current Sessions"),
+      ),
+      body: Container(
         width: width,
         height: height,
         child: Column(

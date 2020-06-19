@@ -4,11 +4,17 @@ import 'package:malta/models/session.dart';
 import 'package:random_color/random_color.dart';
 
 class Ongoing extends StatelessWidget {
-  final Session session;
+  // final Session session;
   final double width;
+  final String image;
+  final String name;
 
-  const Ongoing({Key key, @required this.session, this.width: 80})
-      : super(key: key);
+  const Ongoing({
+    Key key,
+    this.width: 80,
+    @required this.image,
+    @required this.name,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +34,7 @@ class Ongoing extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Image.network(
-              session.image,
+              image,
               width: width,
               height: width,
               fit: BoxFit.cover,
@@ -46,7 +52,7 @@ class Ongoing extends StatelessWidget {
               },
             ),
             Text(
-              session.subject.name,
+              name,
             ),
           ],
         ),
