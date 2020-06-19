@@ -11,8 +11,8 @@ class CurrentSessions extends StatelessWidget {
 
   const CurrentSessions({
     Key key,
-    this.session,
-    this.subjects,
+    @required this.session,
+    @required this.subjects,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
