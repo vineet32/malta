@@ -89,7 +89,7 @@ class CurrentSessions extends StatelessWidget {
           color: _color,
           borderRadius: BorderRadius.circular(40),
         ),
-        width: 140,
+        // width: 140,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
