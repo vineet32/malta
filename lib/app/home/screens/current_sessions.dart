@@ -1,18 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:malta/app/home/models/session.dart';
-import 'package:malta/app/home/models/subject.dart';
 import 'package:malta/app/home/widgets/current_sessions/ongoing_list.dart';
 import 'package:malta/app/home/widgets/current_sessions/start_class_list.dart';
 
 class CurrentSessions extends StatelessWidget {
-  final List<Session> session;
-  final List<Subject> subjects;
-
   const CurrentSessions({
     Key key,
-    @required this.session,
-    @required this.subjects,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -40,7 +33,6 @@ class CurrentSessions extends StatelessWidget {
               height: 20,
             ),
             OngoingList(
-              session: session,
               height: height * .20,
               width: height * .17,
             ),
@@ -58,7 +50,7 @@ class CurrentSessions extends StatelessWidget {
               height: 20,
             ),
             Expanded(
-              child: StartClassList(subjects: subjects),
+              child: StartClassList(),
             ),
           ],
         ),
