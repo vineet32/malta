@@ -57,7 +57,6 @@ class CurrentSessionStoryDataBase extends ChangeNotifier {
     for (int i = 0; i < _sesssions.length; i++) {
       await Future.delayed(Duration(seconds: 2));
       tesSession.add(_sesssions[i]);
-      print("strem list $tesSession");
       yield tesSession;
     }
   }
