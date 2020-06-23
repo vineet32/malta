@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:malta/app/home/models/student.dart';
+
 
 
 class StudentDetailsCard extends StatelessWidget {
-  final Student student;
-  StudentDetailsCard({this.student});
+  final String imageLink;
+  final String name;
+  final num age;
+  StudentDetailsCard({this.name,this.age,this.imageLink});
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -15,13 +17,13 @@ class StudentDetailsCard extends StatelessWidget {
             radius: 40,
             backgroundColor: Colors.teal,
             child: CircleAvatar(
-              backgroundImage: NetworkImage(student.image),
+              backgroundImage: NetworkImage(imageLink),
               backgroundColor: Colors.red,
               radius: 30,
             ),
           ),
-          Text(student.name),
-          Text(student.standard),
+          Text(name),
+          Text(age.toString()),
         ],
       ),
     );

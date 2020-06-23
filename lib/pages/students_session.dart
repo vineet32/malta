@@ -1,12 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:malta/app/home/models/student.dart';
-import 'package:malta/app/home/widgets/student_details_card.dart';
+import 'package:malta/data/base/api_response.dart';
+import 'package:malta/data/models/student.dart';
+import 'package:malta/data/repositories/student/student_provider_api.dart';
+import 'package:malta/widgets/student_details_card.dart';
 
 
-class StudentsSession extends StatelessWidget {
- final List<Student> student;
- StudentsSession({this.student});
+
+class StudentsSession extends StatefulWidget {
+ //final List<Student> student;
+ StudentsSession();
+
+  @override
+  _StudentsSessionState createState() => _StudentsSessionState();
+}
+
+class _StudentsSessionState extends State<StudentsSession> {
+ final StudentProviderApi studentProviderApi =StudentProviderApi();
 
   @override
   Widget build(BuildContext context) {
@@ -37,17 +47,7 @@ class StudentsSession extends StatelessWidget {
             SizedBox(
               height: 5.0,
             ),
-            Expanded(
-              child: GridView.count(
-                primary: false,
-                shrinkWrap: true,
-                physics: ClampingScrollPhysics(),
-                crossAxisCount: 2,
-                children: student.map((e) {
-                  return StudentDetailsCard(student: e,);
-                }).toList(),
-              ),
-            ),
+            Expanded(child: _showDietList()),
             Container(
               height: 50.0,
               child: Padding(
@@ -88,5 +88,43 @@ class StudentsSession extends StatelessWidget {
     );
   }
 
+ Widget _showDietList() {
+   return FutureBuilder<ApiResponse>(
+       future: studentProviderApi.getAll(),
+       builder: (BuildContext context, AsyncSnapshot<ApiResponse> snapshot) {
+         if (snapshot.hasData) {
+           if (snapshot.data.success) {
+             if (snapshot.data.results == null ||
+                 snapshot.data.results.isEmpty) {
+               return Center(
+                 child:Text("No Data"),
+               );
+             }
+           }
+           return GridView.builder(
+             itemCount:snapshot.data.results.length,
+             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                 crossAxisCount: (2)),
+               itemBuilder: (BuildContext context, int index) {
+                 final Student student = snapshot.data.results[index];
+              //   final String id = student.objectId;
+                 final String name = student.name;
+               //  final String gender = student.gender;
+                 final num age = student.age;
+                 final String image=student.image;
+              //   final String section =student.section;
+                 return StudentDetailsCard(name: name,imageLink: image,age: age,);
+               },
+           );
+         } else {
+           return Center(
+             child: CircularProgressIndicator(
+               backgroundColor: Colors.transparent,
+               value: .5,
 
+             ),
+           );
+         }
+       });
+ }
 }
