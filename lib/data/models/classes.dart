@@ -1,3 +1,4 @@
+import 'package:malta/data/models/subject.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
 
 class Classes extends ParseObject implements ParseCloneable {
@@ -12,17 +13,27 @@ class Classes extends ParseObject implements ParseCloneable {
   @override
   clone(Map map) => Classes.clone()..fromJson(map);
 
+  @override
+  Classes fromJson(Map<String, dynamic> objectData) {
+    super.fromJson(objectData);
+    if (objectData.containsKey(keySubject)) {
+      subject = Subject.clone().fromJson(objectData[keySubject]);
+      print("inside iffffffffffffffffffffffffff subject: ${subject.name} ");
+    }
+    return this;
+  }
+
   ParseObject get teacher => get<ParseObject>(keyTeacher);
   set teacher(ParseObject teacher) => set<ParseObject>(keyTeacher, teacher);
 
-  String get sections => get<String>(keySections);
-  set sections(String sections) => set<String>(keySections, sections);
+  List get sections => get<List>(keySections);
+  set sections(List sections) => set<List>(keySections, sections);
 
   ParseObject get school => get<ParseObject>(keySchool);
-  set school(ParseUser school) => set<ParseUser>(keySchool, school);
+  set school(ParseObject school) => set<ParseObject>(keySchool, school);
 
-  ParseObject get subject => get<ParseObject>(keySubject);
-  set subject(ParseUser subject) => set<ParseUser>(keySubject, subject);
+  Subject get subject => get<Subject>(keySubject);
+  set subject(Subject subject) => set<Subject>(keySubject, subject);
 
   bool get active => get<bool>(keySections);
   set active(bool active) => set<bool>(keySections, active);

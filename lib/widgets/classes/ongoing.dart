@@ -3,14 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:random_color/random_color.dart';
 
 class Ongoing extends StatelessWidget {
-  // final Session session;
-  final double width;
   final String image;
   final String name;
 
   const Ongoing({
     Key key,
-    this.width: 80,
     @required this.image,
     @required this.name,
   }) : super(key: key);
@@ -34,18 +31,23 @@ class Ongoing extends StatelessWidget {
           children: [
             Image.network(
               image,
-              width: width,
-              height: width,
+              width: 100,
+              height: 100,
               fit: BoxFit.cover,
               loadingBuilder: (BuildContext context, Widget child,
                   ImageChunkEvent loadingProgress) {
                 if (loadingProgress == null) return child;
                 return Center(
-                  child: CircularProgressIndicator(
-                    value: loadingProgress.expectedTotalBytes != null
-                        ? loadingProgress.cumulativeBytesLoaded /
-                            loadingProgress.expectedTotalBytes
-                        : null,
+                  child: Container(
+                    width: 85,
+                    height: 85,
+                    padding: EdgeInsets.all(5),
+                    child: CircularProgressIndicator(
+                      value: loadingProgress.expectedTotalBytes != null
+                          ? loadingProgress.cumulativeBytesLoaded /
+                              loadingProgress.expectedTotalBytes
+                          : null,
+                    ),
                   ),
                 );
               },

@@ -1,11 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:malta/data/repositories/subject/subject_provider_api.dart';
+import 'package:malta/data/base/api_response.dart';
+import 'package:malta/data/repositories/classes/classes_provider.dart';
+import 'package:malta/data/repositories/subject/subject_provider.dart';
 import 'package:malta/widgets/classes/ongoing_list.dart';
 import 'package:malta/widgets/classes/start_class_list.dart';
 
 class CurrentClasses extends StatelessWidget {
-  const CurrentClasses({
+  final ClassesProvider _classesProvider;
+  final SubjectProvider _subjectProvider;
+  const CurrentClasses(
+    this._classesProvider,
+    this._subjectProvider, {
     Key key,
   }) : super(key: key);
   @override
@@ -33,10 +39,20 @@ class CurrentClasses extends StatelessWidget {
             SizedBox(
               height: 20,
             ),
-            OngoingList(
-              height: height * .20,
-              width: height * .17,
-            ),
+            FutureBuilder<ApiResponse>(
+                future: _classesProvider.getActive("EXWWaUQGmd"),
+                builder: (BuildContext context,
+                    AsyncSnapshot<ApiResponse> snapshot) {
+                  if (snapshot.hasData) {
+                    return OngoingList(
+                      ongoingList: snapshot.data.results,
+                    );
+                  } else {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                }),
             SizedBox(
               height: 30,
             ),
@@ -51,7 +67,20 @@ class CurrentClasses extends StatelessWidget {
               height: 20,
             ),
             Expanded(
-              child: StartClassList(),
+              child: FutureBuilder<ApiResponse>(
+                  future: _subjectProvider.getBySchoolId("EXWWaUQGmd"),
+                  builder: (BuildContext context,
+                      AsyncSnapshot<ApiResponse> snapshot) {
+                    if (snapshot.hasData) {
+                      return StartClassList(
+                        startClassList: snapshot.data.results,
+                      );
+                    } else {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                  }),
             ),
           ],
         ),

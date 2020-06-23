@@ -16,9 +16,16 @@ class ClassesProviderApi implements ClassesProvider {
     return getApiResponse<Classes>(await Classes().getObject(id));
   }
 
-  Future<ApiResponse> getActive() async {
+  @override
+  Future<ApiResponse> getActive(String schoolId) async {
     QueryBuilder<Classes> queryBuilder = QueryBuilder<Classes>(Classes())
-      ..whereEqualTo(Classes.keyActive, true);
+      ..whereEqualTo(Classes.keyActive, true)
+      ..whereMatchesQuery(
+          Classes.keySchool,
+          QueryBuilder(ParseObject("School"))
+            ..whereEqualTo("objectId", schoolId))
+      ..includeObject([Classes.keySubject]);
+
     return getApiResponse<Classes>(await queryBuilder.query());
   }
 }

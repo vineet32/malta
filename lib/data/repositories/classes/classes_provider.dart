@@ -15,5 +15,5 @@ abstract class ClassesProvider {
 
   Future<ApiResponse> getAll();
 
-  Future<ApiResponse> getActive();
+  Future<ApiResponse> getActive(String id);
 }
