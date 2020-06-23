@@ -15,4 +15,5 @@ abstract class SubjectProviderContract {
 
   Future<ApiResponse> getAll();
 
+  Future<ApiResponse> getBySchoolId(String id);
 }

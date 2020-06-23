@@ -5,7 +5,6 @@ const String keyName = 'name';
 const String keyImage = 'image';
 const String keySchool = "school";
 
-
 class Subject extends ParseObject implements ParseCloneable {
   Subject() : super(_keyTableName);
   Subject.clone() : this();
@@ -22,4 +21,12 @@ class Subject extends ParseObject implements ParseCloneable {
   ParseObject get school => get<ParseObject>(keySchool);
   set school(ParseUser school) => set<ParseUser>(keySchool, school);
 
+  Future<ParseResponse> getBySchoolId(String schoolId) async {
+    QueryBuilder<Subject> queryBuilder = QueryBuilder<Subject>(Subject())
+      ..whereMatchesQuery(
+          keySchool,
+          QueryBuilder(ParseObject("School"))
+            ..whereEqualTo("objectId", schoolId));
+    return await queryBuilder.query();
+  }
 }

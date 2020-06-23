@@ -14,4 +14,9 @@ class SubjectProviderApi implements SubjectProviderContract {
   Future<ApiResponse> getById(String id) async {
     return getApiResponse<Subject>(await Subject().getObject(id));
   }
+
+  @override
+  Future<ApiResponse> getBySchoolId(String id) async {
+    return getApiResponse<Subject>(await Subject().getBySchoolId(id));
+  }
 }
