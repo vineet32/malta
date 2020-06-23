@@ -47,7 +47,7 @@ class _StudentsSessionState extends State<StudentsSession> {
             SizedBox(
               height: 5.0,
             ),
-            Expanded(child: _showDietList()),
+            Expanded(child: _showStudentList()),
             Container(
               height: 50.0,
               child: Padding(
@@ -88,7 +88,7 @@ class _StudentsSessionState extends State<StudentsSession> {
     );
   }
 
- Widget _showDietList() {
+ Widget _showStudentList() {
    return FutureBuilder<ApiResponse>(
        future: studentProviderApi.getAll(),
        builder: (BuildContext context, AsyncSnapshot<ApiResponse> snapshot) {
