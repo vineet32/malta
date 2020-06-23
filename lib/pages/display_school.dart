@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:malta/data/models/school_model.dart';
-import 'package:malta/widgets/school_list.dart';
+import 'package:malta/widgets/school/school_list.dart';
 import 'package:provider/provider.dart';
 
 class DisplaySchool extends StatefulWidget {
