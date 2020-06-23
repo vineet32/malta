@@ -10,7 +10,9 @@ class Ongoing extends StatelessWidget {
     Key key,
     @required this.image,
     @required this.name,
-  }) : super(key: key);
+  })  : assert(image != null),
+        assert(name != null),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {

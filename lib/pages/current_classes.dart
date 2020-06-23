@@ -9,23 +9,23 @@ import 'package:malta/widgets/classes/start_class_list.dart';
 class CurrentClasses extends StatelessWidget {
   final ClassesProvider _classesProvider;
   final SubjectProvider _subjectProvider;
+  final String schoolId;
   const CurrentClasses(
     this._classesProvider,
-    this._subjectProvider, {
+    this._subjectProvider,
+    this.schoolId, {
     Key key,
-  }) : super(key: key);
+  })  : assert(schoolId != null),
+        assert(_classesProvider != null),
+        assert(_subjectProvider != null),
+        super(key: key); //TODO write assert
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.height;
-
     return Scaffold(
       appBar: AppBar(
         title: Text("Current Sessions"),
       ),
       body: Container(
-        width: width,
-        height: height,
         child: Column(
           children: [
             Container(
@@ -40,13 +40,17 @@ class CurrentClasses extends StatelessWidget {
               height: 20,
             ),
             FutureBuilder<ApiResponse>(
-                future: _classesProvider.getActive("EXWWaUQGmd"),
+                future: _classesProvider.getActive(schoolId),
                 builder: (BuildContext context,
                     AsyncSnapshot<ApiResponse> snapshot) {
                   if (snapshot.hasData) {
-                    return OngoingList(
-                      ongoingList: snapshot.data.results,
-                    );
+                    if (snapshot.data.results != null) {
+                      return OngoingList(
+                        ongoingList: snapshot.data.results,
+                      );
+                    } else {
+                      return Text("No Ongoing Classes");
+                    }
                   } else {
                     return const Center(
                       child: CircularProgressIndicator(),
@@ -68,13 +72,17 @@ class CurrentClasses extends StatelessWidget {
             ),
             Expanded(
               child: FutureBuilder<ApiResponse>(
-                  future: _subjectProvider.getBySchoolId("EXWWaUQGmd"),
+                  future: _subjectProvider.getBySchoolId(schoolId),
                   builder: (BuildContext context,
                       AsyncSnapshot<ApiResponse> snapshot) {
                     if (snapshot.hasData) {
-                      return StartClassList(
-                        startClassList: snapshot.data.results,
-                      );
+                      if (snapshot.data.results != null) {
+                        return StartClassList(
+                          startClassList: snapshot.data.results,
+                        );
+                      } else {
+                        return Text("No Subjects to Start");
+                      }
                     } else {
                       return const Center(
                         child: CircularProgressIndicator(),

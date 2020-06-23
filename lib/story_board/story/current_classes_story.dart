@@ -14,6 +14,7 @@ class CurrentClassesStory extends Story {
       CurrentClasses(
         ClassesProviderApi(),
         SubjectProviderApi(),
+        "EXWWaUQGmd"
       ),
     ];
   }

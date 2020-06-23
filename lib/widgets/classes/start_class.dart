@@ -6,7 +6,9 @@ class StartClass extends StatelessWidget {
   final Color color;
 
   const StartClass({Key key, @required this.name, @required this.color})
-      : super(key: key);
+      : assert(color != null),
+        assert(name != null),
+        super(key: key);
   @override
   Widget build(BuildContext context) {
     return Padding(

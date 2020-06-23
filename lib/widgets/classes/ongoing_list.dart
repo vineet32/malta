@@ -7,7 +7,8 @@ class OngoingList extends StatelessWidget {
   const OngoingList({
     Key key,
     @required this.ongoingList,
-  }) : super(key: key);
+  })  : assert(ongoingList != null),
+        super(key: key);
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(

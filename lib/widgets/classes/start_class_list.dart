@@ -8,7 +8,8 @@ class StartClassList extends StatelessWidget {
   const StartClassList({
     Key key,
     this.startClassList,
-  }) : super(key: key);
+  })  : assert(startClassList != null),
+        super(key: key);
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -16,7 +17,10 @@ class StartClassList extends StatelessWidget {
         RandomColor _randomColor = RandomColor();
         Color _color =
             _randomColor.randomColor(colorBrightness: ColorBrightness.light);
-        return StartClass(name: element.name, color: _color);
+        return StartClass(
+          name: element.name,
+          color: _color,
+        );
       }).toList(),
     );
   }
