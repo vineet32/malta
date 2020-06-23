@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:malta/app/home/screens/display_school.dart';
+import 'package:malta/pages/display_school.dart';
 import 'package:storyboard/storyboard.dart';
 
 class DisplaySchoolStory extends Story {

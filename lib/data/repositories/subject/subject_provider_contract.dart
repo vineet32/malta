@@ -1,4 +1,6 @@
-import 'package:malta/app/home/base/api_response.dart';
+
+
+import 'package:malta/data/base/api_response.dart';
 
 abstract class SubjectProviderContract {
   // Future<ApiResponse> add(Subject item);

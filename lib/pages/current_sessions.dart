@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:malta/app/home/widgets/current_sessions/ongoing_list.dart';
-import 'package:malta/app/home/widgets/current_sessions/start_class_list.dart';
+import 'package:malta/data/repositories/subject/subject_provider_api.dart';
+import 'package:malta/widgets/classes/ongoing_list.dart';
+import 'package:malta/widgets/classes/start_class_list.dart';
 
-class CurrentSessions extends StatelessWidget {
-  const CurrentSessions({
+class CurrentClasses extends StatelessWidget {
+  const CurrentClasses({
     Key key,
   }) : super(key: key);
   @override

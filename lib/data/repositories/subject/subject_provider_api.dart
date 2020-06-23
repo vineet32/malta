@@ -1,6 +1,6 @@
-import 'package:malta/app/home/base/api_response.dart';
-import 'package:malta/app/home/models/subject.dart';
-import 'package:malta/app/home/repositories/subject/subject_provider_contract.dart';
+import 'package:malta/data/base/api_response.dart';
+import 'package:malta/data/models/subject.dart';
+import 'package:malta/data/repositories/subject/subject_provider_contract.dart';
 
 class SubjectProviderApi implements SubjectProviderContract {
   SubjectProviderApi();

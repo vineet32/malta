@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:malta/app/home/providers/school_model.dart';
+import 'package:malta/data/models/school_model.dart';
+import 'package:malta/widgets/school_list.dart';
 import 'package:provider/provider.dart';
-import 'package:malta/app/home/widgets/school_list.dart';
 
 class DisplaySchool extends StatefulWidget {
   @override

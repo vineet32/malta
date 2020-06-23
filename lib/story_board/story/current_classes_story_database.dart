@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:malta/app/home/models/class.dart';
-import 'package:malta/app/home/models/subject.dart';
+import 'package:malta/data/models/class.dart';
+import 'package:malta/data/models/subject.dart';
 
-class ClassStoryDataBase extends ChangeNotifier {
+class ClassesStoryDataBase extends ChangeNotifier {
   //test data
   final List<Subject> _subjects = [];
   final List<Class> _sesssions = [];

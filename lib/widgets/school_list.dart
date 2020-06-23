@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:malta/app/home/widgets/school_list_item.dart';
-import 'package:malta/app/home/models/school.dart';
+import 'package:malta/data/models/school.dart';
+import 'package:malta/widgets/school_list_item.dart';
 
 class SchoolList extends StatelessWidget {
   final List<School> schools;

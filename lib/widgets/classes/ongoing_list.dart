@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:malta/app/home/widgets/current_sessions/ongoing.dart';
-import 'package:malta/story_board/story/current_session_story_database.dart';
+import 'package:malta/story_board/story/current_classes_story_database.dart';
+import 'package:malta/widgets/classes/ongoing.dart';
 
 class OngoingList extends StatelessWidget {
   final double width;
@@ -15,7 +15,7 @@ class OngoingList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-      stream: ClassStoryDataBase().testClassStream(),
+      stream: ClassesStoryDataBase().testClassStream(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return Container(

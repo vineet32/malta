@@ -1,18 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:malta/app/home/widgets/current_sessions/start_class.dart';
-import 'package:malta/story_board/story/current_session_story_database.dart';
+import 'package:malta/story_board/story/current_classes_story_database.dart';
+import 'package:malta/widgets/classes/start_class.dart';
 import 'package:random_color/random_color.dart';
 
 class StartClassList extends StatelessWidget {
-
   const StartClassList({
     Key key,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-        stream: ClassStoryDataBase().testSubjectStream(),
+        stream: ClassesStoryDataBase().testSubjectStream(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return ListView(
