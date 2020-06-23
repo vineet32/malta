@@ -2,7 +2,7 @@
 
 import 'package:malta/data/base/api_response.dart';
 
-abstract class SubjectProviderContract {
+abstract class SubjectProvider {
   // Future<ApiResponse> add(Subject item);
 
   // Future<ApiResponse> addAll(List<Subject> items);

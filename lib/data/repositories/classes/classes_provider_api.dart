@@ -1,9 +1,9 @@
 import 'package:malta/data/base/api_response.dart';
 import 'package:malta/data/models/classes.dart';
-import 'package:malta/data/repositories/classes/classes_provider_contract.dart';
+import 'package:malta/data/repositories/classes/classes_provider.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
 
-class ClassesProviderApi implements ClassesProviderContract {
+class ClassesProviderApi implements ClassesProvider {
   ClassesProviderApi();
 
   @override

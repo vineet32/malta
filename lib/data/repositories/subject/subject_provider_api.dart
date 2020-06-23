@@ -1,9 +1,9 @@
 import 'package:malta/data/base/api_response.dart';
 import 'package:malta/data/models/subject.dart';
-import 'package:malta/data/repositories/subject/subject_provider_contract.dart';
+import 'package:malta/data/repositories/subject/subject_provider.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
 
-class SubjectProviderApi implements SubjectProviderContract {
+class SubjectProviderApi implements SubjectProvider {
   SubjectProviderApi();
 
   @override
