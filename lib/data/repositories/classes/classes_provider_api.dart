@@ -1,6 +1,7 @@
 import 'package:malta/data/base/api_response.dart';
 import 'package:malta/data/models/classes.dart';
 import 'package:malta/data/repositories/classes/classes_provider_contract.dart';
+import 'package:parse_server_sdk/parse_server_sdk.dart';
 
 class ClassesProviderApi implements ClassesProviderContract {
   ClassesProviderApi();
@@ -15,8 +16,9 @@ class ClassesProviderApi implements ClassesProviderContract {
     return getApiResponse<Classes>(await Classes().getObject(id));
   }
 
-  @override
   Future<ApiResponse> getActive() async {
-    return getApiResponse<Classes>(await Classes().getActive);
+    QueryBuilder<Classes> queryBuilder = QueryBuilder<Classes>(Classes())
+      ..whereEqualTo(Classes.keyActive, true);
+    return getApiResponse<Classes>(await queryBuilder.query());
   }
 }

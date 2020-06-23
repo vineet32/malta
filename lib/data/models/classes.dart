@@ -26,10 +26,4 @@ class Classes extends ParseObject implements ParseCloneable {
 
   bool get active => get<bool>(keySections);
   set active(bool active) => set<bool>(keySections, active);
-
-  Future<ParseResponse> get getActive async {
-    QueryBuilder<Classes> queryBuilder = QueryBuilder<Classes>(Classes())
-      ..whereEqualTo(keyActive, true);
-    return await queryBuilder.query();
-  }
 }
