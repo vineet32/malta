@@ -12,7 +12,7 @@ class StartClassList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-        stream: CurrentSessionStoryDataBase().testSubjectStream(),
+        stream: ClassStoryDataBase().testSubjectStream(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return ListView(

@@ -15,7 +15,7 @@ class OngoingList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-      stream: CurrentSessionStoryDataBase().testSessionStream(),
+      stream: ClassStoryDataBase().testClassStream(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return Container(
