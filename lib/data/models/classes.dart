@@ -18,7 +18,6 @@ class Classes extends ParseObject implements ParseCloneable {
     super.fromJson(objectData);
     if (objectData.containsKey(keySubject)) {
       subject = Subject.clone().fromJson(objectData[keySubject]);
-      print("inside iffffffffffffffffffffffffff subject: ${subject.name} ");
     }
     return this;
   }
