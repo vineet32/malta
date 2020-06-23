@@ -1,8 +1,8 @@
 import 'package:parse_server_sdk/parse_server_sdk.dart';
 
-class Class extends ParseObject implements ParseCloneable {
-  Class() : super(_keyTableName);
-  Class.clone() : this();
+class Classes extends ParseObject implements ParseCloneable {
+  Classes() : super(_keyTableName);
+  Classes.clone() : this();
   static const String _keyTableName = 'Class';
   static const String keyTeacher = 'teacher';
   static const String keySections = 'sections';
@@ -10,7 +10,7 @@ class Class extends ParseObject implements ParseCloneable {
   static const String keySubject = "subject";
   static const String keyActive = "active";
   @override
-  clone(Map map) => Class.clone()..fromJson(map);
+  clone(Map map) => Classes.clone()..fromJson(map);
 
   ParseObject get teacher => get<ParseObject>(keyTeacher);
   set teacher(ParseObject teacher) => set<ParseObject>(keyTeacher, teacher);
@@ -28,7 +28,7 @@ class Class extends ParseObject implements ParseCloneable {
   set active(bool active) => set<bool>(keySections, active);
 
   Future<ParseResponse> get getActive async {
-    QueryBuilder<Class> queryBuilder = QueryBuilder<Class>(Class())
+    QueryBuilder<Classes> queryBuilder = QueryBuilder<Classes>(Classes())
       ..whereEqualTo(keyActive, true);
     return await queryBuilder.query();
   }
