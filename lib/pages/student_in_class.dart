@@ -2,27 +2,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:malta/data/base/api_response.dart';
 import 'package:malta/data/models/student.dart';
-import 'package:malta/data/repositories/student/student_provider_api.dart';
+import 'package:malta/data/repositories/student/student_api.dart';
 import 'package:malta/widgets/student_details_card.dart';
 
-
-
-class StudentsSession extends StatefulWidget {
+class StudentInClass extends StatelessWidget {
  //final List<Student> student;
- StudentsSession();
-
-  @override
-  _StudentsSessionState createState() => _StudentsSessionState();
-}
-
-class _StudentsSessionState extends State<StudentsSession> {
- final StudentProviderApi studentProviderApi =StudentProviderApi();
-
+ final StudentApi studentApi;
+  StudentInClass({this.studentApi});
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
+    return Scaffold(
         appBar: AppBar(
           title: Text('Class- 1A(MATH)',style: TextStyle(color: Colors.black),textAlign: TextAlign.left,),
           backgroundColor: Colors.white,
@@ -84,13 +73,12 @@ class _StudentsSessionState extends State<StudentsSession> {
             )
           ],
         ),
-      ),
-    );
+      );
   }
 
  Widget _showStudentList() {
    return FutureBuilder<ApiResponse>(
-       future: studentProviderApi.getAll(),
+       future: studentApi.getAll(),
        builder: (BuildContext context, AsyncSnapshot<ApiResponse> snapshot) {
          if (snapshot.hasData) {
            if (snapshot.data.success) {

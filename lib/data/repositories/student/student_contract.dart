@@ -1,7 +1,7 @@
 import 'package:malta/data/base/api_response.dart';
 import 'package:malta/data/models/student.dart';
 
-abstract class StudentProviderContract {
+abstract class StudentContract {
    Future<ApiResponse> add(Student item);
 
   // Future<ApiResponse> addAll(List<Student> items);
