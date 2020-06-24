@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:malta/widgets/classes/start_class.dart';
+import 'package:malta/widgets/classes/start_class_widget.dart';
 import 'package:random_color/random_color.dart';
 
 class StartClassList extends StatelessWidget {
@@ -17,7 +17,7 @@ class StartClassList extends StatelessWidget {
         RandomColor _randomColor = RandomColor();
         Color _color =
             _randomColor.randomColor(colorBrightness: ColorBrightness.light);
-        return StartClass(
+        return StartClassWidget(
           name: element.name,
           color: _color,
         );

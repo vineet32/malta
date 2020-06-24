@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:malta/widgets/classes/ongoing.dart';
+import 'package:malta/widgets/classes/ongoing_widget.dart';
 
 class OngoingList extends StatelessWidget {
   final List ongoingList;
@@ -15,7 +15,7 @@ class OngoingList extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       child: Row(
         children: ongoingList.map<Widget>((element) {
-          return Ongoing(
+          return OngoingWidget(
             image: element.subject.image,
             name: element.subject.name,
           );

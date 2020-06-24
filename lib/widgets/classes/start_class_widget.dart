@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class StartClass extends StatelessWidget {
+class StartClassWidget extends StatelessWidget {
   final String name;
   final Color color;
 
-  const StartClass({Key key, @required this.name, @required this.color})
+  const StartClassWidget({Key key, @required this.name, @required this.color})
       : assert(color != null),
         assert(name != null),
         super(key: key);

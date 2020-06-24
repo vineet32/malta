@@ -2,11 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:random_color/random_color.dart';
 
-class Ongoing extends StatelessWidget {
+class OngoingWidget extends StatelessWidget {
   final String image;
   final String name;
 
-  const Ongoing({
+  const OngoingWidget({
     Key key,
     @required this.image,
     @required this.name,
