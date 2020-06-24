@@ -1,6 +1,6 @@
 import 'package:malta/data/base/api_response.dart';
 
-abstract class ClassesProvider {
+abstract class ContractClass {
   // Future<ApiResponse> add(Class item);
 
   // Future<ApiResponse> addAll(List<Class> items);

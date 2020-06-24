@@ -1,16 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:malta/data/base/api_response.dart';
-import 'package:malta/data/repositories/classes/classes_provider.dart';
-import 'package:malta/data/repositories/subject/subject_provider.dart';
-import 'package:malta/widgets/classes/ongoing_list.dart';
-import 'package:malta/widgets/classes/start_class_list.dart';
+import 'package:malta/data/repositories/class/contract_class.dart';
+import 'package:malta/data/repositories/subject/contract_subject.dart';
+import 'package:malta/widgets/class/ongoing_list.dart';
+import 'package:malta/widgets/class/start_class_list.dart';
 
-class CurrentClasses extends StatelessWidget {
-  final ClassesProvider _classesProvider;
-  final SubjectProvider _subjectProvider;
+class CurrentClass extends StatelessWidget {
+  final ContractClass _classesProvider;
+  final ContractSubject _subjectProvider;
   final String schoolId;
-  const CurrentClasses(
+  const CurrentClass(
     this._classesProvider,
     this._subjectProvider,
     this.schoolId, {

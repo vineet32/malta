@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:malta/widgets/classes/ongoing_widget.dart';
+import 'package:malta/widgets/class/ongoing_widget.dart';
 
 class OngoingList extends StatelessWidget {
   final List ongoingList;

@@ -1,9 +1,9 @@
 import 'package:malta/data/models/subject.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
 
-class Classes extends ParseObject implements ParseCloneable {
-  Classes() : super(_keyTableName);
-  Classes.clone() : this();
+class Class extends ParseObject implements ParseCloneable {
+  Class() : super(_keyTableName);
+  Class.clone() : this();
 
   static const String _keyTableName = 'Class';
   static const String keyTeacher = 'teacher';
@@ -13,10 +13,10 @@ class Classes extends ParseObject implements ParseCloneable {
   static const String keyActive = "active";
 
   @override
-  Classes clone(Map<String, dynamic> map) => Classes.clone()..fromJson(map);
+  Class clone(Map<String, dynamic> map) => Class.clone()..fromJson(map);
 
   @override
-  Classes fromJson(Map<String, dynamic> objectData) {
+  Class fromJson(Map<String, dynamic> objectData) {
     super.fromJson(objectData);
     if (objectData.containsKey(keySubject)) {
       subject = Subject.clone().fromJson(objectData[keySubject]);
