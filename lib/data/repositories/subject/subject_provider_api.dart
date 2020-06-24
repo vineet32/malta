@@ -16,6 +16,7 @@ class SubjectProviderApi implements SubjectProvider {
     return getApiResponse<Subject>(await Subject().getObject(id));
   }
 
+  @override
   Future<ApiResponse> getBySchoolId(String schoolId) async {
     QueryBuilder<Subject> queryBuilder = QueryBuilder<Subject>(Subject())
       ..whereMatchesQuery(

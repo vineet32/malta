@@ -10,7 +10,7 @@ class Subject extends ParseObject implements ParseCloneable {
   static const String keySchool = "school";
 
   @override
-  clone(Map map) => Subject.clone()..fromJson(map);
+  Subject clone(Map<String, dynamic> map) => Subject.clone()..fromJson(map);
 
   String get name => get<String>(keyName);
   set name(String name) => set<String>(keyName, name);

@@ -4,14 +4,16 @@ import 'package:parse_server_sdk/parse_server_sdk.dart';
 class Classes extends ParseObject implements ParseCloneable {
   Classes() : super(_keyTableName);
   Classes.clone() : this();
+
   static const String _keyTableName = 'Class';
   static const String keyTeacher = 'teacher';
   static const String keySections = 'sections';
   static const String keySchool = "school";
   static const String keySubject = "subject";
   static const String keyActive = "active";
+
   @override
-  clone(Map map) => Classes.clone()..fromJson(map);
+  Classes clone(Map<String, dynamic> map) => Classes.clone()..fromJson(map);
 
   @override
   Classes fromJson(Map<String, dynamic> objectData) {

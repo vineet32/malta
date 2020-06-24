@@ -18,7 +18,7 @@ class CurrentClasses extends StatelessWidget {
   })  : assert(schoolId != null),
         assert(_classesProvider != null),
         assert(_subjectProvider != null),
-        super(key: key); 
+        super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
