@@ -8,8 +8,6 @@ import 'package:storyboard/storyboard.dart';
 import 'package:malta/story_board/story/display_school_test.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-
   runApp(
     MultiProvider(
       providers: [
