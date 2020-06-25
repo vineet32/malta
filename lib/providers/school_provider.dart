@@ -10,7 +10,7 @@ class SchoolProvider extends ChangeNotifier {
   SchoolProvider({this.schoolContract, this.userContract}) : assert(schoolContract != null, userContract != null);
 
   getSchoolById(String schoolId) async {
-    schoolContract.getById(schoolId);
+    return schoolContract.getById(schoolId);
   }
 
   getAllSchools() {
