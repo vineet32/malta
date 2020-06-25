@@ -7,17 +7,17 @@ import 'package:malta/widgets/class/ongoing_list.dart';
 import 'package:malta/widgets/class/start_class_list.dart';
 
 class CurrentClass extends StatelessWidget {
-  final ContractClass _classesProvider;
-  final ContractSubject _subjectProvider;
+  final ContractClass _apiClass;
+  final ContractSubject _apiSubject;
   final String schoolId;
   const CurrentClass(
-    this._classesProvider,
-    this._subjectProvider,
+    this._apiClass,
+    this._apiSubject,
     this.schoolId, {
     Key key,
   })  : assert(schoolId != null),
-        assert(_classesProvider != null),
-        assert(_subjectProvider != null),
+        assert(_apiClass != null),
+        assert(_apiSubject != null),
         super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -40,7 +40,7 @@ class CurrentClass extends StatelessWidget {
               height: 20,
             ),
             FutureBuilder<ApiResponse>(
-                future: _classesProvider.getActive(schoolId),
+                future: _apiClass.getActive(schoolId),
                 builder: (BuildContext context,
                     AsyncSnapshot<ApiResponse> snapshot) {
                   if (snapshot.hasData) {
@@ -72,7 +72,7 @@ class CurrentClass extends StatelessWidget {
             ),
             Expanded(
               child: FutureBuilder<ApiResponse>(
-                  future: _subjectProvider.getBySchoolId(schoolId),
+                  future: _apiSubject.getBySchoolId(schoolId),
                   builder: (BuildContext context,
                       AsyncSnapshot<ApiResponse> snapshot) {
                     if (snapshot.hasData) {

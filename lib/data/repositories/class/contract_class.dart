@@ -1,7 +1,8 @@
 import 'package:malta/data/base/api_response.dart';
+import 'package:malta/data/models/class.dart';
 
 abstract class ContractClass {
-  // Future<ApiResponse> add(Class item);
+  Future<ApiResponse> add(Class item);
 
   // Future<ApiResponse> addAll(List<Class> items);
 
