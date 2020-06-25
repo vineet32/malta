@@ -8,35 +8,11 @@ import 'package:malta/widgets/class/start_class_list.dart';
 import 'package:provider/provider.dart';
 
 class CurrentClass extends StatelessWidget {
-<<<<<<< Updated upstream
-  final ContractClass _apiClass;
-  final ContractSubject _apiSubject;
-=======
-<<<<<<< Updated upstream
-  final ContractClass _classesProvider;
-  final ContractSubject _subjectProvider;
->>>>>>> Stashed changes
-  final String schoolId;
-  const CurrentClass(
-    this._apiClass,
-    this._apiSubject,
-    this.schoolId, {
-    Key key,
-  })  : assert(schoolId != null),
-<<<<<<< Updated upstream
-        assert(_apiClass != null),
-        assert(_apiSubject != null),
-=======
-        assert(_classesProvider != null),
-        assert(_subjectProvider != null),
-=======
   final String schoolId;
   const CurrentClass(
     this.schoolId, {
     Key key,
   })  : assert(schoolId != null),
->>>>>>> Stashed changes
->>>>>>> Stashed changes
         super(key: key);
   @override
   Widget build(BuildContext context) {
