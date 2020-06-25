@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 class StudentDetailsCard extends StatelessWidget {
   final String imageLink;
   final String name;
-  final num age;
-  StudentDetailsCard({this.name,this.age,this.imageLink});
+  final String section;
+  StudentDetailsCard({this.name,this.section,this.imageLink});
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -23,7 +23,7 @@ class StudentDetailsCard extends StatelessWidget {
             ),
           ),
           Text(name),
-          Text(age.toString()),
+          Text('Class-$section'),
         ],
       ),
     );

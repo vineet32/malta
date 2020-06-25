@@ -16,4 +16,6 @@ abstract class StudentContract {
 
   Future<ApiResponse> getAll();
 
+  Future<ApiResponse> getParticularSectionsStudents(String section,String schoolId);
+
 }
