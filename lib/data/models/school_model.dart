@@ -1,6 +1,6 @@
 import 'dart:collection';
 import 'package:flutter/material.dart';
-import 'package:malta/app/home/models/school.dart';
+import 'package:malta/data/models/school.dart';
 
 class SchoolModel extends ChangeNotifier {
   final List<School> schools = [
