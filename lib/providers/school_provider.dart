@@ -16,13 +16,7 @@ class SchoolProvider extends ChangeNotifier {
   getAllSchools() {
     return schoolContract.getAll();
   }
-
-  getSchoolByName(String schoolName) async {
-    QueryBuilder<ParseObject> querySchool = QueryBuilder<ParseObject>(ParseObject('School'));
-    querySchool.whereEqualTo('name', schoolName);
-    querySchool.query().then((value) => value.results);//return a School object
-  }
-
+  
   getUserSchools(String userId) async {
     QueryBuilder<ParseObject> queryUser = QueryBuilder<ParseObject>(ParseObject('User'));
     queryUser.whereEqualTo('username', userId);
