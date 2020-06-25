@@ -27,6 +27,7 @@ class SchoolProvider extends ChangeNotifier {
     QueryBuilder<ParseObject> queryUser = QueryBuilder<ParseObject>(ParseObject('User'));
     queryUser.whereEqualTo('username', userId);
     queryUser.query().then((value) => print(value.results));
+    //code implementation pending.....
   }
 
   addSchool() {}//add a school 
