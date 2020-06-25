@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:malta/data/repositories/school/provider_api_school.dart';
 import 'package:malta/domain/constants/application_constants.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
 import 'package:malta/pages/display_school.dart';
@@ -59,9 +58,11 @@ class _DecisionPageState extends State<DecisionPage> {
 
   Future<void> _initParse() async {
     try {
-      await Parse().initialize(keyParseApplicationId, keyParseServerUrl,
-          masterKey: keyParseMasterKey, debug: true);
-      final ParseResponse response = await Parse().healthCheck();
+      await Parse().initialize(
+        keyParseApplicationId,keyParseServerUrl,
+      debug: true,appName: keyApplicationName,clientKey: clientId, 
+        );
+      var response = await Parse().healthCheck();
       if (response.success) {
         //final ParseUser user = await ParseUser.currentUser();
         //if (user != null) {
@@ -84,7 +85,7 @@ class _DecisionPageState extends State<DecisionPage> {
 
   Future<void> _redirectToPage(BuildContext context, Widget page) async {
     final MaterialPageRoute<bool> newRoute =
-        MaterialPageRoute<bool>(builder: (BuildContext context) => page);
+        MaterialPageRoute<bool>(builder: (BuildContext context) => page,fullscreenDialog: true);
 
     final bool nav = await Navigator.of(context)
         .pushAndRemoveUntil<bool>(newRoute, ModalRoute.withName('/'));
