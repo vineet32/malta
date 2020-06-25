@@ -1,6 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+<<<<<<< Updated upstream
 import 'package:malta/data/models/subject.dart';
+=======
+<<<<<<< Updated upstream
+=======
+import 'package:malta/data/base/api_response.dart';
+import 'package:malta/data/models/class.dart';
+import 'package:malta/data/models/subject.dart';
+import 'package:malta/data/repositories/class/api_class.dart';
+import 'package:provider/provider.dart';
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 
 class StartClassWidget extends StatelessWidget {
   final Color color;
@@ -13,10 +24,29 @@ class StartClassWidget extends StatelessWidget {
         super(key: key);
   @override
   Widget build(BuildContext context) {
+    final _apiClass = Provider.of<ApiClass>(context);
+
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: FlatButton(
+<<<<<<< Updated upstream
         onPressed: () async {},
+=======
+<<<<<<< Updated upstream
+        onPressed: () {
+          print("pressed");
+=======
+        onPressed: () async {
+          ApiResponse response = await _apiClass.add(
+            Class()
+              ..set("sections", [])
+              ..set("active", true)
+              ..set("subject", subject),
+          );
+          print("in response ${response.results}");
+>>>>>>> Stashed changes
+        },
+>>>>>>> Stashed changes
         child: Container(
           padding: EdgeInsets.all(15),
           decoration: BoxDecoration(
