@@ -21,6 +21,8 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
+  parse_server_sdk: ^1.0.26
+  random_color: ^1.0.5
   flutter:
     sdk: flutter
 

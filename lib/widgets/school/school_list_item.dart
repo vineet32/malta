@@ -9,21 +9,21 @@ class SchoolListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 1),
+        padding: EdgeInsets.symmetric(vertical: 1),
         child: Card(
           elevation: 1,
-          shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(6.0)),
-          color: Colors.white, 
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
+          color: Colors.white,
           child: ListTile(
-            title: Text(school.name),
-            trailing: CircleAvatar(
-              child: Icon(
-                Icons.image,
-              ),
-              key: Key('schoolImage'),
-              radius: 20,
-            )),
+              title: Text(school.name),
+              trailing: CircleAvatar(
+                child: Icon(
+                  Icons.image,
+                ),
+                key: Key('schoolImage'),
+                radius: 20,
+              )),
         ));
   }
 }
