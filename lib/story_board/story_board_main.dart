@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:malta/data/repositories/class/api_class.dart';
-import 'package:malta/data/repositories/subject/api_subject.dart';
+import 'package:malta/data/repositories/class/class_api.dart';
+import 'package:malta/data/repositories/class/class_contract.dart';
+import 'package:malta/data/repositories/subject/subject_api.dart';
+import 'package:malta/data/repositories/subject/subject_contract.dart';
 import 'package:malta/story_board/story/current_class_story.dart';
 import 'package:provider/provider.dart';
 import 'package:storyboard/storyboard.dart';
@@ -11,8 +13,8 @@ void main() async {
   runApp(
     MultiProvider(
       providers: [
-        Provider<ApiClass>(create: (_) => ApiClass()),
-        Provider<ApiSubject>(create: (_) => ApiSubject()),
+        Provider<ClassContract>(create: (_) => ClassApi()),
+        Provider<SubjectContract>(create: (_) => SubjectApi()),
       ],
       child: MaterialApp(
         home: StoryboardApp([

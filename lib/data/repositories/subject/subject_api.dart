@@ -1,10 +1,10 @@
 import 'package:malta/data/base/api_response.dart';
 import 'package:malta/data/models/subject.dart';
-import 'package:malta/data/repositories/subject/contract_subject.dart';
+import 'package:malta/data/repositories/subject/subject_contract.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
 
-class ApiSubject implements ContractSubject {
-  ApiSubject();
+class SubjectApi implements SubjectContract {
+  SubjectApi();
 
   @override
   Future<ApiResponse> getAll() async {

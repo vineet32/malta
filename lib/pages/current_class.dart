@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:malta/data/base/api_response.dart';
-import 'package:malta/data/repositories/class/api_class.dart';
-import 'package:malta/data/repositories/subject/api_subject.dart';
+import 'package:malta/data/repositories/class/class_contract.dart';
+import 'package:malta/data/repositories/subject/subject_contract.dart';
 import 'package:malta/widgets/class/ongoing_list.dart';
 import 'package:malta/widgets/class/start_class_list.dart';
 import 'package:provider/provider.dart';
@@ -16,8 +16,8 @@ class CurrentClass extends StatelessWidget {
         super(key: key);
   @override
   Widget build(BuildContext context) {
-    final _apiClass = Provider.of<ApiClass>(context);
-    final _apiSubject = Provider.of<ApiSubject>(context);
+    final _apiClass = Provider.of<ClassContract>(context);
+    final _apiSubject = Provider.of<SubjectContract>(context);
 
     return Scaffold(
       appBar: AppBar(
