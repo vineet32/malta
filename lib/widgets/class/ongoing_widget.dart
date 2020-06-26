@@ -26,23 +26,23 @@ class OngoingWidget extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           color: _color,
-          borderRadius: BorderRadius.all(Radius.circular(4)),
+          borderRadius: BorderRadius.all(Radius.circular(20)),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Image.network(
               image,
-              width: 100,
-              height: 100,
+              width: 150,
+              height: 150,
               fit: BoxFit.cover,
               loadingBuilder: (BuildContext context, Widget child,
                   ImageChunkEvent loadingProgress) {
                 if (loadingProgress == null) return child;
                 return Center(
                   child: Container(
-                    width: 85,
-                    height: 85,
+                    width: 150,
+                    height: 150,
                     padding: EdgeInsets.all(5),
                     child: CircularProgressIndicator(
                       value: loadingProgress.expectedTotalBytes != null
@@ -54,8 +54,11 @@ class OngoingWidget extends StatelessWidget {
                 );
               },
             ),
-            Text(
-              name,
+            Container(
+              padding: EdgeInsets.all(10),
+              child: Text(
+                name,
+              ),
             ),
           ],
         ),
