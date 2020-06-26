@@ -27,7 +27,7 @@ class _DisplaySchoolState extends State<DisplaySchool> {
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height,
                 child:
-                    Consumer<SchoolModel>(builder: (context, provider, child) {
+                Consumer<SchoolModel>(builder: (context, provider, child) {
                   return SchoolList(schools: provider.getAllSchools);
                 })),
           );

@@ -1,5 +1,3 @@
-
-
 import 'package:malta/data/base/api_response.dart';
 
 abstract class SubjectContract {

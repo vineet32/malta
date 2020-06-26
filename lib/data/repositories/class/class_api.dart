@@ -28,9 +28,4 @@ class ClassApi implements ClassContract {
 
     return getApiResponse<Class>(await queryBuilder.query());
   }
-
-  @override
-  Future<ApiResponse> add(Class item) async {
-    return getApiResponse<Class>(await item.save());
-  }
 }

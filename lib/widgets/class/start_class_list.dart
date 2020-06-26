@@ -18,8 +18,8 @@ class StartClassList extends StatelessWidget {
         Color _color =
             _randomColor.randomColor(colorBrightness: ColorBrightness.light);
         return StartClassWidget(
+          name: element.name,
           color: _color,
-          subject: element,
         );
       }).toList(),
     );

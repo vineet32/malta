@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:malta/pages/display_school.dart';
+import 'package:malta/pages/students_in_class.dart';
 import 'package:storyboard/storyboard.dart';
 
-class DisplaySchoolStory extends Story {
+class StudentsInClassStory extends Story {
   @override
   bool get isFullScreen => true;
 
   @override
   List<Widget> get storyContent {
     return [
-      DisplaySchool()
+      StudentsInClass()
     ];
   }
 }

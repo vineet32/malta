@@ -7,13 +7,12 @@ import 'package:malta/data/repositories/class/class_contract.dart';
 import 'package:provider/provider.dart';
 
 class StartClassWidget extends StatelessWidget {
+  final String name;
   final Color color;
-  final Subject subject;
 
-  const StartClassWidget(
-      {Key key, @required this.color, @required this.subject})
+  const StartClassWidget({Key key, @required this.name, @required this.color})
       : assert(color != null),
-        assert(subject != null),
+        assert(name != null),
         super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -22,14 +21,8 @@ class StartClassWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: FlatButton(
-        onPressed: () async {
-          ApiResponse response = await _apiClass.add(
-            Class()
-              ..set(Class.keySections, [])
-              ..set(Class.keyActive, true)
-              ..set(Class.keySubject, subject),
-          );
-          print("in response ${response.results}");
+        onPressed: () {
+          print("pressed");
         },
         child: Container(
           padding: EdgeInsets.all(15),
@@ -39,7 +32,7 @@ class StartClassWidget extends StatelessWidget {
           ),
           alignment: Alignment.center,
           child: Text(
-            subject.name,
+            name,
           ),
         ),
       ),

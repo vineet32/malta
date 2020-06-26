@@ -13,7 +13,7 @@ class SchoolListItem extends StatelessWidget {
         child: Card(
           elevation: 1,
           shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
           color: Colors.white,
           child: ListTile(
               title: Text(school.name),

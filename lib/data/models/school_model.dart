@@ -9,6 +9,6 @@ class SchoolModel extends ChangeNotifier {
 
   UnmodifiableListView<School> get getAllSchools => UnmodifiableListView(schools);
 
-  //Implement methods to receive data from DB
+//Implement methods to receive data from DB
 
 }

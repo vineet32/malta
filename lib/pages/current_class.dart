@@ -10,9 +10,9 @@ import 'package:provider/provider.dart';
 class CurrentClass extends StatelessWidget {
   final String schoolId;
   const CurrentClass(
-    this.schoolId, {
-    Key key,
-  })  : assert(schoolId != null),
+      this.schoolId, {
+        Key key,
+      })  : assert(schoolId != null),
         super(key: key);
   @override
   Widget build(BuildContext context) {
