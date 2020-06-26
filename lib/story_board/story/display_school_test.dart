@@ -1,15 +1,15 @@
-import 'package:flutter/cupertino.dart';
-import 'package:malta/pages/current_class.dart';
+import 'package:flutter/material.dart';
+import 'package:malta/pages/display_school.dart';
 import 'package:storyboard/storyboard.dart';
 
-class CurrentClassStory extends Story {
+class DisplaySchoolStory extends Story {
   @override
   bool get isFullScreen => true;
 
   @override
   List<Widget> get storyContent {
     return [
-      CurrentClass("EXWWaUQGmd"),
+      DisplaySchool()
     ];
   }
 }
