@@ -1,18 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:malta/data/models/subject.dart';
 import 'package:random_color/random_color.dart';
 
 class OngoingWidget extends StatelessWidget {
-  final String image;
-  final String name;
+  final Subject subject;
 
   const OngoingWidget({
     Key key,
-    @required this.image,
-    @required this.name,
-  })  : assert(image != null),
-        assert(name != null),
-        super(key: key);
+    this.subject,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +17,7 @@ class OngoingWidget extends StatelessWidget {
     Color _color =
         _randomColor.randomColor(colorBrightness: ColorBrightness.light);
     return FlatButton(
-      onPressed: () {
-        print("pressed");
-      },
+      onPressed: () {},
       child: Container(
         decoration: BoxDecoration(
           color: _color,
@@ -32,7 +27,7 @@ class OngoingWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Image.network(
-              image,
+              subject.image,
               width: 150,
               height: 150,
               fit: BoxFit.cover,
@@ -57,7 +52,7 @@ class OngoingWidget extends StatelessWidget {
             Container(
               padding: EdgeInsets.all(10),
               child: Text(
-                name,
+                subject.name,
               ),
             ),
           ],

@@ -16,8 +16,7 @@ class OngoingList extends StatelessWidget {
       child: Row(
         children: ongoingList.map<Widget>((element) {
           return OngoingWidget(
-            image: element.subject.image,
-            name: element.subject.name,
+            subject: element.subject,
           );
         }).toList(),
       ),

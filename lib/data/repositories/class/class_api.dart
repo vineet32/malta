@@ -24,7 +24,7 @@ class ClassApi implements ClassContract {
           Class.keySchool,
           QueryBuilder(ParseObject("School"))
             ..whereEqualTo("objectId", schoolId))
-      ..includeObject([Class.keySubject]);
+      ..includeObject([Class.keySubject, Class.keySections]);
 
     return getApiResponse<Class>(await queryBuilder.query());
   }
