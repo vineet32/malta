@@ -62,31 +62,33 @@ class SelectAnimation extends StatelessWidget {
     final borderWidth =
         selectMode == SelectMode.simple && isSelected ? 3.0 : 1.5;
 
-    return Column(children: [
-      Stack(
-        children: [
-          if (selectMode == SelectMode.animatedCircle && isSelected)
-            _buildSpinningCircle(spinningAnimation),
-          if (selectMode != SelectMode.animatedCircle || !isSelected)
-            _buildCircle(c, bc, borderWidth),
-          Container(
-            height: width,
-            width: width,
-            child: Center(child: child),
-          ),
-          if (selectMode == SelectMode.check && isSelected)
+    return Column(
+      children: [
+        Stack(
+          children: [
+            if (selectMode == SelectMode.animatedCircle && isSelected)
+              _buildSpinningCircle(spinningAnimation),
+            if (selectMode != SelectMode.animatedCircle || !isSelected)
+              _buildCircle(c, bc, borderWidth),
             Container(
               height: width,
               width: width,
-              child: Align(
-                alignment: Alignment(0.80, 0.80),
-                child: _buildCheckAnimation(checkAnimation),
-              ),
+              child: Center(child: child),
             ),
-        ],
-      ),
-      if (bottomDescription != null) bottomDescription,
-    ]);
+            if (selectMode == SelectMode.check && isSelected)
+              Container(
+                height: width,
+                width: width,
+                child: Align(
+                  alignment: Alignment(0.80, 0.80),
+                  child: _buildCheckAnimation(checkAnimation),
+                ),
+              ),
+          ],
+        ),
+        if (bottomDescription != null) bottomDescription,
+      ],
+    );
   }
 
   Container _buildCircle(Color color, Color borderColor, double borderWidth) {
