@@ -82,7 +82,7 @@ class SelectAnimation extends StatelessWidget {
                   child: _buildCheckAnimation(checkAnimation),
                 ),
               ),
-            _buildCheckAnimation('idle')
+            _buildCheckAnimation(idleAnimation),
           ],
         ),
         if (bottomDescription != null) bottomDescription,
