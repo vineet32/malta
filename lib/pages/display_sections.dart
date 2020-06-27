@@ -28,14 +28,15 @@ class DisplaySections extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.done),
             onPressed: () async {
-              print("Pressed");
-              ApiResponse response = await _classApi.add(
-                Class()
-                  ..set(Class.keySections, selectedSections)
-                  ..set(Class.keyActive, true)
-                  ..set(Class.keySubject, subject),
-              );
-              print("in response ${response.results}");
+              if (selectedSections.isNotEmpty) {
+                ApiResponse response = await _classApi.add(
+                  Class()
+                    ..set(Class.keySections, selectedSections)
+                    ..set(Class.keyActive, true)
+                    ..set(Class.keySubject, subject),
+                );
+                print("Response ${response.results}");
+              }
             },
           )
         ],
