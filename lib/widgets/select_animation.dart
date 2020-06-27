@@ -1,5 +1,3 @@
-library selectable_circle;
-
 import 'package:flare_dart/math/mat2d.dart';
 import 'package:flare_flutter/flare.dart';
 import 'package:flare_flutter/flare_controller.dart';
@@ -84,6 +82,7 @@ class SelectAnimation extends StatelessWidget {
                   child: _buildCheckAnimation(checkAnimation),
                 ),
               ),
+            _buildCheckAnimation('idle')
           ],
         ),
         if (bottomDescription != null) bottomDescription,
