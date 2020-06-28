@@ -1,6 +1,6 @@
 import 'package:malta/data/base/api_response.dart';
 import 'package:malta/data/models/school.dart';
-import 'package:malta/data/repositories/school/contract_school.dart';
+import 'package:malta/data/repositories/school/school_contract.dart';
 
 class SchoolApi implements SchoolContract {
   SchoolApi();
