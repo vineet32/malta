@@ -19,5 +19,5 @@ class Section extends ParseObject implements ParseCloneable {
   set image(String image) => set<String>(keyImage, image);
 
   ParseObject get school => get<ParseObject>(keySchool);
-  set school(ParseUser school) => set<ParseUser>(keySchool, school);
+  set school(ParseObject school) => set<ParseObject>(keySchool, school);
 }
