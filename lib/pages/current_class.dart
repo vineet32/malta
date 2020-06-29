@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:malta/data/base/api_response.dart';
+import 'package:malta/data/models/school.dart';
+import 'package:malta/data/models/user.dart';
 import 'package:malta/data/repositories/class/class_contract.dart';
 import 'package:malta/data/repositories/subject/subject_contract.dart';
 import 'package:malta/widgets/class/ongoing_list.dart';
@@ -8,16 +10,15 @@ import 'package:malta/widgets/class/start_class_list.dart';
 import 'package:provider/provider.dart';
 
 class CurrentClass extends StatelessWidget {
-  final String schoolId;
-  const CurrentClass(
-      this.schoolId, {
-        Key key,
-      })  : assert(schoolId != null),
-        super(key: key);
+  const CurrentClass({
+    Key key,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final _classApi = Provider.of<ClassContract>(context);
     final _subjectApi = Provider.of<SubjectContract>(context);
+    final _school = Provider.of<School>(context);
+    final _user = Provider.of<User>(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -38,7 +39,7 @@ class CurrentClass extends StatelessWidget {
               height: 20,
             ),
             FutureBuilder<ApiResponse>(
-                future: _classApi.getActive(schoolId),
+                future: _classApi.getActive(_school),
                 builder: (BuildContext context,
                     AsyncSnapshot<ApiResponse> snapshot) {
                   if (snapshot.hasData) {
@@ -70,13 +71,15 @@ class CurrentClass extends StatelessWidget {
             ),
             Expanded(
               child: FutureBuilder<ApiResponse>(
-                  future: _subjectApi.getBySchoolId(schoolId),
+                  future: _subjectApi.getBySchoolId(_school),
                   builder: (BuildContext context,
                       AsyncSnapshot<ApiResponse> snapshot) {
                     if (snapshot.hasData) {
                       if (snapshot.data.results != null) {
                         return StartClassList(
                           startClassList: snapshot.data.results,
+                          school: _school,
+                          teacher: _user,
                         );
                       } else {
                         return Text("No Subjects to Start");

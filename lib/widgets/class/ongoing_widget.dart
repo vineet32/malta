@@ -1,14 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:malta/data/models/subject.dart';
+import 'package:malta/data/models/user.dart';
 import 'package:random_color/random_color.dart';
 
 class OngoingWidget extends StatelessWidget {
   final Subject subject;
+  final User user;
 
   const OngoingWidget({
     Key key,
     this.subject,
+    this.user,
   }) : super(key: key);
 
   @override
@@ -27,7 +30,7 @@ class OngoingWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Image.network(
-              subject.image,
+              user.image,
               width: 150,
               height: 150,
               fit: BoxFit.cover,

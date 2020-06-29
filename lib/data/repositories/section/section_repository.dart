@@ -1,4 +1,5 @@
 import 'package:malta/data/base/api_response.dart';
+import 'package:malta/data/models/school.dart';
 import 'package:malta/data/repositories/section/section_api.dart';
 import 'package:malta/data/repositories/section/section_contract.dart';
 
@@ -28,7 +29,7 @@ class SectionRepository implements SectionContract {
   }
 
   @override
-  Future<ApiResponse> getBySchoolId(String id) {
-    return api.getBySchoolId(id);
+  Future<ApiResponse> getBySchoolId(School school) {
+    return api.getBySchoolId(school);
   }
 }

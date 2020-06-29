@@ -1,6 +1,8 @@
 import 'package:malta/data/models/class.dart';
+import 'package:malta/data/models/school.dart';
 import 'package:malta/data/models/section.dart';
 import 'package:malta/data/models/subject.dart';
+import 'package:malta/data/models/user.dart';
 import 'package:malta/data/repositories/class/class_contract.dart';
 import 'package:malta/data/repositories/section/section_contract.dart';
 import 'package:malta/data/repositories/subject/subject_contract.dart';
@@ -26,10 +28,10 @@ Class getDummyClass(
     ..set('objectId', '1234abcd')
     ..set(keyVarUpdatedAt, DateTime.now())
     ..active = true
-    ..school = ParseObject("School")
+    ..school = School()
     ..sections = sections
     ..subject = subject
-    ..teacher = ParseObject("User");
+    ..teacher = User("username", "password", "emailAddress@gmail.com");
 }
 
 Subject getDummySubject({String subjectName: "English"}) {
@@ -43,7 +45,7 @@ Subject getDummySubject({String subjectName: "English"}) {
     ..set('objectId', '1234abcd')
     ..set(keyVarUpdatedAt, DateTime.now())
     ..name = subjectName
-    ..school = ParseObject("School")
+    ..school = School()
     ..image =
         "https://image.shutterstock.com/image-vector/vector-illustration-education-elements-260nw-1242560170.jpg";
   return subject;
@@ -55,7 +57,7 @@ Section getDummySection({String sectionName: "Class-1A"}) {
     ..set("objectId", "G1eMjzxDIv")
     ..set(keyVarUpdatedAt, DateTime.now())
     ..name = sectionName
-    ..school = ParseObject("School")
+    ..school = School()
     ..image =
         "https://image.shutterstock.com/image-vector/vector-illustration-education-elements-260nw-1242560170.jpg";
   return section;

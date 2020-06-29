@@ -8,8 +8,9 @@ class CurrentClassStory extends Story {
 
   @override
   List<Widget> get storyContent {
+    // School school = School()..set("objectId", "EXWWaUQGmd");
     return [
-      CurrentClass("EXWWaUQGmd"),
+      CurrentClass(),
     ];
   }
 }

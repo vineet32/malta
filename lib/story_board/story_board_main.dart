@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:malta/data/models/school.dart';
+import 'package:malta/data/models/user.dart';
 import 'package:malta/data/repositories/class/class_contract.dart';
 import 'package:malta/data/repositories/class/class_repository.dart';
 import 'package:malta/data/repositories/section/section_contract.dart';
@@ -27,6 +29,10 @@ void main() async {
   SubjectContract mockSubjectApi = await getMockSubjectApi();
   SectionContract mockSectionApi = await getMockSectionApi();
 
+  User user = User("username", "password", "emailAddress")
+    ..set("objectId", "T4enuoHtxH");
+  School school = School()..set("objectId", "EXWWaUQGmd");
+
   runApp(
     MultiProvider(
       providers: [
@@ -38,6 +44,8 @@ void main() async {
         Provider<SectionContract>(
             create: (_) =>
                 SectionRepository.init(mockAPIProvider: mockSectionApi)),
+        Provider<User>(create: (_) => user),
+        Provider<School>(create: (_) => school),
       ],
       child: MaterialApp(
         home: StoryboardApp([

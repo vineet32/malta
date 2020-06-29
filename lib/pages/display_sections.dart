@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:malta/data/base/api_response.dart';
 import 'package:malta/data/models/class.dart';
+import 'package:malta/data/models/school.dart';
 import 'package:malta/data/models/subject.dart';
+import 'package:malta/data/models/user.dart';
 import 'package:malta/data/repositories/class/class_contract.dart';
 import 'package:malta/data/repositories/section/section_contract.dart';
 import 'package:malta/widgets/section/section_list.dart';
@@ -10,10 +12,16 @@ import 'package:provider/provider.dart';
 
 class DisplaySections extends StatelessWidget {
   final Subject subject;
-  final String schoolId;
+  final School school;
+  final User teacher;
 
-  const DisplaySections({Key key, this.subject, this.schoolId})
-      : super(key: key);
+  const DisplaySections({
+    Key key,
+    this.subject,
+    this.school,
+    this.teacher,
+  })  : assert(teacher != null),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +41,9 @@ class DisplaySections extends StatelessWidget {
                   Class()
                     ..set(Class.keySections, selectedSections)
                     ..set(Class.keyActive, true)
-                    ..set(Class.keySubject, subject),
+                    ..set(Class.keySubject, subject)
+                    ..set(Class.keySchool, school)
+                    ..set(Class.keyTeacher, teacher),
                 );
                 print("Response ${response.results}");
               }
@@ -42,7 +52,7 @@ class DisplaySections extends StatelessWidget {
         ],
       ),
       body: FutureBuilder<ApiResponse>(
-          future: _sectionApi.getBySchoolId(schoolId),
+          future: _sectionApi.getBySchoolId(school),
           builder: (BuildContext context, AsyncSnapshot<ApiResponse> snapshot) {
             if (snapshot.hasData) {
               if (snapshot.data.results != null) {

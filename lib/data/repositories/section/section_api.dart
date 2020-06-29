@@ -1,4 +1,5 @@
 import 'package:malta/data/base/api_response.dart';
+import 'package:malta/data/models/school.dart';
 import 'package:malta/data/models/section.dart';
 import 'package:malta/data/repositories/section/section_contract.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
@@ -17,12 +18,10 @@ class SectionApi implements SectionContract {
   }
 
   @override
-  Future<ApiResponse> getBySchoolId(String schoolId) async {
+  Future<ApiResponse> getBySchoolId(School school) async {
     QueryBuilder<Section> queryBuilder = QueryBuilder<Section>(Section())
-      ..whereMatchesQuery(
-          Section.keySchool,
-          QueryBuilder(ParseObject("School"))
-            ..whereEqualTo("objectId", schoolId));
+      ..whereEqualTo(Section.keySchool, school)
+      ..includeObject([Section.keySchool]);
     return getApiResponse<Section>(await queryBuilder.query());
   }
 }
