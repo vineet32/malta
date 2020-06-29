@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:malta/data/base/api_response.dart';
 import 'package:malta/data/models/student.dart';
 import 'package:malta/data/repositories/student/student_contract.dart';
-import 'package:malta/widgets/student_details_card.dart';
+import 'package:malta/widgets/student/student_details_card.dart';
 import 'package:provider/provider.dart';
 
 class StudentsInClass extends StatelessWidget {
@@ -18,7 +18,7 @@ class StudentsInClass extends StatelessWidget {
     _studentApi= Provider.of<StudentContract>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Class-$section',style: TextStyle(color: Colors.black),textAlign: TextAlign.left,),
+        title: Text('$section',style: TextStyle(color: Colors.black),textAlign: TextAlign.left,),
         backgroundColor: Colors.white,
         elevation: 5.0,
         leading: Icon(
