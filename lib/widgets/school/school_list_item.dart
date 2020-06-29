@@ -3,7 +3,7 @@ import 'package:malta/data/models/school.dart';
 import 'package:malta/providers/school_provider.dart';
 import 'package:random_color/random_color.dart';
 import 'package:provider/provider.dart';
-import 'package:malta/pages/current_school.dart';
+//import 'package:malta/pages/current_class.dart';
 
 class SchoolListItem extends StatelessWidget {
 
