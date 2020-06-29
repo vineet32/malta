@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:malta/data/base/api_response.dart';
 import 'package:malta/data/models/school.dart';
-import 'package:malta/data/models/user.dart';
 import 'package:malta/data/repositories/class/class_contract.dart';
 import 'package:malta/data/repositories/subject/subject_contract.dart';
 import 'package:malta/widgets/class/ongoing_list.dart';
@@ -18,7 +17,6 @@ class CurrentClass extends StatelessWidget {
     final _classApi = Provider.of<ClassContract>(context);
     final _subjectApi = Provider.of<SubjectContract>(context);
     final _school = Provider.of<School>(context);
-    final _user = Provider.of<User>(context);
 
     return Container(
       child: Column(
@@ -74,8 +72,6 @@ class CurrentClass extends StatelessWidget {
                     if (snapshot.data.results != null) {
                       return StartClassList(
                         startClassList: snapshot.data.results,
-                        school: _school,
-                        teacher: _user,
                       );
                     } else {
                       return Text("No Subjects to Start");

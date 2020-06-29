@@ -29,28 +29,34 @@ class OngoingWidget extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Image.network(
-              user.image,
-              width: 150,
-              height: 150,
-              fit: BoxFit.cover,
-              loadingBuilder: (BuildContext context, Widget child,
-                  ImageChunkEvent loadingProgress) {
-                if (loadingProgress == null) return child;
-                return Center(
-                  child: Container(
-                    width: 150,
-                    height: 150,
-                    padding: EdgeInsets.all(5),
-                    child: CircularProgressIndicator(
-                      value: loadingProgress.expectedTotalBytes != null
-                          ? loadingProgress.cumulativeBytesLoaded /
-                              loadingProgress.expectedTotalBytes
-                          : null,
+            ClipRRect(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(18),
+                topRight: Radius.circular(18),
+              ),
+              child: Image.network(
+                user.image,
+                width: 140,
+                height: 140,
+                fit: BoxFit.fill,
+                loadingBuilder: (BuildContext context, Widget child,
+                    ImageChunkEvent loadingProgress) {
+                  if (loadingProgress == null) return child;
+                  return Center(
+                    child: Container(
+                      width: 140,
+                      height: 140,
+                      padding: EdgeInsets.all(5),
+                      child: CircularProgressIndicator(
+                        value: loadingProgress.expectedTotalBytes != null
+                            ? loadingProgress.cumulativeBytesLoaded /
+                                loadingProgress.expectedTotalBytes
+                            : null,
+                      ),
                     ),
-                  ),
-                );
-              },
+                  );
+                },
+              ),
             ),
             Container(
               padding: EdgeInsets.all(10),
