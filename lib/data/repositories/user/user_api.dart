@@ -1,7 +1,7 @@
 import 'package:malta/data/base/api_response.dart';
 import 'package:malta/data/models/user.dart';
+import 'package:malta/data/repositories/user/user_contract.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
-import 'package:malta/data/repositories/user/contract_user.dart';
 
 class UserApi implements UserContract {
   @override
