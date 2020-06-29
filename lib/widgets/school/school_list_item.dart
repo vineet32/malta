@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:malta/data/models/school.dart';
+import 'package:malta/pages/administer.dart';
 import 'package:malta/providers/school_provider.dart';
 import 'package:random_color/random_color.dart';
 import 'package:provider/provider.dart';
@@ -14,7 +15,10 @@ class SchoolListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final schoolProvider = Provider.of<SchoolProvider>(context, listen: false);
     RandomColor _randomColor = RandomColor();
-    Color _color = _randomColor.randomColor();
+    Color _color = _randomColor.randomColor(
+      colorBrightness: ColorBrightness.light,
+      colorSaturation: ColorSaturation.mediumSaturation
+      );
     return InkWell(
       child:Container(
         height: 100,
@@ -25,7 +29,10 @@ class SchoolListItem extends StatelessWidget {
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
           color: _color,
           child: ListTile(
-              title: Text(school.name, key: Key('schoolName'),),
+              contentPadding: EdgeInsets.fromLTRB(5.0, 15.0, 5.0, 0.0),
+              title: Text(school.name, key: Key('schoolName'),
+              style: TextStyle(fontSize: 20,color: Colors.white,
+                fontWeight: FontWeight.bold),),  
               trailing: CircleAvatar(
                 child: Icon(
                   Icons.image,
@@ -36,7 +43,7 @@ class SchoolListItem extends StatelessWidget {
         )),
         onTap: (){
           schoolProvider.setCurrentlySelectedSchool(school);
-          //Navigator.push(context, MaterialPageRoute(builder: (context) => CurrentClass()));
+          // Navigator.push(context, MaterialPageRoute(builder: (context) => Administer()));
         },
         );
   }

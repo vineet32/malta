@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:malta/data/models/school.dart';
 import 'package:malta/widgets/school/school_list_item.dart';
-import 'package:random_color/random_color.dart';
 
 class SchoolList extends StatelessWidget {
   final List schools;

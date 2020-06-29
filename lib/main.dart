@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:malta/data/repositories/section/section_api.dart';
+import 'package:malta/data/repositories/section/section_contract.dart';
 import 'package:malta/data/repositories/user/user_api.dart';
 import 'package:malta/data/repositories/user/user_contract.dart';
 import 'package:malta/pages/decision_page.dart';
@@ -12,6 +14,7 @@ void main() async {
       providers: [
         Provider<SchoolContract>(create: (_) => SchoolApi()),  
         Provider<UserContract>(create: (_) => UserApi()),
+        Provider<SectionContract>(create: (_) => SectionApi()),
         ChangeNotifierProvider<SchoolProvider>(create: (_) => SchoolProvider()), 
       ],
       child: MyApp(),)

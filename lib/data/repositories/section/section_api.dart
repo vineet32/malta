@@ -25,4 +25,14 @@ class SectionApi implements SectionContract {
             ..whereEqualTo("objectId", schoolId));
     return getApiResponse<Section>(await queryBuilder.query());
   }
+
+  @override
+  Future<ApiResponse> add(Section item) async {
+    return getApiResponse<Section>(await item.save());
+  }
+
+  @override
+  Future<ApiResponse> update(Section item) async {
+    return getApiResponse<Section>(await item.save());
+  }
 }
