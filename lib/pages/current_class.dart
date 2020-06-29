@@ -20,35 +20,65 @@ class CurrentClass extends StatelessWidget {
     final _school = Provider.of<School>(context);
     final _user = Provider.of<User>(context);
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Current Sessions"),
-      ),
-      body: Container(
-        child: Column(
-          children: [
-            Container(
-              padding: EdgeInsets.only(top: 10),
-              alignment: Alignment.topLeft,
-              child: Text(
-                "Ongoing Classes",
-                style: TextStyle(fontSize: 30),
-              ),
+    return Container(
+      child: Column(
+        children: [
+          Container(
+            padding: EdgeInsets.only(top: 10),
+            alignment: Alignment.topLeft,
+            child: Text(
+              "Ongoing Classes",
+              style: TextStyle(fontSize: 30),
             ),
-            SizedBox(
-              height: 20,
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          FutureBuilder<ApiResponse>(
+              future: _classApi.getActive(_school),
+              builder:
+                  (BuildContext context, AsyncSnapshot<ApiResponse> snapshot) {
+                if (snapshot.hasData) {
+                  if (snapshot.data.results != null) {
+                    return OngoingList(
+                      ongoingList: snapshot.data.results,
+                    );
+                  } else {
+                    return Text("No Ongoing Classes");
+                  }
+                } else {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+              }),
+          SizedBox(
+            height: 30,
+          ),
+          Container(
+            alignment: Alignment.topLeft,
+            child: Text(
+              "Start a new Class",
+              style: TextStyle(fontSize: 30),
             ),
-            FutureBuilder<ApiResponse>(
-                future: _classApi.getActive(_school),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Expanded(
+            child: FutureBuilder<ApiResponse>(
+                future: _subjectApi.getBySchoolId(_school),
                 builder: (BuildContext context,
                     AsyncSnapshot<ApiResponse> snapshot) {
                   if (snapshot.hasData) {
                     if (snapshot.data.results != null) {
-                      return OngoingList(
-                        ongoingList: snapshot.data.results,
+                      return StartClassList(
+                        startClassList: snapshot.data.results,
+                        school: _school,
+                        teacher: _user,
                       );
                     } else {
-                      return Text("No Ongoing Classes");
+                      return Text("No Subjects to Start");
                     }
                   } else {
                     return const Center(
@@ -56,43 +86,8 @@ class CurrentClass extends StatelessWidget {
                     );
                   }
                 }),
-            SizedBox(
-              height: 30,
-            ),
-            Container(
-              alignment: Alignment.topLeft,
-              child: Text(
-                "Start a new Class",
-                style: TextStyle(fontSize: 30),
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Expanded(
-              child: FutureBuilder<ApiResponse>(
-                  future: _subjectApi.getBySchoolId(_school),
-                  builder: (BuildContext context,
-                      AsyncSnapshot<ApiResponse> snapshot) {
-                    if (snapshot.hasData) {
-                      if (snapshot.data.results != null) {
-                        return StartClassList(
-                          startClassList: snapshot.data.results,
-                          school: _school,
-                          teacher: _user,
-                        );
-                      } else {
-                        return Text("No Subjects to Start");
-                      }
-                    } else {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    }
-                  }),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

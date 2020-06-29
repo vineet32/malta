@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:malta/pages/current_class.dart';
+import 'package:malta/pages/home_page.dart';
 import 'package:storyboard/storyboard.dart';
 
-class CurrentClassStory extends Story {
+class HomePageStory extends Story {
   @override
   bool get isFullScreen => true;
 
@@ -11,11 +10,7 @@ class CurrentClassStory extends Story {
   List<Widget> get storyContent {
     // School school = School()..set("objectId", "EXWWaUQGmd");
     return [
-      Scaffold(
-          appBar: AppBar(
-            title: Text("Current Sessions"),
-          ),
-          body: CurrentClass()),
+      HomePage(),
     ];
   }
 }
