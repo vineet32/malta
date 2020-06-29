@@ -12,6 +12,6 @@ class SchoolProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  School get getSchool => school;
+  School get getCurrentlySelectedSchool => school;
 
 }
