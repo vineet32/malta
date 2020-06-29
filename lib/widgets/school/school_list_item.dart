@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:malta/pages/current_school.dart';
 
 class SchoolListItem extends StatelessWidget {
+  
   final School school;
   SchoolListItem({@required this.school});
 

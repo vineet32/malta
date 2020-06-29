@@ -1,5 +1,6 @@
 import 'package:parse_server_sdk/parse_server_sdk.dart';
 
+
 const String keyTableName = 'School';
 const String keyName = 'name';
 const String keyImage = 'image';

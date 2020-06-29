@@ -5,6 +5,7 @@ import 'package:malta/widgets/school/school_list.dart';
 import 'package:provider/provider.dart';
 
 class DisplaySchool extends StatelessWidget {
+  
   // final List schools;
   // DisplaySchool({this.schools});
 
