@@ -11,6 +11,7 @@ import 'package:malta/data/repositories/subject/subject_repository.dart';
 import 'package:malta/story_board/mock_data/repository_mock_api.dart';
 import 'package:malta/story_board/story/current_class_story.dart';
 import 'package:malta/story_board/story/home_page_story.dart';
+import 'package:malta/story_board/story/video_recorder_story.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
 import 'package:provider/provider.dart';
 import 'package:storyboard/storyboard.dart';
@@ -53,6 +54,7 @@ void main() async {
           DisplaySchoolStory(),
           CurrentClassStory(),
           HomePageStory(),
+          VideoRecorderStory()
         ]),
       ),
     ),
