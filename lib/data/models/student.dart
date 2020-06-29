@@ -16,11 +16,11 @@ class Student extends ParseObject implements ParseCloneable {
   String get name => get<String>(keyName);
   set name(String name) => set<String>(keyName, name);
 
-  String get section => get<String>(keySection);
-  set section(String section) => set<String>(keySection, section);
+  ParseObject get section => get<ParseObject>(keySection);
+  set section(ParseObject section) => set<ParseObject>(keySection, section);
 
   ParseObject get school => get<ParseObject>(keySchool);
-  set school(ParseObject school) => set<ParseUser>(keySchool, school);
+  set school(ParseObject school) => set<ParseObject>(keySchool, school);
 
   num get age => get<num>(keyAge);
   set age(num age) => set<num>(keyAge, age);

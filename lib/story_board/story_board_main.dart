@@ -4,10 +4,13 @@ import 'package:malta/data/repositories/class/class_contract.dart';
 import 'package:malta/data/repositories/class/class_repository.dart';
 import 'package:malta/data/repositories/section/section_contract.dart';
 import 'package:malta/data/repositories/section/section_repository.dart';
+import 'package:malta/data/repositories/student/student_contract.dart';
+import 'package:malta/data/repositories/student/student_repository.dart';
 import 'package:malta/data/repositories/subject/subject_contract.dart';
 import 'package:malta/data/repositories/subject/subject_repository.dart';
 import 'package:malta/story_board/mock_data/repository_mock_api.dart';
 import 'package:malta/story_board/story/current_class_story.dart';
+import 'package:malta/story_board/story/display_student_test.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
 import 'package:provider/provider.dart';
 import 'package:storyboard/storyboard.dart';
@@ -26,6 +29,7 @@ void main() async {
   ClassContract mockClassApi = await getMockClassApi();
   SubjectContract mockSubjectApi = await getMockSubjectApi();
   SectionContract mockSectionApi = await getMockSectionApi();
+  StudentContract mockStudentApi = await getMockStudentApi();
 
   runApp(
     MultiProvider(
@@ -38,11 +42,15 @@ void main() async {
         Provider<SectionContract>(
             create: (_) =>
                 SectionRepository.init(mockAPIProvider: mockSectionApi)),
+        Provider<StudentContract>(
+            create: (_) =>
+                StudentRepository.init(mockAPIProvider: mockStudentApi)),
       ],
       child: MaterialApp(
         home: StoryboardApp([
           DisplaySchoolStory(),
           CurrentClassStory(),
+          StudentsInClassStory(),
         ]),
       ),
     ),
