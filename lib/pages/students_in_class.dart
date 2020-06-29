@@ -2,20 +2,20 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:malta/data/base/api_response.dart';
 import 'package:malta/data/models/student.dart';
-import 'package:malta/data/repositories/student/student_api.dart';
+import 'package:malta/data/repositories/student/student_contract.dart';
 import 'package:malta/widgets/student_details_card.dart';
-import 'package:parse_server_sdk/parse_server_sdk.dart';
+import 'package:provider/provider.dart';
 
 class StudentsInClass extends StatelessWidget {
   //final List<Student> student;
-  final StudentApi studentApi;
+  var _studentApi;
   final String section;
   final String schoolId;
 
-  QueryBuilder<ParseObject> _queryBuilder;
-  StudentsInClass({this.studentApi,this.section,this.schoolId});
+  StudentsInClass({this.section,this.schoolId});
   @override
   Widget build(BuildContext context) {
+    _studentApi= Provider.of<StudentContract>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text('Class-$section',style: TextStyle(color: Colors.black),textAlign: TextAlign.left,),
@@ -55,7 +55,7 @@ class StudentsInClass extends StatelessWidget {
 
   Widget _showStudentList() {
     return FutureBuilder<ApiResponse>(
-        future: studentApi.getParticularSectionsStudents(section, schoolId),
+        future: _studentApi.getParticularSectionsStudents(section, schoolId),
         builder: (BuildContext context, AsyncSnapshot<ApiResponse> snapshot) {
           if (snapshot.hasData) {
             if(snapshot.data.results!=null){

@@ -9,7 +9,7 @@ class StudentsInClassStory extends Story {
   @override
   List<Widget> get storyContent {
     return [
-      StudentsInClass()
+      StudentsInClass(schoolId: 'FqIJjXych1',section: '1A',)
     ];
   }
 }
