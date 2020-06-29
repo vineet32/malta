@@ -1,3 +1,4 @@
+import 'package:malta/data/models/section.dart';
 import 'package:malta/data/models/subject.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
 
@@ -20,6 +21,12 @@ class Class extends ParseObject implements ParseCloneable {
     super.fromJson(objectData);
     if (objectData.containsKey(keySubject)) {
       subject = Subject.clone().fromJson(objectData[keySubject]);
+    }
+
+    if (objectData.containsKey(keySections)) {
+      for (int i = 0; i < objectData[keySections].length; i++) {
+        sections[i] = Section.clone().fromJson(objectData[keySections][i]);
+      }
     }
     return this;
   }
