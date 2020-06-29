@@ -5,7 +5,7 @@ import 'package:malta/data/models/class.dart';
 import 'package:malta/data/models/subject.dart';
 import 'package:malta/data/repositories/class/class_contract.dart';
 import 'package:malta/data/repositories/section/section_contract.dart';
-import 'package:malta/widgets/section/section_List.dart';
+import 'package:malta/widgets/section/section_list.dart';
 import 'package:provider/provider.dart';
 
 class DisplaySections extends StatelessWidget {
