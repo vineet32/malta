@@ -16,8 +16,8 @@ class CurrentClass extends StatelessWidget {
         super(key: key);
   @override
   Widget build(BuildContext context) {
-    final _apiClass = Provider.of<ClassContract>(context);
-    final _apiSubject = Provider.of<SubjectContract>(context);
+    final _classApi = Provider.of<ClassContract>(context);
+    final _subjectApi = Provider.of<SubjectContract>(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -38,7 +38,7 @@ class CurrentClass extends StatelessWidget {
               height: 20,
             ),
             FutureBuilder<ApiResponse>(
-                future: _apiClass.getActive(schoolId),
+                future: _classApi.getActive(schoolId),
                 builder: (BuildContext context,
                     AsyncSnapshot<ApiResponse> snapshot) {
                   if (snapshot.hasData) {
@@ -70,7 +70,7 @@ class CurrentClass extends StatelessWidget {
             ),
             Expanded(
               child: FutureBuilder<ApiResponse>(
-                  future: _apiSubject.getBySchoolId(schoolId),
+                  future: _subjectApi.getBySchoolId(schoolId),
                   builder: (BuildContext context,
                       AsyncSnapshot<ApiResponse> snapshot) {
                     if (snapshot.hasData) {

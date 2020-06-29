@@ -1,36 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:malta/data/models/school_model.dart';
+import 'package:malta/data/base/api_response.dart';
+import 'package:malta/data/repositories/school/school_contract.dart';
 import 'package:malta/widgets/school/school_list.dart';
 import 'package:provider/provider.dart';
 
-class DisplaySchool extends StatefulWidget {
-  @override
-  _DisplaySchoolState createState() => _DisplaySchoolState();
-}
-
-class _DisplaySchoolState extends State<DisplaySchool> {
-  @override
-  void initState() {
-    super.initState();
-  }
+class DisplaySchool extends StatelessWidget {
+  
+  // final List schools;
+  // DisplaySchool({this.schools});
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<SchoolModel>(
-        create: (context) => SchoolModel(),
-        child: Builder(builder: (context) {
-          return Scaffold(
-            appBar: AppBar(
-              title: Text('Choose your school'),
-            ),
-            body: Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height,
-                child:
-                Consumer<SchoolModel>(builder: (context, provider, child) {
-                  return SchoolList(schools: provider.getAllSchools);
-                })),
-          );
-        }));
+      final provider = Provider.of<SchoolContract>(context);
+      return Scaffold(
+        appBar: AppBar(title: Text('Choose your School'),key: Key('appBar'),),
+        body: FutureBuilder<ApiResponse>(
+          key: Key('schoolList'),
+          future: provider.getAll(),
+          builder: (context, AsyncSnapshot<ApiResponse> snapshot){
+            if(snapshot.hasData){
+               //SchoolList(schools: schools)
+               return SchoolList(schools: snapshot.data.results);
+            }
+            else{
+              return Center(child:Text('Conecting.....',key: Key('text'),));
+            }
+          }
+        )
+      );
+    
   }
 }

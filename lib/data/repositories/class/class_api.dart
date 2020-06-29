@@ -3,7 +3,7 @@ import 'package:malta/data/models/class.dart';
 import 'package:malta/data/repositories/class/class_contract.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
 
-class ClassApi implements ClassContract{
+class ClassApi implements ClassContract {
   ClassApi();
 
   @override
@@ -24,8 +24,13 @@ class ClassApi implements ClassContract{
           Class.keySchool,
           QueryBuilder(ParseObject("School"))
             ..whereEqualTo("objectId", schoolId))
-      ..includeObject([Class.keySubject]);
+      ..includeObject([Class.keySubject, Class.keySections]);
 
     return getApiResponse<Class>(await queryBuilder.query());
+  }
+
+  @override
+  Future<ApiResponse> add(Class item) async {
+    return getApiResponse<Class>(await item.save());
   }
 }
