@@ -10,11 +10,15 @@ import 'package:malta/data/repositories/subject/subject_contract.dart';
 import 'package:malta/data/repositories/subject/subject_repository.dart';
 import 'package:malta/story_board/mock_data/repository_mock_api.dart';
 import 'package:malta/story_board/story/current_class_story.dart';
+import 'package:malta/story_board/story/display_login_test.dart';
 import 'package:malta/story_board/story/display_student_test.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
 import 'package:provider/provider.dart';
 import 'package:storyboard/storyboard.dart';
 import 'package:malta/story_board/story/display_school_test.dart';
+
+import '../data/repositories/user/user_api.dart';
+import '../data/repositories/user/user_contract.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -45,12 +49,14 @@ void main() async {
         Provider<StudentContract>(
             create: (_) =>
                 StudentRepository.init(mockAPIProvider: mockStudentApi)),
+        Provider<UserContract>(create: (_) => UserApi()),
       ],
       child: MaterialApp(
         home: StoryboardApp([
           DisplaySchoolStory(),
           CurrentClassStory(),
           StudentsInClassStory(),
+          DisplayLoginStory(),
         ]),
       ),
     ),

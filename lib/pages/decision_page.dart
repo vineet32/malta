@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 //import 'package:malta/data/base/api_response.dart';
 //import 'package:malta/data/repositories/school/school_contract.dart';
 import 'package:malta/domain/constants/application_constants.dart';
+import 'package:malta/pages/login.dart';
 //import 'package:malta/pages/current_class.dart';
 //import 'package:malta/providers/school_provider.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
@@ -99,8 +100,8 @@ class _DecisionPageState extends State<DecisionPage> {
           //   );
 
           
-          _redirectToPage(context, DisplaySchool());
-
+        //  _redirectToPage(context, DisplaySchool());
+        _redirectToPage(context, LogIn());
       
         // } else {
         //   _redirectToPage(context, LoginPage());
