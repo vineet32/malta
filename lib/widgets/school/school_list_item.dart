@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:malta/pages/current_school.dart';
 
 class SchoolListItem extends StatelessWidget {
-  
+
   final School school;
   SchoolListItem({@required this.school});
 
@@ -36,7 +36,7 @@ class SchoolListItem extends StatelessWidget {
         )),
         onTap: (){
           schoolProvider.setCurrentlySelectedSchool(school);
-          Navigator.push(context, MaterialPageRoute(builder: (context) => CurrentSchool()));
+          //Navigator.push(context, MaterialPageRoute(builder: (context) => CurrentClass()));
         },
         );
   }
