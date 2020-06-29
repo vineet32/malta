@@ -19,7 +19,8 @@ Class getDummyClass(
     {String subjectName: "English", String sectionName: "Class-1A"}) {
   Subject subject = getDummySubject(subjectName: subjectName);
   Section section = getDummySection(sectionName: sectionName);
-
+  User user = User("username", "password", "emailAddress@gmail.com")
+    ..set(User.keyImage, "https://avatarfiles.alphacoders.com/152/152686.jpg");
   List sections = [];
   for (int i = 0; i < 6; i++) {
     sections.add(section);
@@ -31,7 +32,7 @@ Class getDummyClass(
     ..school = School()
     ..sections = sections
     ..subject = subject
-    ..teacher = User("username", "password", "emailAddress@gmail.com");
+    ..teacher = user;
 }
 
 Subject getDummySubject({String subjectName: "English"}) {
