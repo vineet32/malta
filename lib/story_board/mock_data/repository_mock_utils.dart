@@ -13,9 +13,10 @@ class RepositoryMockSubject extends Mock implements SubjectContract {}
 
 class RepositoryMockSection extends Mock implements SectionContract {}
 
-Class getDummyClass() {
-  Subject subject = getDummySubject();
-  Section section = getDummySection();
+Class getDummyClass(
+    {String subjectName: "English", String sectionName: "Class-1A"}) {
+  Subject subject = getDummySubject(subjectName: subjectName);
+  Section section = getDummySection(sectionName: sectionName);
 
   List sections = [];
   for (int i = 0; i < 6; i++) {
@@ -31,15 +32,8 @@ Class getDummyClass() {
     ..teacher = ParseObject("User");
 }
 
-Subject getDummySubject() {
-  Section section = Section();
-  section
-    ..set("objectId", "G1eMjzxDIv")
-    ..set(keyVarUpdatedAt, DateTime.now())
-    ..name = "Class-1A"
-    ..school = ParseObject("School")
-    ..image =
-        "https://image.shutterstock.com/image-vector/vector-illustration-education-elements-260nw-1242560170.jpg";
+Subject getDummySubject({String subjectName: "English"}) {
+  Section section = getDummySection();
 
   List sections = [];
   for (int i = 0; i < 6; i++) {
@@ -48,19 +42,19 @@ Subject getDummySubject() {
   Subject subject = Subject()
     ..set('objectId', '1234abcd')
     ..set(keyVarUpdatedAt, DateTime.now())
-    ..name = "English"
+    ..name = subjectName
     ..school = ParseObject("School")
     ..image =
         "https://image.shutterstock.com/image-vector/vector-illustration-education-elements-260nw-1242560170.jpg";
   return subject;
 }
 
-Section getDummySection() {
+Section getDummySection({String sectionName: "Class-1A"}) {
   Section section = Section();
   section
     ..set("objectId", "G1eMjzxDIv")
     ..set(keyVarUpdatedAt, DateTime.now())
-    ..name = "Class-1A"
+    ..name = sectionName
     ..school = ParseObject("School")
     ..image =
         "https://image.shutterstock.com/image-vector/vector-illustration-education-elements-260nw-1242560170.jpg";
