@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:malta/data/repositories/user/user_api.dart';
+import 'package:malta/data/repositories/user/user_contract.dart';
 import 'package:malta/pages/decision_page.dart';
-import 'package:provider/provider.dart';
 import 'package:malta/providers/school_provider.dart';
-import 'package:malta/data/repositories/school/api_school.dart';
-import 'package:malta/data/repositories/user/api_user.dart';
+import 'package:provider/provider.dart';
+import 'package:malta/data/repositories/school/school_api.dart';
+import 'package:malta/data/repositories/school/school_contract.dart';
 
 void main() async {
   runApp(MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => SchoolProvider(schoolContract: SchoolApi(), userContract: UserApi())),
+        Provider<SchoolContract>(create: (_) => SchoolApi()),  
+        Provider<UserContract>(create: (_) => UserApi()),
+        ChangeNotifierProvider<SchoolProvider>(create: (_) => SchoolProvider()), 
       ],
       child: MyApp(),)
       );
@@ -24,53 +28,6 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: DecisionPage(),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ),
     );
   }
 }
