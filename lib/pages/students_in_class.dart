@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 
 class StudentsInClass extends StatelessWidget {
   //final List<Student> student;
-  var _studentApi;
+  StudentContract _studentApi;
   final String section;
   final String schoolId;
 
