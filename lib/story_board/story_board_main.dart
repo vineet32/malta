@@ -4,10 +4,16 @@ import 'package:malta/data/models/school.dart';
 import 'package:malta/data/models/user.dart';
 import 'package:malta/data/repositories/class/class_contract.dart';
 import 'package:malta/data/repositories/class/class_repository.dart';
+import 'package:malta/data/repositories/school/school_api.dart';
+import 'package:malta/data/repositories/school/school_contract.dart';
 import 'package:malta/data/repositories/section/section_contract.dart';
 import 'package:malta/data/repositories/section/section_repository.dart';
 import 'package:malta/data/repositories/subject/subject_contract.dart';
 import 'package:malta/data/repositories/subject/subject_repository.dart';
+import 'package:malta/data/repositories/user/user_api.dart';
+import 'package:malta/data/repositories/user/user_contract.dart';
+import 'package:malta/domain/constants/application_constants.dart';
+import 'package:malta/providers/school_provider.dart';
 import 'package:malta/story_board/mock_data/repository_mock_api.dart';
 import 'package:malta/story_board/story/current_class_story.dart';
 import 'package:malta/story_board/story/home_page_story.dart';
@@ -20,9 +26,9 @@ import 'package:malta/story_board/story/display_school_test.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Parse().initialize(
-    "PARSE_APP_ID",
-    "PARSE_APP_URL",
-    clientKey: "CLIENT_KEY",
+    keyParseApplicationId,
+    keyParseServerUrl,
+    clientKey: clientId,
     autoSendSessionId: true,
     debug: true,
     coreStore: await CoreStoreSharedPrefsImp.getInstance(),
@@ -31,8 +37,8 @@ void main() async {
   SubjectContract mockSubjectApi = await getMockSubjectApi();
   SectionContract mockSectionApi = await getMockSectionApi();
 
-  User user = User("username", "password", "emailAddress")
-    ..set("objectId", "T4enuoHtxH");
+  User user = User("bhanu", "bhanu", "bhanu@gmail.com")
+    ..set("objectId", "6BQNHAL0JE");
   School school = School()..set("objectId", "EXWWaUQGmd");
 
   runApp(
@@ -46,6 +52,9 @@ void main() async {
         Provider<SectionContract>(
             create: (_) =>
                 SectionRepository.init(mockAPIProvider: mockSectionApi)),
+        Provider<UserContract>(create: (_) => UserApi()),
+        ChangeNotifierProvider<SchoolProvider>(create: (_) => SchoolProvider()),
+        Provider<SchoolContract>(create: (_) => SchoolApi()),
         Provider<User>(create: (_) => user),
         Provider<School>(create: (_) => school),
       ],
@@ -54,7 +63,7 @@ void main() async {
           DisplaySchoolStory(),
           CurrentClassStory(),
           HomePageStory(),
-          VideoRecorderStory()
+          VideoRecorderStory(),
         ]),
       ),
     ),
