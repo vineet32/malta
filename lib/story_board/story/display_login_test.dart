@@ -9,7 +9,7 @@ class DisplayLoginStory extends Story{
   @override
   List<Widget> get storyContent {
     return [
-      LogIn(),
+      Login(),
     ];
   }
 }

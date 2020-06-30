@@ -1,3 +1,5 @@
+import 'package:malta/data/models/school.dart';
+import 'package:malta/data/models/section.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
 
 class Student extends ParseObject implements ParseCloneable {
@@ -16,11 +18,11 @@ class Student extends ParseObject implements ParseCloneable {
   String get name => get<String>(keyName);
   set name(String name) => set<String>(keyName, name);
 
-  ParseObject get section => get<ParseObject>(keySection);
-  set section(ParseObject section) => set<ParseObject>(keySection, section);
+  Section get section => get<Section>(keySection);
+  set section(Section section) => set<Section>(keySection, section);
 
-  ParseObject get school => get<ParseObject>(keySchool);
-  set school(ParseObject school) => set<ParseObject>(keySchool, school);
+  School get school => get<School>(keySchool);
+  set school(School school) => set<School>(keySchool, school);
 
   num get age => get<num>(keyAge);
   set age(num age) => set<num>(keyAge, age);

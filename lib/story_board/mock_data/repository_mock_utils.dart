@@ -75,7 +75,7 @@ Student getDummyStudent() {
     ..gender='male'
     ..age=22
     ..image='https://i.pinimg.com/474x/57/53/74/575374bf227f9845685a2950dd976f88--cartoon-characters-remember-this.jpg'
-    ..school=ParseObject('School')
-    ..section=ParseObject('Section');
+    ..school=School()
+    ..section=Section();
   return student;
 }

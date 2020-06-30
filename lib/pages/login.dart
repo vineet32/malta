@@ -5,12 +5,12 @@ import 'package:malta/data/base/api_response.dart';
 import 'package:malta/data/models/user.dart';
 import 'display_school.dart';
 
-class LogIn extends StatefulWidget {
+class Login extends StatefulWidget {
   @override
-  _LogInState createState() => _LogInState();
+  _LoginState createState() => _LoginState();
 }
 
-class _LogInState extends State<LogIn> {
+class _LoginState extends State<Login> {
   String _email, _password,_errorMessage;
   bool _error=false;
   @override
