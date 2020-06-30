@@ -25,6 +25,7 @@ class SectionWidget extends StatelessWidget {
             section.image,
             width: 100,
             height: 100,
+            colorBlendMode: BlendMode.colorBurn,
             fit: BoxFit.cover,
             loadingBuilder: (BuildContext context, Widget child,
                 ImageChunkEvent loadingProgress) {
