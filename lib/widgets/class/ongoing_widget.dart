@@ -35,7 +35,7 @@ class OngoingWidget extends StatelessWidget {
                 topRight: Radius.circular(18),
               ),
               child: Image.network(
-                user.image,
+                user.image.url,
                 width: 140,
                 height: 140,
                 fit: BoxFit.fill,

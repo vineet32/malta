@@ -17,7 +17,6 @@ class User extends ParseUser implements ParseCloneable {
   List get schools => get<List>(keySchools);
   set schools(List school) => set<List>(keySchools, school);
 
-  String get image => get<String>(keyImage);
-  set image(String image) => set<String>(keyImage, image);
-
+  ParseFile get image => get<ParseFile>(keyImage);
+  set image(ParseFile image) => set<ParseFile>(keyImage, image);
 }

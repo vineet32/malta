@@ -31,9 +31,9 @@ void main() async {
   SubjectContract mockSubjectApi = await getMockSubjectApi();
   SectionContract mockSectionApi = await getMockSectionApi();
 
-  User user = User("username", "password", "emailAddress")
-    ..set("objectId", "T4enuoHtxH");
-  School school = School()..set("objectId", "EXWWaUQGmd");
+  User user = User("bhanu", "bhanu", "bhanu@gmail.com")
+    ..set("objectId", "6BQNHAL0JE");
+  School school = School()..set("objectId", "gwpUOZr8tf");
 
   runApp(
     MultiProvider(
