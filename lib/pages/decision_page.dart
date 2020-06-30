@@ -77,7 +77,7 @@ class _DecisionPageState extends State<DecisionPage> {
         );
       var response = await Parse().healthCheck();
       if (response.success) {
-        final ParseUser user = await ParseUser.currentUser();
+        final User user = await ParseUser.currentUser(customUserObject: User.clone());
         if (user != null) {
           _redirectToPage(context, Provider<User> (create: (_)=>user,child: DisplaySchool()));
         }
