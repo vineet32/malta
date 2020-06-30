@@ -1,5 +1,6 @@
 import 'package:malta/data/base/api_response.dart';
 import 'package:malta/data/models/class.dart';
+import 'package:malta/data/models/school.dart';
 import 'package:malta/data/repositories/class/class_api.dart';
 import 'package:malta/data/repositories/class/class_contract.dart';
 
@@ -36,7 +37,7 @@ class ClassRepository implements ClassContract {
   }
 
   @override
-  Future<ApiResponse> getActive(String id) {
-    return api.getActive(id);
+  Future<ApiResponse> getActive(School school) {
+    return api.getActive(school);
   }
 }

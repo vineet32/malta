@@ -1,4 +1,5 @@
 import 'package:malta/data/base/api_response.dart';
+import 'package:malta/data/models/school.dart';
 
 abstract class SubjectContract {
   // Future<ApiResponse> add(Subject item);
@@ -15,5 +16,5 @@ abstract class SubjectContract {
 
   Future<ApiResponse> getAll();
 
-  Future<ApiResponse> getBySchoolId(String id);
+  Future<ApiResponse> getBySchoolId(School school);
 }

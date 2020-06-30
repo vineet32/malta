@@ -5,9 +5,10 @@ import 'package:random_color/random_color.dart';
 
 class StartClassList extends StatelessWidget {
   final List startClassList;
+
   const StartClassList({
     Key key,
-    this.startClassList,
+    @required this.startClassList,
   })  : assert(startClassList != null),
         super(key: key);
   @override

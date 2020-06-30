@@ -7,9 +7,11 @@ class StartClassWidget extends StatelessWidget {
   final Color color;
   final Subject subject;
 
-  const StartClassWidget(
-      {Key key, @required this.color, @required this.subject})
-      : assert(color != null),
+  const StartClassWidget({
+    Key key,
+    @required this.color,
+    @required this.subject,
+  })  : assert(color != null),
         assert(subject != null),
         super(key: key);
   @override
@@ -23,16 +25,15 @@ class StartClassWidget extends StatelessWidget {
             MaterialPageRoute(
               builder: (context) => DisplaySections(
                 subject: subject,
-                schoolId: "EXWWaUQGmd",
               ),
             ),
           );
         },
         child: Container(
-          padding: EdgeInsets.all(15),
+          padding: EdgeInsets.all(20),
           decoration: BoxDecoration(
             color: color,
-            borderRadius: BorderRadius.circular(40),
+            borderRadius: BorderRadius.circular(15),
           ),
           alignment: Alignment.center,
           child: Text(

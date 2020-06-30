@@ -1,8 +1,18 @@
+import 'package:malta/data/models/school.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
 
 class Section extends ParseObject implements ParseCloneable {
   Section() : super(_keyTableName);
   Section.clone() : this();
+
+  @override
+  Section fromJson(Map<String, dynamic> objectData) {
+    super.fromJson(objectData);
+    if (objectData.containsKey(keySchool)) {
+      school = School.clone().fromJson(objectData[keySchool]);
+    }
+    return this;
+  }
 
   static const String _keyTableName = 'Section';
   static const String keyName = 'name';
@@ -18,6 +28,6 @@ class Section extends ParseObject implements ParseCloneable {
   String get image => get<String>(keyImage);
   set image(String image) => set<String>(keyImage, image);
 
-  ParseObject get school => get<ParseObject>(keySchool);
-  set school(ParseObject school) => set<ParseObject>(keySchool, school);
+  School get school => get<School>(keySchool);
+  set school(School school) => set<School>(keySchool, school);
 }
