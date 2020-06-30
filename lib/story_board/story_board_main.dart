@@ -39,7 +39,7 @@ void main() async {
 
   User user = User("bhanu", "bhanu", "bhanu@gmail.com")
     ..set("objectId", "6BQNHAL0JE");
-  School school = School()..set("objectId", "EXWWaUQGmd");
+  School school = School()..set("objectId", "gwpUOZr8tf");
 
   runApp(
     MultiProvider(
