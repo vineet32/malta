@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:malta/data/models/user.dart';
 //import 'package:malta/data/base/api_response.dart';
 //import 'package:malta/data/repositories/school/school_contract.dart';
 import 'package:malta/domain/constants/application_constants.dart';
+import 'package:malta/pages/login.dart';
 //import 'package:malta/pages/current_class.dart';
 //import 'package:malta/providers/school_provider.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
 import 'package:malta/pages/display_school.dart';
+import 'package:provider/provider.dart';
 //import 'package:provider/provider.dart';
 //import 'package:malta/providers/user_provider.dart';
 
@@ -70,14 +73,17 @@ class _DecisionPageState extends State<DecisionPage> {
     try {
       await Parse().initialize(
         keyParseApplicationId,keyParseServerUrl,
-      debug: true,appName: keyApplicationName,clientKey: clientId, 
+      debug: true,appName: keyApplicationName,clientKey: clientId,
         );
       var response = await Parse().healthCheck();
       if (response.success) {
-        //final ParseUser user = await ParseUser.currentUser();
-        //if (user != null) {
-
-
+        final User user = await ParseUser.currentUser(customUserObject: User.clone());
+        if (user != null) {
+          _redirectToPage(context, Provider<User> (create: (_)=>user,child: DisplaySchool()));
+        }
+        else{
+          _redirectToPage(context, Login());
+        }
           // if(currentUser != null){
           //   return Builder(
           //     builder: (context){
@@ -99,8 +105,7 @@ class _DecisionPageState extends State<DecisionPage> {
           //   );
 
           
-          _redirectToPage(context, DisplaySchool());
-
+        //  _redirectToPage(context, DisplaySchool());
       
         // } else {
         //   _redirectToPage(context, LoginPage());

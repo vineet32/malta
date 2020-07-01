@@ -5,10 +5,10 @@ import 'package:malta/widgets/school/add_school.dart';
 import 'package:malta/widgets/school/school_list.dart';
 import 'package:provider/provider.dart';
 
+
 class DisplaySchool extends StatelessWidget {
   // final List schools;
   // DisplaySchool({this.schools});
-
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<SchoolContract>(context);

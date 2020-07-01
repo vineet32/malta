@@ -1,10 +1,12 @@
 import 'package:malta/data/models/class.dart';
 import 'package:malta/data/models/school.dart';
 import 'package:malta/data/models/section.dart';
+import 'package:malta/data/models/student.dart';
 import 'package:malta/data/models/subject.dart';
 import 'package:malta/data/models/user.dart';
 import 'package:malta/data/repositories/class/class_contract.dart';
 import 'package:malta/data/repositories/section/section_contract.dart';
+import 'package:malta/data/repositories/student/student_contract.dart';
 import 'package:malta/data/repositories/subject/subject_contract.dart';
 import 'package:mockito/mockito.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
@@ -14,6 +16,8 @@ class RepositoryMockClass extends Mock implements ClassContract {}
 class RepositoryMockSubject extends Mock implements SubjectContract {}
 
 class RepositoryMockSection extends Mock implements SectionContract {}
+
+class RepositoryMockStudent extends Mock implements StudentContract{}
 
 Class getDummyClass(
     {String subjectName: "English", String sectionName: "Class-1A"}) {
@@ -62,4 +66,16 @@ Section getDummySection({String sectionName: "Class-1A"}) {
     ..image =
         "https://image.shutterstock.com/image-vector/vector-illustration-education-elements-260nw-1242560170.jpg";
   return section;
+}
+Student getDummyStudent() {
+  Student student = Student()
+    ..set('objectId', '1234student')
+    ..set(keyVarUpdatedAt, DateTime.now())
+    ..name = 'Rahul'
+    ..gender='male'
+    ..age=22
+    ..image='https://i.pinimg.com/474x/57/53/74/575374bf227f9845685a2950dd976f88--cartoon-characters-remember-this.jpg'
+    ..school=School()
+    ..section=Section();
+  return student;
 }
