@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:malta/data/models/Student.dart';
 import 'package:random_color/random_color.dart';
 
 class StudentListItem extends StatelessWidget {
-
-  final Student student;
-  StudentListItem({@required this.student});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +20,7 @@ class StudentListItem extends StatelessWidget {
           color: _color,
           child: 
           ListTile(
-              leading: Text('Class-${student.name}',
+              leading: Text('studentName',
                key: Key('StudentName'),
                style: TextStyle(fontSize: 25,color: Colors.white,
                 fontWeight: FontWeight.bold),),

@@ -15,6 +15,6 @@ class StudentList extends StatelessWidget {
   }
 
   List<Widget> listStudents() {
-    return students.map((student) => StudentListItem(student: student)).toList();
+    return students.map((student) => StudentListItem()).toList();
   }
 }
