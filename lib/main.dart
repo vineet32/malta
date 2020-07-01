@@ -11,6 +11,7 @@ import 'package:provider/provider.dart';
 import 'package:malta/data/repositories/school/school_api.dart';
 import 'package:malta/data/repositories/school/school_contract.dart';
 
+
 void main() async {
   runApp(MultiProvider(
       providers: [
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: DecisionPage(),
+     home: DecisionPage(),
     );
   }
 }
