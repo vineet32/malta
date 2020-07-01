@@ -24,7 +24,7 @@ class SectionList extends StatelessWidget {
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           child: FutureBuilder<ApiResponse>(
               key: Key('sectionList'),
-              future: sectionContract.getBySchoolId(currentSchool),
+              future: sectionContract.getBySchool(currentSchool),
               builder: (context, AsyncSnapshot<ApiResponse> snapshot) {
                 if (snapshot.hasData && snapshot.data.results != null) {
                   return GridView.builder(

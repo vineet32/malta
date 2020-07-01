@@ -44,7 +44,7 @@ class SectionRepository implements SectionContract {
   }
 
   @override
-  Future<ApiResponse> getBySchoolId(School school) {
-    return api.getBySchoolId(school);
+  Future<ApiResponse> getBySchool(School school) {
+    return api.getBySchool(school);
   }
 }

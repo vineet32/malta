@@ -103,7 +103,7 @@ Future<SectionContract> getMockSectionApi() async {
       Future<ApiResponse>.value(ApiResponse(true, 200, mockList, null)));
   when(repositoryApi.getAll()).thenAnswer((_) async =>
       Future<ApiResponse>.value(ApiResponse(true, 200, mockList, null)));
-  when(repositoryApi.getBySchoolId(any)).thenAnswer((_) async =>
+  when(repositoryApi.getBySchool(any)).thenAnswer((_) async =>
       Future<ApiResponse>.value(ApiResponse(true, 200, mockList, null)));
   return repositoryApi;
 }
