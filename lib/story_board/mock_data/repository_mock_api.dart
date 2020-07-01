@@ -1,9 +1,11 @@
 import 'package:malta/data/base/api_response.dart';
 import 'package:malta/data/models/class.dart';
 import 'package:malta/data/models/section.dart';
+import 'package:malta/data/models/student.dart';
 import 'package:malta/data/models/subject.dart';
 import 'package:malta/data/repositories/class/class_contract.dart';
 import 'package:malta/data/repositories/section/section_contract.dart';
+import 'package:malta/data/repositories/student/student_contract.dart';
 import 'package:malta/data/repositories/subject/subject_contract.dart';
 import 'package:mockito/mockito.dart';
 
@@ -102,5 +104,33 @@ Future<SectionContract> getMockSectionApi() async {
       Future<ApiResponse>.value(ApiResponse(true, 200, mockList, null)));
   when(repositoryApi.getBySchoolId(any)).thenAnswer((_) async =>
       Future<ApiResponse>.value(ApiResponse(true, 200, mockList, null)));
+  return repositoryApi;
+}
+
+Future<StudentContract> getMockStudentApi() async {
+  final StudentContract repositoryApi = RepositoryMockStudent();
+
+  const String objectIdPrefix = '12345abc';
+  final Student item0 = getDummyStudent() ..objectId = '${objectIdPrefix}0';
+  final Student item1 = getDummyStudent() ..objectId = '${objectIdPrefix}1';
+  final Student item2 = getDummyStudent() ..objectId = '${objectIdPrefix}2';
+  final Student item3 = getDummyStudent() ..objectId = '${objectIdPrefix}3';
+  final Student item4 = getDummyStudent() ..objectId = '${objectIdPrefix}4';
+  final List<Student> mockList = List<Student>()
+    ..add(item0)
+    ..add(item1)
+    ..add(item2)
+    ..add(item3)
+    ..add(item4)
+    ..add(item1)
+    ..add(item3);
+
+
+  when(repositoryApi.getById(any)).thenAnswer((_) async =>
+  Future<ApiResponse>.value(ApiResponse(true, 200, mockList, null)));
+  when(repositoryApi.getAll()).thenAnswer((_) async =>
+  Future<ApiResponse>.value(ApiResponse(true, 200, mockList, null)));
+  when(repositoryApi.getParticularSectionsStudents(any,any)).thenAnswer((_) async =>
+  Future<ApiResponse>.value(ApiResponse(true, 200, mockList, null)));
   return repositoryApi;
 }
