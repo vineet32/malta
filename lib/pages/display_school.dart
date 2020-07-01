@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:malta/data/base/api_response.dart';
+import 'package:malta/data/models/user.dart';
 import 'package:malta/data/repositories/school/school_contract.dart';
 import 'package:malta/widgets/school/add_school.dart';
 import 'package:malta/widgets/school/school_list.dart';
 import 'package:provider/provider.dart';
-
 
 class DisplaySchool extends StatelessWidget {
   // final List schools;
@@ -12,6 +12,7 @@ class DisplaySchool extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<SchoolContract>(context);
+    final user = Provider.of<User>(context, listen: false);
     return Scaffold(
         appBar: AppBar(
           title: Text('Choose your School'),
@@ -23,8 +24,10 @@ class DisplaySchool extends StatelessWidget {
                 return showDialog<void>(
                   context: context,
                   barrierDismissible: false,
-                  builder: (BuildContext context) {
-                    return AddSchool();
+                  builder: (context) {
+                    return AddSchool(
+                      user: user,
+                    );
                   },
                 );
               },

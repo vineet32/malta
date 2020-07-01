@@ -11,6 +11,12 @@ import 'package:parse_server_sdk/parse_server_sdk.dart';
 import 'package:provider/provider.dart';
 
 class AddSchool extends StatefulWidget {
+  final User user;
+
+  const AddSchool({
+    Key key,
+    @required this.user,
+  }) : super(key: key);
   @override
   _AddSchoolState createState() => _AddSchoolState();
 }
@@ -141,7 +147,6 @@ class _AddSchoolState extends State<AddSchool> {
     });
     final _schoolApi = Provider.of<SchoolContract>(context, listen: false);
     final _teacherApi = Provider.of<UserContract>(context, listen: false);
-    final _user = Provider.of<User>(context, listen: false);
 
     ParseFile parseFile = ParseFile(_schoolImage);
     School _school = School()
@@ -149,10 +154,11 @@ class _AddSchoolState extends State<AddSchool> {
       ..set("name", _schoolName);
     ApiResponse response = await _schoolApi.update(_school);
     _school = response.result;
-    List<School> listSchoools = _user.schools == null ? [] : _user.schools;
+    List listSchoools = widget.user.schools == null ? [] : widget.user.schools;
     listSchoools.add(_school);
-    _user..set(User.keySchools, listSchoools);
-    // ApiResponse res = await _teacherApi.save(_user);
+    widget.user..set(User.keySchools, listSchoools);
+    ApiResponse res = await _teacherApi.save(widget.user);
+    print("response $res ");
     return response;
   }
 }

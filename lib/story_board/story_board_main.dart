@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:malta/data/models/school.dart';
-import 'package:malta/data/models/student.dart';
 import 'package:malta/data/models/user.dart';
 import 'package:malta/data/repositories/class/class_contract.dart';
 import 'package:malta/data/repositories/class/class_repository.dart';
@@ -55,6 +54,7 @@ void main() async {
         Provider<SubjectContract>(
             create: (_) =>
                 SubjectRepository.init(mockAPIProvider: mockSubjectApi)),
+        Provider<SchoolContract>(create: (_) => SchoolApi()),
         Provider<SectionContract>(
             create: (_) =>
                 SectionRepository.init(mockAPIProvider: mockSectionApi)),
