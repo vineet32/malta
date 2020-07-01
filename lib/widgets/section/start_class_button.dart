@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:malta/data/base/api_response.dart';
 import 'package:malta/data/models/class.dart';
 import 'package:malta/data/models/school.dart';
+import 'package:malta/data/models/section.dart';
 import 'package:malta/data/models/subject.dart';
 import 'package:malta/data/models/user.dart';
 import 'package:malta/data/repositories/class/class_contract.dart';
@@ -43,12 +44,17 @@ class StartClassButton extends StatelessWidget {
       final _classApi = Provider.of<ClassContract>(context, listen: false);
       final school = Provider.of<School>(context, listen: false);
       final teacher = Provider.of<User>(context, listen: false);
-
+      Subject _subject = Subject()..objectId = subject.objectId;
+      List _selectedSecitons = [];
+      selectedSections.forEach((element) {
+        Section section = Section()..objectId = element.objectId;
+        _selectedSecitons.add(section);
+      });
       ApiResponse response = await _classApi.add(
         Class()
-          ..set(Class.keySections, selectedSections)
+          ..set(Class.keySections, _selectedSecitons)
           ..set(Class.keyActive, true)
-          ..set(Class.keySubject, subject)
+          ..set(Class.keySubject, _subject)
           ..set(Class.keySchool, school)
           ..set(Class.keyTeacher, teacher),
       );
