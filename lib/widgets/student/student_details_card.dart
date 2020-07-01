@@ -23,7 +23,7 @@ class StudentDetailsCard extends StatelessWidget {
             ),
           ),
           Text(name),
-          Text('Class-$section'),
+          Text('$section'),
         ],
       ),
     );
