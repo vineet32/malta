@@ -4,11 +4,11 @@ import 'package:malta/data/repositories/school/school_contract.dart';
 import 'package:malta/widgets/school/school_list.dart';
 import 'package:provider/provider.dart';
 
+
 class DisplaySchool extends StatelessWidget {
   
   // final List schools;
   // DisplaySchool({this.schools});
-
   @override
   Widget build(BuildContext context) {
       final provider = Provider.of<SchoolContract>(context);
