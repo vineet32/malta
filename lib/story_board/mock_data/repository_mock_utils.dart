@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:malta/data/models/class.dart';
 import 'package:malta/data/models/school.dart';
 import 'package:malta/data/models/section.dart';
@@ -65,8 +67,7 @@ Section getDummySection({String sectionName: "Class-1A"}) {
     ..set(keyVarUpdatedAt, DateTime.now())
     ..name = sectionName
     ..school = School()
-    ..image =
-        "https://image.shutterstock.com/image-vector/vector-illustration-education-elements-260nw-1242560170.jpg";
+    ..image = ParseFile(File(''));
   return section;
 }
 
@@ -76,8 +77,7 @@ School getDummySchool({String schoolName: "Tilak Nagar school"}) {
     ..set("objectId", "G1eMjzxDIv")
     ..set(keyVarUpdatedAt, DateTime.now())
     ..name = schoolName
-    ..image =
-        "https://image.shutterstock.com/image-vector/vector-illustration-education-elements-260nw-1242560170.jpg";
+    ..image = ParseFile(File(''));
   return school;
 }
 Student getDummyStudent() {

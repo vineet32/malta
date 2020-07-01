@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:malta/data/models/school.dart';
+import 'package:malta/pages/home_page.dart';
 import 'package:malta/providers/school_provider.dart';
 import 'package:random_color/random_color.dart';
 import 'package:provider/provider.dart';
-//import 'package:malta/pages/current_class.dart';
-import 'package:malta/pages/administer.dart';
 
 class SchoolListItem extends StatelessWidget {
 
@@ -44,7 +43,7 @@ class SchoolListItem extends StatelessWidget {
         onTap: (){
           final schoolProvider = Provider.of<SchoolProvider>(context, listen: false);
           schoolProvider.setCurrentlySelectedSchool(school);
-           //Navigator.push(context, MaterialPageRoute(builder: (context) => Administer()));
+           Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
         },
         );
     });
