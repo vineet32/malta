@@ -19,6 +19,6 @@ abstract class StudentContract {
 
   Future<ApiResponse> getParticularSectionsStudents(String section,String schoolId);
 
-  Future<ApiResponse> getBySectionId(Section section);
+  Future<ApiResponse> getBySection(Section section);
 
 }

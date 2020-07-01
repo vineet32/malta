@@ -37,7 +37,7 @@ class StudentApi implements StudentContract {
   }
 
   @override
-  Future<ApiResponse> getBySectionId(Section section) async {
+  Future<ApiResponse> getBySection(Section section) async {
     QueryBuilder<Student> queryBuilder = QueryBuilder<Student>(Student())
       ..whereEqualTo(Student.keySection, section)
       ..includeObject([Student.keySection]);
