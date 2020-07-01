@@ -17,8 +17,6 @@ abstract class SectionContract {
 
   Future<ApiResponse> getAll();
 
-  Future<ApiResponse> getBySchoolId(String id);
-
   Future<ApiResponse> add(Section item);
   
   Future<ApiResponse> getBySchoolId(School school);

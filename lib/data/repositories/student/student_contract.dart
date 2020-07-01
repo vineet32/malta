@@ -1,4 +1,5 @@
 import 'package:malta/data/base/api_response.dart';
+import 'package:malta/data/models/section.dart';
 import 'package:malta/data/models/student.dart';
 
 abstract class StudentContract {
@@ -17,5 +18,7 @@ abstract class StudentContract {
   Future<ApiResponse> getAll();
 
   Future<ApiResponse> getParticularSectionsStudents(String section,String schoolId);
+
+  Future<ApiResponse> getBySectionId(Section section);
 
 }

@@ -9,6 +9,7 @@ class SectionCardList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
+        scrollDirection: Axis.vertical,
         children: listSections(),
     );
   }

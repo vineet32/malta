@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:malta/data/models/section.dart';
-import 'package:malta/widgets/section/edit_section.dart';
+import 'package:malta/pages/students_in_section.dart';
 import 'package:random_color/random_color.dart';
 
 class SectionListItem extends StatelessWidget {
@@ -23,22 +23,17 @@ class SectionListItem extends StatelessWidget {
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
           color: _color,
-          child: ListTile(
+          child: 
+          ListTile(
               leading: Text('Class-${section.name}',
                key: Key('sectionName'),
                style: TextStyle(fontSize: 25,color: Colors.white,
                 fontWeight: FontWeight.bold),),
-              trailing: InkWell(child: Icon(Icons.edit), onTap: () async {
-                showDialog(
-                    context: context,
-                    builder: (_) {
-                      return EditSection(sectionId: section.objectId,);
-                    });
-              },)
               ),
         )),
         onTap: (){
-          
+          Navigator.push(context, MaterialPageRoute(builder: (context) => 
+          StudentsInSection(section: section)));
         },
         );
   }

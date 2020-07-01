@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:malta/data/models/school.dart';
 import 'package:malta/data/models/section.dart';
@@ -9,6 +10,7 @@ class EditSection extends StatelessWidget {
   final String sectionId;
   EditSection({this.sectionId});
   String section;
+  String studentImage = 'img';
   TextEditingController sectionController = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -44,7 +46,7 @@ class EditSection extends StatelessWidget {
                   Section()
                   ..objectId = sectionId
                   ..set(Section.keyName, section)
-                  ..set(Section.keyImage,'imagUrl ${currentSchool.name}')
+                  ..set(Section.keyImage, studentImage )
                   ..set(Section.keySchool, { "__type": "Pointer", "className": "School", "objectId": currentSchool.objectId.toString() })
                 );
                 Navigator.pop(context);

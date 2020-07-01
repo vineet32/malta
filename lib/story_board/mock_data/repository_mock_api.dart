@@ -1,8 +1,10 @@
 import 'package:malta/data/base/api_response.dart';
 import 'package:malta/data/models/class.dart';
+import 'package:malta/data/models/school.dart';
 import 'package:malta/data/models/section.dart';
 import 'package:malta/data/models/subject.dart';
 import 'package:malta/data/repositories/class/class_contract.dart';
+import 'package:malta/data/repositories/school/school_contract.dart';
 import 'package:malta/data/repositories/section/section_contract.dart';
 import 'package:malta/data/repositories/subject/subject_contract.dart';
 import 'package:mockito/mockito.dart';
@@ -101,6 +103,37 @@ Future<SectionContract> getMockSectionApi() async {
   when(repositoryApi.getAll()).thenAnswer((_) async =>
       Future<ApiResponse>.value(ApiResponse(true, 200, mockList, null)));
   when(repositoryApi.getBySchoolId(any)).thenAnswer((_) async =>
+      Future<ApiResponse>.value(ApiResponse(true, 200, mockList, null)));
+  return repositoryApi;
+}
+
+Future<SchoolContract> getMockSchoolApi() async {
+  final SchoolContract repositoryApi = RepositoryMockSchool();
+
+  const String objectIdPrefix = '#sch00';
+  final School item1 = getDummySchool(schoolName: "Tilak Nagar school")
+    ..objectId = '${objectIdPrefix}0';
+  final School item2 = getDummySchool(schoolName: "CC school")
+    ..objectId = '${objectIdPrefix}1';
+  final School item3 = getDummySchool(schoolName: "Deonar school")
+    ..objectId = '${objectIdPrefix}2';
+  final School item4 = getDummySchool(schoolName: "BTM school")
+    ..objectId = '${objectIdPrefix}3';
+  final School item5 = getDummySchool(schoolName: "Govt. school")
+    ..objectId = '${objectIdPrefix}4';
+  final List<School> mockList = List<School>()
+    ..add(item1)
+    ..add(item2)
+    ..add(item3)
+    ..add(item4)
+    ..add(item5);
+
+  when(repositoryApi.getById(any)).thenAnswer((_) async =>
+      Future<ApiResponse>.value(
+          ApiResponse(true, 200, <dynamic>[getDummySchool()], null)));
+  when(repositoryApi.getById(any)).thenAnswer((_) async =>
+      Future<ApiResponse>.value(ApiResponse(true, 200, mockList, null)));
+  when(repositoryApi.getAll()).thenAnswer((_) async =>
       Future<ApiResponse>.value(ApiResponse(true, 200, mockList, null)));
   return repositoryApi;
 }
