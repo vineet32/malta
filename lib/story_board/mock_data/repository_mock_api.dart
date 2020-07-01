@@ -10,7 +10,6 @@ import 'package:malta/data/repositories/section/section_contract.dart';
 import 'package:malta/data/repositories/student/student_contract.dart';
 import 'package:malta/data/repositories/subject/subject_contract.dart';
 import 'package:mockito/mockito.dart';
-
 import 'repository_mock_utils.dart';
 
 Future<ClassContract> getMockClassApi() async {

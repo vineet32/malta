@@ -51,4 +51,5 @@ class SchoolRepository implements SchoolContract {
     Future<ApiResponse> updateAll(List<School> items) async {
       return await api.updateAll(items);
   }
+  
   }

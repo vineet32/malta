@@ -15,11 +15,8 @@ import 'package:mockito/mockito.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
 
 class RepositoryMockClass extends Mock implements ClassContract {}
-
 class RepositoryMockSubject extends Mock implements SubjectContract {}
-
 class RepositoryMockSection extends Mock implements SectionContract {}
-
 class RepositoryMockSchool extends Mock implements SchoolContract {}
 class RepositoryMockStudent extends Mock implements StudentContract{}
 

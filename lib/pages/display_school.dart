@@ -3,13 +3,10 @@ import 'package:malta/data/base/api_response.dart';
 import 'package:malta/data/models/school.dart';
 import 'package:malta/data/models/user.dart';
 import 'package:malta/data/repositories/school/school_contract.dart';
-import 'package:malta/pages/administer.dart';
-import 'package:malta/pages/current_class.dart';
 import 'package:malta/pages/home_page.dart';
 import 'package:malta/providers/school_provider.dart';
 import 'package:malta/widgets/school/school_list.dart';
 import 'package:provider/provider.dart';
-
 
 class DisplaySchool extends StatelessWidget {
 
