@@ -12,7 +12,6 @@ class SchoolList extends StatelessWidget {
         children: getSchools(),
     );
   }
-
   List<Widget> getSchools() {
     return schools.map((school) => SchoolListItem(school: school)).toList();
   }

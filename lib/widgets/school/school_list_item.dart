@@ -40,7 +40,7 @@ class SchoolListItem extends StatelessWidget {
                 radius: 40,
               )),
         )),
-        onTap: (){
+        onTap: () {
           final schoolProvider = Provider.of<SchoolProvider>(context, listen: false);
           schoolProvider.setCurrentlySelectedSchool(school);
            Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
