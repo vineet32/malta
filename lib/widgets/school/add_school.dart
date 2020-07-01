@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:malta/data/base/api_response.dart';
@@ -9,6 +10,7 @@ import 'package:malta/data/repositories/school/school_contract.dart';
 import 'package:malta/data/repositories/user/user_contract.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
 import 'package:provider/provider.dart';
+import 'package:universal_html/html.dart' as html;
 
 class AddSchool extends StatefulWidget {
   final User user;
@@ -133,6 +135,16 @@ class _AddSchoolState extends State<AddSchool> {
   }
 
   Future<File> getImage() async {
+    if (kIsWeb) {
+      final html.FileUploadInputElement input = html.FileUploadInputElement();
+      input..accept = 'image/*';
+      input.click();
+      await input.onChange.first;
+      if (input.files.isEmpty) return null;
+      print("file${input.files[0].name}");
+
+      return null;
+    }
     final _picker = ImagePicker();
     PickedFile pickedFile = await _picker.getImage(source: ImageSource.gallery);
     if (pickedFile != null) {
