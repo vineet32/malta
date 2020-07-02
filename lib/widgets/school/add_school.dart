@@ -1,4 +1,7 @@
+import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -28,6 +31,7 @@ class _AddSchoolState extends State<AddSchool> {
   String _schoolName;
   bool _loading = false;
   final _formKey = GlobalKey<FormState>();
+  Uint8List bytes;
 
   @override
   Widget build(BuildContext context) {
@@ -44,15 +48,17 @@ class _AddSchoolState extends State<AddSchool> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     ClipOval(
-                      child: _schoolImage != null
+                      child: _schoolImage != null || bytes != null
                           ? GestureDetector(
-                              child: Image.file(
-                                _schoolImage,
-                                width: 160,
-                                height: 160,
-                                colorBlendMode: BlendMode.colorBurn,
-                                fit: BoxFit.fill,
-                              ),
+                              child: kIsWeb
+                                  ? Image.memory(bytes)
+                                  : Image.file(
+                                      _schoolImage,
+                                      width: 160,
+                                      height: 160,
+                                      colorBlendMode: BlendMode.colorBurn,
+                                      fit: BoxFit.fill,
+                                    ),
                               onTap: () async {
                                 File _image = await getImage();
                                 if (_image != null) {
@@ -136,13 +142,7 @@ class _AddSchoolState extends State<AddSchool> {
 
   Future<File> getImage() async {
     if (kIsWeb) {
-      final html.FileUploadInputElement input = html.FileUploadInputElement();
-      input..accept = 'image/*';
-      input.click();
-      await input.onChange.first;
-      if (input.files.isEmpty) return null;
-      print("file${input.files[0].name}");
-
+      await getImageFromBrowser();
       return null;
     }
     final _picker = ImagePicker();
@@ -151,6 +151,43 @@ class _AddSchoolState extends State<AddSchool> {
       return File(pickedFile?.path);
     }
     return null;
+  }
+
+  Future getImageFromBrowser() async {
+    List<html.File> files;
+    final completer = new Completer<List<String>>();
+    final html.InputElement input = html.document.createElement('input');
+    input
+      ..type = 'file'
+      ..multiple = false
+      ..accept = 'image/*';
+    input.onChange.listen((e) async {
+      files = input.files;
+
+      Iterable<Future<String>> resultsFutures = files.map((file) {
+        final reader = new html.FileReader();
+        reader.readAsDataUrl(files[0]);
+        reader.onError.listen((error) => completer.completeError(error));
+        return reader.onLoad.first.then((_) => reader.result as String);
+      });
+
+      final results = await Future.wait(resultsFutures);
+      completer.complete(results);
+    });
+
+    input.click();
+    final List<String> images = await completer.future;
+
+    int removeString = images[0].indexOf(',');
+    var body = images[0];
+    String imageType = files[0].type.substring(input.accept.length - 1);
+
+    String encodedStr = body.substring(removeString + 1, body.length);
+    Uint8List _imgDecoded = base64Decode(encodedStr);
+    setState(() {
+      bytes = _imgDecoded;
+    });
+    print("bytes $bytes");
   }
 
   Future<ApiResponse> updateSchool() async {
