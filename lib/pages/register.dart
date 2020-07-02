@@ -25,6 +25,21 @@ class _RegisterState extends State<Register> {
 
   @override
   Widget build(BuildContext context) {
+    final focusedBorder = OutlineInputBorder(
+      borderRadius: BorderRadius.all(Radius.circular(10.0)),
+      borderSide: BorderSide(color: Colors.grey),
+    );
+    final focusedErrorBorder = OutlineInputBorder(
+      borderRadius: BorderRadius.all(Radius.circular(10.0)),
+      borderSide: BorderSide(color: Colors.red),
+    );
+    final enabledBorder = OutlineInputBorder(
+      borderRadius: BorderRadius.all(Radius.circular(20.0)),
+      borderSide: BorderSide(color: Colors.grey),
+    );
+    final errorBorder = OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(20.0)),
+        borderSide: BorderSide(color: Colors.red));
     return _loading
         ? Center(
             child: CircularProgressIndicator(),
@@ -58,16 +73,10 @@ class _RegisterState extends State<Register> {
                               border: InputBorder.none,
                               contentPadding: EdgeInsets.all(5),
                               prefixIcon: Icon(Icons.person),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20.0)),
-                                borderSide: BorderSide(color: Colors.grey),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10.0)),
-                                borderSide: BorderSide(color: Colors.blue),
-                              ),
+                              focusedBorder: focusedBorder,
+                              enabledBorder: enabledBorder,
+                              errorBorder: errorBorder,
+                              focusedErrorBorder: focusedErrorBorder,
                             ),
                             textInputAction: TextInputAction.next,
                             onEditingComplete: _node.nextFocus,
@@ -91,16 +100,10 @@ class _RegisterState extends State<Register> {
                               border: InputBorder.none,
                               contentPadding: EdgeInsets.all(5),
                               prefixIcon: Icon(Icons.email),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20.0)),
-                                borderSide: BorderSide(color: Colors.grey),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10.0)),
-                                borderSide: BorderSide(color: Colors.blue),
-                              ),
+                              focusedBorder: focusedBorder,
+                              enabledBorder: enabledBorder,
+                              errorBorder: errorBorder,
+                              focusedErrorBorder: focusedErrorBorder,
                             ),
                             textInputAction: TextInputAction.next,
                             keyboardType: TextInputType.emailAddress,
@@ -126,16 +129,10 @@ class _RegisterState extends State<Register> {
                               border: InputBorder.none,
                               contentPadding: EdgeInsets.all(5),
                               prefixIcon: Icon(Icons.lock),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20.0)),
-                                borderSide: BorderSide(color: Colors.grey),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10.0)),
-                                borderSide: BorderSide(color: Colors.blue),
-                              ),
+                              focusedBorder: focusedBorder,
+                              enabledBorder: enabledBorder,
+                              errorBorder: errorBorder,
+                              focusedErrorBorder: focusedErrorBorder,
                             ),
                             obscureText: true,
                             textInputAction: TextInputAction.done,
