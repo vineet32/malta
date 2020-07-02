@@ -70,7 +70,7 @@ void main() async {
       ],
       child: MaterialApp(
         home: StoryboardApp([
-          DisplaySchoolStory(),
+          //DisplaySchoolStory(),
           CurrentClassStory(),
           HomePageStory(),
           VideoRecorderStory(),

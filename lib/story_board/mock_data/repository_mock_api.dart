@@ -135,6 +135,8 @@ Future<SchoolContract> getMockSchoolApi() async {
           ApiResponse(true, 200, <dynamic>[getDummySchool()], null)));
   when(repositoryApi.getById(any)).thenAnswer((_) async =>
       Future<ApiResponse>.value(ApiResponse(true, 200, mockList, null)));
+  when(repositoryApi.getByUser(any)).thenAnswer((_) async =>
+      Future<ApiResponse>.value(ApiResponse(true, 200, mockList, null)));
   when(repositoryApi.getAll()).thenAnswer((_) async =>
       Future<ApiResponse>.value(ApiResponse(true, 200, mockList, null)));
   return repositoryApi;
