@@ -5,6 +5,7 @@ import 'package:malta/data/models/user.dart';
 import 'package:malta/data/repositories/school/school_contract.dart';
 import 'package:malta/pages/home_page.dart';
 import 'package:malta/providers/school_provider.dart';
+import 'package:malta/widgets/school/add_school.dart';
 import 'package:provider/provider.dart';
 
 class DisplaySchool extends StatelessWidget {
@@ -81,10 +82,24 @@ class DisplaySchool extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Choose your School'),
-          key: Key('appBar'),
-        ),
-        body: _buildChild(context));
+      appBar: AppBar(
+        title: Text('Choose your School'),
+        key: Key('appBar'),
+      ),
+      body: _buildChild(context),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {
+          return showDialog<void>(
+            context: context,
+            barrierDismissible: false,
+            builder: (context) {
+              return AddSchool(
+              );
+            },
+          );
+        },
+      ),
+    );
   }
 }

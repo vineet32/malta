@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
@@ -7,20 +6,18 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:malta/data/base/api_response.dart';
+import 'package:malta/data/models/connection.dart';
 import 'package:malta/data/models/school.dart';
 import 'package:malta/data/models/user.dart';
+import 'package:malta/data/repositories/connection/connection_contract.dart';
 import 'package:malta/data/repositories/school/school_contract.dart';
-import 'package:malta/data/repositories/user/user_contract.dart';
+import 'package:malta/domain/constants/role_constants.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
 import 'package:provider/provider.dart';
-import 'package:universal_html/html.dart' as html;
 
 class AddSchool extends StatefulWidget {
-  final User user;
-
   const AddSchool({
     Key key,
-    @required this.user,
   }) : super(key: key);
   @override
   _AddSchoolState createState() => _AddSchoolState();
@@ -48,17 +45,15 @@ class _AddSchoolState extends State<AddSchool> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     ClipOval(
-                      child: _schoolImage != null || bytes != null
+                      child: _schoolImage != null && !kIsWeb
                           ? GestureDetector(
-                              child: kIsWeb
-                                  ? Image.memory(bytes)
-                                  : Image.file(
-                                      _schoolImage,
-                                      width: 160,
-                                      height: 160,
-                                      colorBlendMode: BlendMode.colorBurn,
-                                      fit: BoxFit.fill,
-                                    ),
+                              child: Image.file(
+                                _schoolImage,
+                                width: 160,
+                                height: 160,
+                                colorBlendMode: BlendMode.colorBurn,
+                                fit: BoxFit.fill,
+                              ),
                               onTap: () async {
                                 File _image = await getImage();
                                 if (_image != null) {
@@ -77,14 +72,16 @@ class _AddSchoolState extends State<AddSchool> {
                                   Icons.camera_alt,
                                   size: 100,
                                 ),
-                                onPressed: () async {
-                                  File _image = await getImage();
-                                  if (_image != null) {
-                                    setState(() {
-                                      _schoolImage = _image;
-                                    });
-                                  }
-                                },
+                                onPressed: kIsWeb
+                                    ? null
+                                    : () async {
+                                        File _image = await getImage();
+                                        if (_image != null) {
+                                          setState(() {
+                                            _schoolImage = _image;
+                                          });
+                                        }
+                                      },
                               ),
                             ),
                     ),
@@ -124,27 +121,21 @@ class _AddSchoolState extends State<AddSchool> {
               ),
               FlatButton(
                 child: Text('Add'),
-                onPressed: _schoolImage == null
-                    ? null
-                    : () async {
-                        if (_formKey.currentState.validate()) {
-                          ApiResponse response = await updateSchool();
-                          setState(() {
-                            _loading = false;
-                          });
-                          Navigator.of(context).pop();
-                        }
-                      },
+                onPressed: () async {
+                  if (_formKey.currentState.validate()) {
+                    ApiResponse response = await updateSchool();
+                    setState(() {
+                      _loading = false;
+                    });
+                    Navigator.of(context).pop();
+                  }
+                },
               ),
             ],
           );
   }
 
   Future<File> getImage() async {
-    if (kIsWeb) {
-      await getImageFromBrowser();
-      return null;
-    }
     final _picker = ImagePicker();
     PickedFile pickedFile = await _picker.getImage(source: ImageSource.gallery);
     if (pickedFile != null) {
@@ -153,61 +144,27 @@ class _AddSchoolState extends State<AddSchool> {
     return null;
   }
 
-  Future getImageFromBrowser() async {
-    List<html.File> files;
-    final completer = new Completer<List<String>>();
-    final html.InputElement input = html.document.createElement('input');
-    input
-      ..type = 'file'
-      ..multiple = false
-      ..accept = 'image/*';
-    input.onChange.listen((e) async {
-      files = input.files;
-
-      Iterable<Future<String>> resultsFutures = files.map((file) {
-        final reader = new html.FileReader();
-        reader.readAsDataUrl(files[0]);
-        reader.onError.listen((error) => completer.completeError(error));
-        return reader.onLoad.first.then((_) => reader.result as String);
-      });
-
-      final results = await Future.wait(resultsFutures);
-      completer.complete(results);
-    });
-
-    input.click();
-    final List<String> images = await completer.future;
-
-    int removeString = images[0].indexOf(',');
-    var body = images[0];
-    String imageType = files[0].type.substring(input.accept.length - 1);
-
-    String encodedStr = body.substring(removeString + 1, body.length);
-    Uint8List _imgDecoded = base64Decode(encodedStr);
-    setState(() {
-      bytes = _imgDecoded;
-    });
-    print("bytes $bytes");
-  }
-
   Future<ApiResponse> updateSchool() async {
     setState(() {
       _loading = true;
     });
     final _schoolApi = Provider.of<SchoolContract>(context, listen: false);
-    final _teacherApi = Provider.of<UserContract>(context, listen: false);
+    final _connectionApi =
+        Provider.of<ConnectionContract>(context, listen: false);
+    final User user =
+        await ParseUser.currentUser(customUserObject: User.clone());
 
-    ParseFile parseFile = ParseFile(_schoolImage);
+    ParseFile parseFile = _schoolImage != null ? ParseFile(_schoolImage) : null;
     School _school = School()
-      ..set("image", parseFile)
-      ..set("name", _schoolName);
+      ..set(School.keyImage, parseFile)
+      ..set(School.keyName, _schoolName);
     ApiResponse response = await _schoolApi.update(_school);
     _school = response.result;
-    List listSchoools = widget.user.schools == null ? [] : widget.user.schools;
-    listSchoools.add(_school);
-    widget.user..set(User.keySchools, listSchoools);
-    ApiResponse res = await _teacherApi.save(widget.user);
-    print("response $res ");
-    return response;
+    Connection _connection = Connection()
+      ..set(Connection.keyRole, keyPrincipal)
+      ..set(Connection.keyUser, user)
+      ..set(Connection.keySchool, School()..set("objectId", _school.objectId));
+
+    return await _connectionApi.add(_connection);
   }
 }
