@@ -4,7 +4,6 @@ import 'package:malta/data/models/school.dart';
 import 'package:malta/data/models/user.dart';
 import 'package:malta/data/repositories/class/class_contract.dart';
 import 'package:malta/data/repositories/class/class_repository.dart';
-import 'package:malta/data/repositories/school/school_api.dart';
 import 'package:malta/data/repositories/school/school_contract.dart';
 import 'package:malta/data/repositories/section/section_contract.dart';
 import 'package:malta/data/repositories/section/section_repository.dart';
@@ -26,8 +25,6 @@ import 'package:malta/story_board/story/video_recorder_story.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
 import 'package:provider/provider.dart';
 import 'package:storyboard/storyboard.dart';
-import 'package:malta/story_board/story/display_school_test.dart';
-import 'package:malta/story_board/story/section_list_story.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
