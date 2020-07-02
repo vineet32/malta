@@ -9,7 +9,7 @@ class ConnectionApi implements ConnectionContract{
   @override
   Future<ApiResponse> getAllSchool(User user) async{
     QueryBuilder<Connection> queryBuilder=QueryBuilder<Connection>(Connection())
-        ..whereEqualTo('user', user);
+        ..whereEqualTo('user', user)..includeObject([Connection.keySchool]);
 
     return getApiResponse<Connection>(await queryBuilder.query());
   }
