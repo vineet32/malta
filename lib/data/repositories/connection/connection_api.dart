@@ -7,21 +7,19 @@ import 'package:parse_server_sdk/parse_server_sdk.dart';
 
 class ConnectionApi implements ConnectionContract{
   @override
-  Future<ApiResponse> getAllSchool(User user) async{
+  Future<ApiResponse> getAllSchools(User user) async{
     QueryBuilder<Connection> queryBuilder=QueryBuilder<Connection>(Connection())
-        ..whereEqualTo('user', user)..includeObject([Connection.keySchool]);
+      ..whereEqualTo('user', user)..includeObject([Connection.keySchool]);
 
     return getApiResponse<Connection>(await queryBuilder.query());
   }
 
   @override
-  Future<ApiResponse> getAllUser(String schoolId , String role)async {
+  Future<ApiResponse> getAllUsers(School school , String role)async {
 
     QueryBuilder<Connection> queryBuilder=QueryBuilder<Connection>(Connection())
       ..whereEqualTo('role', role)
-      ..whereMatchesQuery('school',QueryBuilder<School>(School())
-        ..whereEqualTo('objectId', schoolId)
-      )..includeObject([
+      ..whereEqualTo('school',school)..includeObject([
         Connection.keyUser,
         Connection.keySchool,
       ]);

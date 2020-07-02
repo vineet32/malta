@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:malta/data/models/school.dart';
 import 'package:malta/data/models/user.dart';
 import 'package:malta/data/repositories/connection/connection_api.dart';
 //import 'package:malta/data/base/api_response.dart';
