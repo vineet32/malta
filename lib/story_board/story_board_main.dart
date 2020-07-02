@@ -4,7 +4,6 @@ import 'package:malta/data/models/school.dart';
 import 'package:malta/data/models/user.dart';
 import 'package:malta/data/repositories/class/class_contract.dart';
 import 'package:malta/data/repositories/class/class_repository.dart';
-import 'package:malta/data/repositories/school/school_api.dart';
 import 'package:malta/data/repositories/school/school_contract.dart';
 import 'package:malta/data/repositories/section/section_contract.dart';
 import 'package:malta/data/repositories/section/section_repository.dart';
@@ -55,12 +54,13 @@ void main() async {
         Provider<SubjectContract>(
             create: (_) =>
                 SubjectRepository.init(mockAPIProvider: mockSubjectApi)),
-        Provider<SchoolContract>(create: (_) => SchoolApi()),
         Provider<SectionContract>(
             create: (_) =>
                 SectionRepository.init(mockAPIProvider: mockSectionApi)),
-        Provider<UserContract>(create: (_) => UserApi()),
         ChangeNotifierProvider<SchoolProvider>(create: (_) => SchoolProvider()),
+        Provider<SchoolContract>(
+          create: (_) => SchoolRepository.init(mockAPIProvider: mockSchoolApi),
+        ),
         Provider<StudentContract>(
             create: (_) =>
                 StudentRepository.init(mockAPIProvider: mockStudentApi)),
