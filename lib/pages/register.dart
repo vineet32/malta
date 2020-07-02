@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:malta/data/base/api_response.dart';
 import 'package:malta/data/models/user.dart';
@@ -30,127 +31,148 @@ class _RegisterState extends State<Register> {
             child: CircularProgressIndicator(),
           )
         : Scaffold(
-            appBar: AppBar(
-              title: Text("Register"),
-            ),
-            body: Form(
-              key: _formKey,
-              child: FocusScope(
-                node: _node,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Container(
-                      padding: EdgeInsets.all(8),
-                      child: TextFormField(
-                        validator: (input) {
-                          if (input.isEmpty) {
-                            return 'User name can\'t be Empty';
-                          }
-                          return null;
-                        },
-                        onChanged: (input) {
-                          _userName = input;
-                        },
-                        decoration: InputDecoration(
-                          labelText: 'User name',
-                          hintText: 'User name',
-                          border: InputBorder.none,
-                          contentPadding: EdgeInsets.all(5),
-                          prefixIcon: Icon(Icons.person),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(20.0)),
-                            borderSide: BorderSide(color: Colors.grey),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10.0)),
-                            borderSide: BorderSide(color: Colors.blue),
-                          ),
-                        ),
-                        textInputAction: TextInputAction.next,
-                        onEditingComplete: _node.nextFocus,
-                      ),
-                    ),
-                    Container(
-                      padding: EdgeInsets.all(8),
-                      child: TextFormField(
-                        validator: (input) {
-                          if (input.isEmpty) {
-                            return 'Email can\'t be Empty';
-                          }
-                          return null;
-                        },
-                        onChanged: (input) {
-                          _email = input;
-                        },
-                        decoration: InputDecoration(
-                          labelText: 'Email',
-                          hintText: 'Email',
-                          border: InputBorder.none,
-                          contentPadding: EdgeInsets.all(5),
-                          prefixIcon: Icon(Icons.email),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(20.0)),
-                            borderSide: BorderSide(color: Colors.grey),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10.0)),
-                            borderSide: BorderSide(color: Colors.blue),
+            body: Center(
+              child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: Form(
+                  key: _formKey,
+                  child: FocusScope(
+                    node: _node,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Container(
+                          padding: EdgeInsets.all(8),
+                          child: TextFormField(
+                            validator: (input) {
+                              if (input.isEmpty) {
+                                return 'User name can\'t be Empty';
+                              }
+                              return null;
+                            },
+                            onChanged: (input) {
+                              _userName = input;
+                            },
+                            decoration: InputDecoration(
+                              labelText: 'User name',
+                              hintText: 'User name',
+                              border: InputBorder.none,
+                              contentPadding: EdgeInsets.all(5),
+                              prefixIcon: Icon(Icons.person),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20.0)),
+                                borderSide: BorderSide(color: Colors.grey),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10.0)),
+                                borderSide: BorderSide(color: Colors.blue),
+                              ),
+                            ),
+                            textInputAction: TextInputAction.next,
+                            onEditingComplete: _node.nextFocus,
                           ),
                         ),
-                        textInputAction: TextInputAction.next,
-                        keyboardType: TextInputType.emailAddress,
-                        // move to the next field
-                        onEditingComplete: _node.nextFocus,
-                      ),
-                    ),
-                    Container(
-                      padding: EdgeInsets.all(8),
-                      child: TextFormField(
-                        validator: (input) {
-                          if (input.isEmpty) {
-                            return 'Password can\'t be Empty';
-                          }
-                          return null;
-                        },
-                        onChanged: (input) {
-                          _password = input;
-                        },
-                        decoration: InputDecoration(
-                          labelText: 'Password',
-                          hintText: "Password",
-                          border: InputBorder.none,
-                          contentPadding: EdgeInsets.all(5),
-                          prefixIcon: Icon(Icons.lock),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(20.0)),
-                            borderSide: BorderSide(color: Colors.grey),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10.0)),
-                            borderSide: BorderSide(color: Colors.blue),
+                        Container(
+                          padding: EdgeInsets.all(8),
+                          child: TextFormField(
+                            validator: (input) {
+                              if (input.isEmpty) {
+                                return 'Email can\'t be Empty';
+                              }
+                              return null;
+                            },
+                            onChanged: (input) {
+                              _email = input;
+                            },
+                            decoration: InputDecoration(
+                              labelText: 'Email',
+                              hintText: 'Email',
+                              border: InputBorder.none,
+                              contentPadding: EdgeInsets.all(5),
+                              prefixIcon: Icon(Icons.email),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20.0)),
+                                borderSide: BorderSide(color: Colors.grey),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10.0)),
+                                borderSide: BorderSide(color: Colors.blue),
+                              ),
+                            ),
+                            textInputAction: TextInputAction.next,
+                            keyboardType: TextInputType.emailAddress,
+                            // move to the next field
+                            onEditingComplete: _node.nextFocus,
                           ),
                         ),
-                        obscureText: true,
-                        textInputAction: TextInputAction.done,
-                        // move to the next field
-                        onEditingComplete: _node.nextFocus,
-                      ),
+                        Container(
+                          padding: EdgeInsets.all(8),
+                          child: TextFormField(
+                            validator: (input) {
+                              if (input.isEmpty) {
+                                return 'Password can\'t be Empty';
+                              }
+                              return null;
+                            },
+                            onChanged: (input) {
+                              _password = input;
+                            },
+                            decoration: InputDecoration(
+                              labelText: 'Password',
+                              hintText: "Password",
+                              border: InputBorder.none,
+                              contentPadding: EdgeInsets.all(5),
+                              prefixIcon: Icon(Icons.lock),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20.0)),
+                                borderSide: BorderSide(color: Colors.grey),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10.0)),
+                                borderSide: BorderSide(color: Colors.blue),
+                              ),
+                            ),
+                            obscureText: true,
+                            textInputAction: TextInputAction.done,
+                            // move to the next field
+                            onEditingComplete: _node.nextFocus,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: RichText(
+                            text: TextSpan(
+                              children: <TextSpan>[
+                                TextSpan(
+                                  text: 'Already have account? ',
+                                  style: TextStyle(color: Colors.black),
+                                ),
+                                TextSpan(
+                                    text: 'login',
+                                    style: TextStyle(color: Colors.blue),
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap = () {
+                                        Navigator.of(context).pop();
+                                      }),
+                              ],
+                            ),
+                          ),
+                        ),
+                        RaisedButton(
+                          child: Text('Sign up'),
+                          onPressed: () async {
+                            await signUp();
+                          },
+                        ),
+                      ],
                     ),
-                    // submit
-                    RaisedButton(
-                      child: Text('Sign up'),
-                      onPressed: () async {
-                        await signUp();
-                      },
-                    ),
-                  ],
+                  ),
                 ),
               ),
             ),
