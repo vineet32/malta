@@ -207,6 +207,5 @@ class _RegisterState extends State<Register> {
         });
       }
     }
-    print("sign up");
   }
 }
