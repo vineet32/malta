@@ -193,12 +193,7 @@ class _RegisterState extends State<Register> {
       if (response.success) {
         Navigator.push(
           context,
-          MaterialPageRoute(
-            builder: (context) => Provider<User>(
-              create: (_) => user,
-              child: DisplaySchool(),
-            ),
-          ),
+          MaterialPageRoute(builder: (context) => DisplaySchool()),
         );
       }
     }
