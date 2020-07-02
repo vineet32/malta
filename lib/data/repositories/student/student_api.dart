@@ -1,4 +1,5 @@
 import 'package:malta/data/base/api_response.dart';
+import 'package:malta/data/models/section.dart';
 import 'package:malta/data/models/student.dart';
 import 'package:malta/data/repositories/student/student_contract.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
@@ -33,6 +34,14 @@ class StudentApi implements StudentContract {
       ..whereMatchesQuery('section', queryBuilder);
 
     return getApiResponse<Student>(await queryBuilder1.query());
+  }
+
+  @override
+  Future<ApiResponse> getBySection(Section section) async {
+    QueryBuilder<Student> queryBuilder = QueryBuilder<Student>(Student())
+      ..whereEqualTo(Student.keySection, section)
+      ..includeObject([Student.keySection]);
+    return getApiResponse<Section>(await queryBuilder.query());
   }
 
 

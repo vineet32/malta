@@ -12,6 +12,7 @@ import 'package:malta/data/repositories/student/student_contract.dart';
 import 'package:malta/data/repositories/student/student_repository.dart';
 import 'package:malta/data/repositories/subject/subject_contract.dart';
 import 'package:malta/data/repositories/subject/subject_repository.dart';
+import 'package:malta/data/repositories/school/school_repository.dart';
 import 'package:malta/data/repositories/user/user_api.dart';
 import 'package:malta/data/repositories/user/user_contract.dart';
 import 'package:malta/domain/constants/application_constants.dart';
@@ -26,6 +27,7 @@ import 'package:parse_server_sdk/parse_server_sdk.dart';
 import 'package:provider/provider.dart';
 import 'package:storyboard/storyboard.dart';
 import 'package:malta/story_board/story/display_school_test.dart';
+import 'package:malta/story_board/story/section_list_story.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -40,6 +42,7 @@ void main() async {
   ClassContract mockClassApi = await getMockClassApi();
   SubjectContract mockSubjectApi = await getMockSubjectApi();
   SectionContract mockSectionApi = await getMockSectionApi();
+  SchoolContract mockSchoolApi = await getMockSchoolApi();
   StudentContract mockStudentApi = await getMockStudentApi();
 
   User user = User("bhanu", "bhanu", "bhanu@gmail.com")
@@ -54,12 +57,13 @@ void main() async {
         Provider<SubjectContract>(
             create: (_) =>
                 SubjectRepository.init(mockAPIProvider: mockSubjectApi)),
-        Provider<SchoolContract>(create: (_) => SchoolApi()),
         Provider<SectionContract>(
             create: (_) =>
                 SectionRepository.init(mockAPIProvider: mockSectionApi)),
-        Provider<UserContract>(create: (_) => UserApi()),
         ChangeNotifierProvider<SchoolProvider>(create: (_) => SchoolProvider()),
+        Provider<SchoolContract>(
+          create: (_) => SchoolRepository.init(mockAPIProvider: mockSchoolApi),
+        ),
         Provider<StudentContract>(
             create: (_) =>
                 StudentRepository.init(mockAPIProvider: mockStudentApi)),
@@ -69,10 +73,11 @@ void main() async {
       ],
       child: MaterialApp(
         home: StoryboardApp([
-          DisplaySchoolStory(),
+          //DisplaySchoolStory(),
           CurrentClassStory(),
           HomePageStory(),
           VideoRecorderStory(),
+          //SectionListStory(),
           DisplayLoginStory(),
           StudentsInClassStory(),
         ]),

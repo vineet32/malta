@@ -25,7 +25,7 @@ class DisplaySections extends StatelessWidget {
         title: Text(subject.name),
       ),
       body: FutureBuilder<ApiResponse>(
-          future: _sectionApi.getBySchoolId(school),
+          future: _sectionApi.getBySchool(school),
           builder: (BuildContext context, AsyncSnapshot<ApiResponse> snapshot) {
             if (snapshot.hasData) {
               if (snapshot.data.results != null) {

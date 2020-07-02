@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:malta/pages/students_in_class.dart';
+import 'package:malta/pages/administer.dart';
 import 'package:storyboard/storyboard.dart';
 
-class StudentsInClassStory extends Story {
+class SectionListStory extends Story {
   @override
   bool get isFullScreen => true;
 
   @override
   List<Widget> get storyContent {
     return [
-      StudentsInClass(schoolId: 'EXWWaUQGmd',sections: ['Class-1A','Class-1B'],subject: 'English',)
+      Administer()
     ];
   }
 }
