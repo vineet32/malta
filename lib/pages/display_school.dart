@@ -9,6 +9,7 @@ class DisplaySchool extends StatelessWidget {
   
   // final List schools;
   // DisplaySchool({this.schools});
+
   @override
   Widget build(BuildContext context) {
       final provider = Provider.of<SchoolContract>(context);

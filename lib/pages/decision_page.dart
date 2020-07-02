@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:malta/data/models/user.dart';
+import 'package:malta/data/repositories/connection/connection_api.dart';
 //import 'package:malta/data/base/api_response.dart';
 //import 'package:malta/data/repositories/school/school_contract.dart';
 import 'package:malta/domain/constants/application_constants.dart';
 import 'package:malta/pages/login.dart';
+import 'package:malta/providers/user_provider.dart';
 //import 'package:malta/pages/current_class.dart';
 //import 'package:malta/providers/school_provider.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
@@ -78,8 +80,10 @@ class _DecisionPageState extends State<DecisionPage> {
       var response = await Parse().healthCheck();
       if (response.success) {
         final User user = await ParseUser.currentUser(customUserObject: User.clone());
+        UserProvider provider=Provider.of<UserProvider>(context,listen: false);
+        provider.setCurrentUser(user);
         if (user != null) {
-          _redirectToPage(context, Provider<User> (create: (_)=>user,child: DisplaySchool()));
+          _redirectToPage(context, DisplaySchool());
         }
         else{
           _redirectToPage(context, Login());
