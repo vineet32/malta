@@ -22,7 +22,7 @@ class SectionWidget extends StatelessWidget {
         isSelected: isSelected,
         child: ClipOval(
           child: Image.network(
-            section.image,
+            section.image.url,
             width: 100,
             height: 100,
             colorBlendMode: BlendMode.colorBurn,
