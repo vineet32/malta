@@ -25,8 +25,8 @@ class Subject extends ParseObject implements ParseCloneable {
   String get name => get<String>(keyName);
   set name(String name) => set<String>(keyName, name);
 
-  String get image => get<String>(keyImage);
-  set image(String image) => set<String>(keyImage, image);
+  ParseFile get image => get<ParseFile>(keyImage);
+  set image(ParseFile image) => set<ParseFile>(keyImage, image);
 
   School get school => get<School>(keySchool);
   set school(School school) => set<School>(keySchool, school);

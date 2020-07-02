@@ -25,7 +25,8 @@ Class getDummyClass(
   Subject subject = getDummySubject(subjectName: subjectName);
   Section section = getDummySection(sectionName: sectionName);
   User user = User("username", "password", "emailAddress@gmail.com")
-    ..set(User.keyImage, "https://avatarfiles.alphacoders.com/152/152686.jpg");
+    ..set(User.keyImage, ParseFile(File("")))
+    ..image.url = "https://avatarfiles.alphacoders.com/152/152686.jpg";
   List sections = [];
   for (int i = 0; i < 6; i++) {
     sections.add(section);
@@ -52,7 +53,8 @@ Subject getDummySubject({String subjectName: "English"}) {
     ..set(keyVarUpdatedAt, DateTime.now())
     ..name = subjectName
     ..school = School()
-    ..image =
+    ..image = ParseFile(File(""))
+    ..image.url =
         "https://image.shutterstock.com/image-vector/vector-illustration-education-elements-260nw-1242560170.jpg";
   return subject;
 }
@@ -64,7 +66,9 @@ Section getDummySection({String sectionName: "Class-1A"}) {
     ..set(keyVarUpdatedAt, DateTime.now())
     ..name = sectionName
     ..school = School()
-    ..image = ParseFile(File(''));
+    ..image = ParseFile(File(""))
+    ..image.url =
+        "https://image.shutterstock.com/image-vector/vector-illustration-education-elements-260nw-1242560170.jpg";
   return section;
 }
 
