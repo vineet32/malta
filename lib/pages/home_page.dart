@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:malta/pages/administer.dart';
 import 'package:malta/pages/current_class.dart';
+import 'package:malta/providers/school_provider.dart';
+import 'package:malta/widgets/section/add_section.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final schoolProvider = Provider.of<SchoolProvider>(context);
     return MaterialApp(
       home: DefaultTabController(
         length: 3,
@@ -20,12 +25,12 @@ class HomePage extends StatelessWidget {
             unselectedLabelColor: Colors.black,
           ),
           appBar: AppBar(
-            title: Text('Tabs Demo'),
+            title: Text(schoolProvider.school.name),
           ),
           body: TabBarView(
             children: [
               CurrentClass(),
-              Icon(Icons.person),
+              Administer(),
               Icon(Icons.playlist_add_check),
             ],
           ),

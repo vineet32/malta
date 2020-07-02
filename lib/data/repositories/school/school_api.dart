@@ -1,6 +1,8 @@
 import 'package:malta/data/base/api_response.dart';
 import 'package:malta/data/models/school.dart';
+import 'package:malta/data/models/user.dart';
 import 'package:malta/data/repositories/school/school_contract.dart';
+import 'package:parse_server_sdk/parse_server_sdk.dart';
 
 class SchoolApi implements SchoolContract {
   SchoolApi();
@@ -35,6 +37,14 @@ class SchoolApi implements SchoolContract {
   @override
   Future<ApiResponse> getById(String id) async {
     return getApiResponse<School>(await School().getObject(id));
+  }
+
+  @override
+  Future<ApiResponse> getByUser(User user) async {
+    QueryBuilder<School> queryBuilder = QueryBuilder<School>(School())
+      ..whereEqualTo(School.keyName, user.schools[0])
+      ..includeObject([School.keyName]);
+    return getApiResponse<School>(await queryBuilder.query());
   }
 
   @override

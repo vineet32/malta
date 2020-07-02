@@ -1,12 +1,12 @@
 import 'package:parse_server_sdk/parse_server_sdk.dart';
 
-const String keyTableName = 'School';
-const String keyName = 'name';
-const String keyImage = 'image';
-
 class School extends ParseObject implements ParseCloneable {
   School() : super(keyTableName);
   School.clone() : this();
+
+  static const String keyTableName = 'School';
+  static const String keyName = 'name';
+  static const String keyImage = 'image';
 
   @override
   School clone(Map<String, dynamic> map) => School.clone()..fromJson(map);
