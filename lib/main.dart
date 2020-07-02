@@ -11,6 +11,7 @@ import 'package:malta/data/repositories/user/user_api.dart';
 import 'package:malta/data/repositories/user/user_contract.dart';
 import 'package:malta/pages/decision_page.dart';
 import 'package:malta/providers/school_provider.dart';
+import 'package:malta/providers/user_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:malta/data/repositories/school/school_api.dart';
 import 'package:malta/data/repositories/school/school_contract.dart';
@@ -25,6 +26,7 @@ void main() async {
       Provider<StudentContract>(create: (_) => StudentApi()),
       Provider<SubjectContract>(create: (_) => SubjectApi()),
       ChangeNotifierProvider<SchoolProvider>(create: (_) => SchoolProvider()),
+       Provider<UserProvider>(create: (_) => UserProvider()),
     ],
     child: MyApp(),
   ));

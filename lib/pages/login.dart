@@ -82,7 +82,7 @@ class _LoginState extends State<Login> {
                 if(response.success){
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) =>  Provider<User> (create: (_)=>user,child: DisplaySchool(),)),
+                    MaterialPageRoute(builder: (context) =>  DisplaySchool()),
                   );
                 }
                 else{

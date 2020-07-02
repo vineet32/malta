@@ -8,6 +8,7 @@ import 'package:malta/providers/school_provider.dart';
 import 'package:provider/provider.dart';
 
 class DisplaySchool extends StatelessWidget {
+
   Widget _buildChild(context) {
     final schoolContract = Provider.of<SchoolContract>(context);
     final userProvider = Provider.of<User>(context, listen: false);
