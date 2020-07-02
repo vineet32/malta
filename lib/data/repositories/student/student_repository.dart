@@ -1,5 +1,6 @@
 
 import 'package:malta/data/base/api_response.dart';
+import 'package:malta/data/models/section.dart';
 import 'package:malta/data/models/student.dart';
 import 'package:malta/data/repositories/student/student_api.dart';
 import 'package:malta/data/repositories/student/student_contract.dart';
@@ -39,5 +40,10 @@ class StudentRepository implements StudentContract{
   @override
   Future<ApiResponse> getParticularSectionsStudents(String section, String schoolId) {
     return api.getParticularSectionsStudents(section, schoolId);
+  }
+
+  @override
+  Future<ApiResponse> getBySection(Section section) async {
+    return api.getBySection(section);
   }
 }

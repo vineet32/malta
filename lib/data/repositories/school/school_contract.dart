@@ -1,5 +1,6 @@
 import 'package:malta/data/base/api_response.dart';
 import 'package:malta/data/models/school.dart';
+import 'package:malta/data/models/user.dart';
 
 abstract class SchoolContract {
   Future<ApiResponse> add(School item);
@@ -13,6 +14,8 @@ abstract class SchoolContract {
   Future<ApiResponse> remove(School item);
 
   Future<ApiResponse> getById(String id);
+
+  Future<ApiResponse> getByUser(User user);
 
   Future<ApiResponse> getAll();
 }
