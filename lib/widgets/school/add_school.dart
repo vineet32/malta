@@ -123,7 +123,7 @@ class _AddSchoolState extends State<AddSchool> {
                 child: Text('Add'),
                 onPressed: () async {
                   if (_formKey.currentState.validate()) {
-                    ApiResponse response = await updateSchool();
+                    ApiResponse response = await addNewSchool();
                     setState(() {
                       _loading = false;
                     });
@@ -144,7 +144,7 @@ class _AddSchoolState extends State<AddSchool> {
     return null;
   }
 
-  Future<ApiResponse> updateSchool() async {
+  Future<ApiResponse> addNewSchool() async {
     setState(() {
       _loading = true;
     });
