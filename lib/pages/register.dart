@@ -14,9 +14,8 @@ class Register extends StatefulWidget {
 class _RegisterState extends State<Register> {
   final FocusScopeNode _node = FocusScopeNode();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  String _userName;
-  String _email;
-  String _password;
+  String _userName, _email, _password, _errorMessage;
+  bool _error = false;
   bool _loading = false;
   @override
   void dispose() {
@@ -144,6 +143,15 @@ class _RegisterState extends State<Register> {
                             onEditingComplete: _node.nextFocus,
                           ),
                         ),
+                        _error == true
+                            ? Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  _errorMessage,
+                                  style: TextStyle(color: Colors.red),
+                                ),
+                              )
+                            : Container(),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: RichText(
@@ -195,6 +203,11 @@ class _RegisterState extends State<Register> {
           context,
           MaterialPageRoute(builder: (context) => DisplaySchool()),
         );
+      } else {
+        setState(() {
+          _errorMessage = response.error.message;
+          _error = true;
+        });
       }
     }
     print("sign up");
