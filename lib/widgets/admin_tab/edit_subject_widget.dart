@@ -40,7 +40,7 @@ class EditSubjectWidget extends StatelessWidget {
                             height: 200,
                             padding: EdgeInsets.all(5),
                             child: Icon(
-                              Icons.camera_alt,
+                              Icons.person,
                               size: 100,
                             ),
                           )

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:malta/data/models/subject.dart';
+import 'package:malta/widgets/admin_tab/edit_subject.dart';
 
 class SubjectWidget extends StatelessWidget {
   final Subject subject;
@@ -13,9 +14,13 @@ class SubjectWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: GestureDetector(
-        onTap: () {
-          print("pressed");
-        },
+        onTap: () => Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (_) => EditSubject(
+              subject: subject,
+            ),
+          ),
+        ),
         child: Column(
           children: [
             ClipOval(
