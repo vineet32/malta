@@ -1,7 +1,5 @@
 import 'dart:async';
 import 'dart:io';
-import 'dart:typed_data';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -12,6 +10,7 @@ import 'package:malta/data/models/user.dart';
 import 'package:malta/data/repositories/connection/connection_contract.dart';
 import 'package:malta/data/repositories/school/school_contract.dart';
 import 'package:malta/domain/constants/role_constants.dart';
+import 'package:malta/widgets/school/school_widget.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
 import 'package:provider/provider.dart';
 
@@ -27,8 +26,6 @@ class _AddSchoolState extends State<AddSchool> {
   File _schoolImage;
   String _schoolName;
   bool _loading = false;
-  final _formKey = GlobalKey<FormState>();
-  Uint8List bytes;
 
   @override
   Widget build(BuildContext context) {
@@ -41,76 +38,15 @@ class _AddSchoolState extends State<AddSchool> {
             contentPadding: EdgeInsets.all(20),
             content: SingleChildScrollView(
               child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    ClipOval(
-                      child: _schoolImage != null && !kIsWeb
-                          ? GestureDetector(
-                              child: Image.file(
-                                _schoolImage,
-                                width: 160,
-                                height: 160,
-                                colorBlendMode: BlendMode.colorBurn,
-                                fit: BoxFit.fill,
-                              ),
-                              onTap: () async {
-                                File _image = await getImage();
-                                if (_image != null) {
-                                  setState(() {
-                                    _schoolImage = _image;
-                                  });
-                                }
-                              },
-                            )
-                          : Container(
-                              width: 100,
-                              height: 100,
-                              padding: EdgeInsets.all(5),
-                              child: IconButton(
-                                icon: Icon(
-                                  Icons.camera_alt,
-                                  size: 100,
-                                ),
-                                onPressed: kIsWeb
-                                    ? null
-                                    : () async {
-                                        File _image = await getImage();
-                                        if (_image != null) {
-                                          setState(() {
-                                            _schoolImage = _image;
-                                          });
-                                        }
-                                      },
-                              ),
-                            ),
-                    ),
-                    SizedBox(height: 40),
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: Colors.yellow,
-                      ),
-                      padding: EdgeInsets.all(5),
-                      child: Form(
-                        key: _formKey,
-                        child: TextFormField(
-                          onChanged: (String value) {
-                            print('Value for field  saved as "$value"');
-                            _schoolName = value;
-                          },
-                          validator: (val) =>
-                              val.isEmpty ? 'Enter School Name' : null,
-                          decoration: InputDecoration(
-                            hintText: "School Name",
-                            labelText: "School Name",
-                            border: InputBorder.none,
-                            contentPadding: EdgeInsets.all(5),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
+                child: SchoolWidget(
+                  onSchoolNameChange: (name) => _schoolName = name,
+                  onImagePicked: (image) {
+                    setState(() {
+                      _schoolImage = image;
+                    });
+                  },
+                  editMode: true,
+                  schoolImage: _schoolImage,
                 ),
               ),
             ),
@@ -122,7 +58,7 @@ class _AddSchoolState extends State<AddSchool> {
               FlatButton(
                 child: Text('Add'),
                 onPressed: () async {
-                  if (_formKey.currentState.validate()) {
+                  if (_schoolImage != null) {
                     ApiResponse response = await addNewSchool();
                     setState(() {
                       _loading = false;

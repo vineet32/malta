@@ -1,12 +1,11 @@
 import 'dart:io';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:malta/data/base/api_response.dart';
 import 'package:malta/data/models/school.dart';
 import 'package:malta/data/repositories/school/school_contract.dart';
 import 'package:malta/providers/school_provider.dart';
 import 'package:malta/widgets/school/add_school.dart';
+import 'package:malta/widgets/school/school_widget.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
 import 'package:provider/provider.dart';
 
@@ -16,12 +15,11 @@ class EditSchool extends StatefulWidget {
 }
 
 class _EditSchoolState extends State<EditSchool> {
-  final _formKey = GlobalKey<FormState>();
   final border = OutlineInputBorder(
     borderRadius: BorderRadius.all(Radius.circular(20.0)),
     borderSide: BorderSide(color: Colors.grey),
   );
-  bool editingMode = false;
+  bool editMode = false;
   String schoolName;
   File pickedImage;
   bool _loading = false;
@@ -44,7 +42,7 @@ class _EditSchoolState extends State<EditSchool> {
                 icon: Icon(Icons.edit),
                 onPressed: () {
                   setState(() {
-                    editingMode = true;
+                    editMode = !editMode;
                   });
                 }),
           ),
@@ -73,119 +71,30 @@ class _EditSchoolState extends State<EditSchool> {
               scrollDirection: Axis.vertical,
               child: Column(
                 children: [
-                  Center(
-                    child: Stack(
-                      alignment: Alignment.bottomCenter,
-                      children: [
-                        ClipOval(
-                          child: pickedImage == null
-                              ? Image.network(
-                                  school.image == null
-                                      ? 'https://i.pinimg.com/736x/4f/ae/53/4fae535ca7e76a966f7b432717cff19c.jpg'
-                                      : school.image.url,
-                                  width: 200,
-                                  height: 200,
-                                  colorBlendMode: BlendMode.colorBurn,
-                                  fit: BoxFit.cover,
-                                  loadingBuilder: (BuildContext context,
-                                      Widget child,
-                                      ImageChunkEvent loadingProgress) {
-                                    if (loadingProgress == null) return child;
-                                    return Container(
-                                      width: 200,
-                                      height: 200,
-                                      padding: EdgeInsets.all(5),
-                                      child: CircularProgressIndicator(
-                                        value: loadingProgress
-                                                    .expectedTotalBytes !=
-                                                null
-                                            ? loadingProgress
-                                                    .cumulativeBytesLoaded /
-                                                loadingProgress
-                                                    .expectedTotalBytes
-                                            : null,
-                                      ),
-                                    );
-                                  },
-                                )
-                              : Image.file(
-                                  pickedImage,
-                                  width: 200,
-                                  height: 200,
-                                  colorBlendMode: BlendMode.colorBurn,
-                                  fit: BoxFit.cover,
-                                ),
-                        ),
-                        editingMode && !kIsWeb
-                            ? IconButton(
-                                icon: Icon(Icons.edit),
-                                onPressed: () async {
-                                  File image = await getImage();
-                                  if (image != null) {
-                                    setState(() {
-                                      pickedImage = image;
-                                    });
-                                  }
-                                },
-                              )
-                            : Container(),
-                      ],
-                    ),
+                  SchoolWidget(
+                    editMode: editMode,
+                    onImagePicked: (image) {
+                      setState(() {
+                        pickedImage = image;
+                      });
+                    },
+                    onSchoolNameChange: (name) {
+                      schoolName = name;
+                    },
+                    schoolImage: pickedImage,
+                    schoolImageUrl:
+                        school.image == null ? null : school.image.url,
+                    schoolName: schoolName,
                   ),
-                  SizedBox(height: 30),
-                  Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Text(
-                          "Name:",
-                          style: TextStyle(fontSize: 20),
-                        ),
-                      ),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Form(
-                            key: _formKey,
-                            child: TextFormField(
-                              onChanged: (input) {
-                                schoolName = input;
-                              },
-                              validator: (input) {
-                                if (input.isEmpty) {
-                                  return 'School name can\'t be Empty';
-                                }
-                                return null;
-                              },
-                              controller:
-                                  TextEditingController(text: school.name),
-                              readOnly: !editingMode,
-                              textAlign: TextAlign.start,
-                              // maxLines: 3,
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                                // contentPadding: EdgeInsets.all(8)
-                                enabledBorder: border,
-                                errorBorder: border,
-                                focusedErrorBorder: border,
-                                focusedBorder: border,
-                                disabledBorder: InputBorder.none,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  editingMode
+                  editMode
                       ? RaisedButton(
                           child: Text("update"),
                           onPressed: () async {
-                            if (_formKey.currentState.validate()) {
+                            if (schoolName != null) {
                               await updateSchool();
                               print("update");
                               setState(() {
-                                editingMode = false;
+                                editMode = false;
                                 _loading = false;
                               });
                             }
@@ -196,15 +105,6 @@ class _EditSchoolState extends State<EditSchool> {
               ),
             ),
     );
-  }
-
-  Future<File> getImage() async {
-    final _picker = ImagePicker();
-    PickedFile pickedFile = await _picker.getImage(source: ImageSource.gallery);
-    if (pickedFile != null) {
-      return File(pickedFile.path);
-    }
-    return null;
   }
 
   Future<ApiResponse> updateSchool() async {
