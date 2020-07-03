@@ -3,7 +3,6 @@ import 'package:parse_server_sdk/parse_server_sdk.dart';
 class School extends ParseObject implements ParseCloneable {
   School() : super(keyTableName);
   School.clone() : this();
-  
 
   static const String keyTableName = 'School';
   static const String keyName = 'name';

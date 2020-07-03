@@ -28,8 +28,8 @@ void main() async {
       Provider<StudentContract>(create: (_) => StudentApi()),
       Provider<SubjectContract>(create: (_) => SubjectApi()),
       ChangeNotifierProvider<SchoolProvider>(create: (_) => SchoolProvider()),
-       Provider<UserProvider>(create: (_) => UserProvider()),
-      Provider<ConnectionContract>(create: (_) => ConnectionApi()),
+      Provider<UserProvider>(create: (_) => UserProvider()),
+      Provider<ConnectionContract>(create: (_) => ConnectionApi())
     ],
     child: MyApp(),
   ));
