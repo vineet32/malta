@@ -65,7 +65,7 @@ class _EditSectionState extends State<EditSection> {
           RaisedButton(
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-            child: Text('Edit'),
+            child: Text('Update'),
             onPressed: () async {
               await sectionContract.update(
                   Section()
