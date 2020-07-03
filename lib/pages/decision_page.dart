@@ -67,12 +67,6 @@ class _DecisionPageState extends State<DecisionPage> {
   }
 
   Future<void> _initParse() async {
-
-    // final currentUserProvider = Provider.of<UserProvider>(context, listen: false);
-    // final currentUser = currentUserProvider.getUser;
-    // final schoolDataProvider = Provider.of<SchoolContract>(context, listen: false);
-    // final schoolProvider = Provider.of<SchoolProvider>(context, listen: false);
-
     try {
       await Parse().initialize(
         keyParseApplicationId,keyParseServerUrl,
@@ -89,32 +83,6 @@ class _DecisionPageState extends State<DecisionPage> {
         else{
           _redirectToPage(context, Login());
         }
-          // if(currentUser != null){
-          //   return Builder(
-          //     builder: (context){
-          //        if(currentUser.schools.length > 1){
-          //          _redirectToPage(context, DisplaySchool(schools: currentUser.schools));
-          //        }
-          //        else {
-          //          return FutureBuilder<ApiResponse>(
-          //            future: schoolDataProvider.getById(currentUser.schools[0]),
-          //            builder: (context, AsyncSnapshot<ApiResponse> snapshot){
-          //             if(snapshot.hasData){
-          //               schoolProvider.setCurrentlySelectedSchool(snapshot.data.results[0]);
-          //               _redirectToPage(context, CurrentClass());
-          //             }
-          //            },
-          //            );
-          //        }
-          //     }
-          //   );
-
-          
-        //  _redirectToPage(context, DisplaySchool());
-      
-        // } else {
-        //   _redirectToPage(context, LoginPage());
-        // }
       } else {
         setState(() {
           _parseServerState =

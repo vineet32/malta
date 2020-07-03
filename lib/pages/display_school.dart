@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:malta/data/base/api_response.dart';
-import 'package:malta/data/models/connection.dart';
 import 'package:malta/data/models/school.dart';
 import 'package:malta/data/models/user.dart';
 import 'package:malta/data/repositories/connection/connection_contract.dart';
@@ -24,15 +23,17 @@ class DisplaySchool extends StatelessWidget {
             if (snapshot.data.results != null &&
                 snapshot.data.results.length != null) {
                   if(snapshot.data.results.length == 1){
-                    Connection con = snapshot.data.results[0];
-                    final schoolProvider = Provider.of<SchoolProvider>(
+                    snapshot.data.results.map((e) {
+                      School school = e.school;
+                      final schoolProvider = Provider.of<SchoolProvider>(
                             context,
                             listen: false);
-                        //schoolProvider.setCurrentlySelectedSchool(con.school);
+                        schoolProvider.setCurrentlySelectedSchool(school);
                         Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => HomePage()));
+                    });   
                   }
                   else{
               return GridView.builder(
@@ -40,49 +41,30 @@ class DisplaySchool extends StatelessWidget {
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 3),
                   itemBuilder: (context, int index) {
-                    Connection con = snapshot.data.results[index];
-
-                    // return FutureBuilder<ApiResponse>(
-                    //   future: connectionContract.getSchools(con),
-                    //   builder: (context, AsyncSnapshot<ApiResponse> snapshot){
-                    //     if(snapshot.hasData){
-                    //       if(snapshot.data.results != null && snapshot.data.results.length != null){
-                    //         return GridView.builder(
-                    //           itemCount: snapshot.data.results.length,
-                    //           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
-                    //            itemBuilder: (context, int index) {
-                    //              //School school = snapshot.data.results[index];
-                                
-                    //       });
-                    //       }
-                    //     }
-                    //     return Container();
-                    //   }
-                    //   );
-                    
-                    //print(con.school.getRelation(School.keyTableName));
-                    return InkWell(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          CircleAvatar(
-                            radius: 40,
-                            backgroundColor: Colors.blue[50],
-                          ),
-                          Text(con.role),
-                        ],
-                      ),
-                      onTap: () {
-                        final schoolProvider = Provider.of<SchoolProvider>(
+                    return SingleChildScrollView(
+                      child: Wrap(children: snapshot.data.results.map((e) {
+                            School school = e.school;
+                            return InkWell(
+                              child: Column(children: [
+                                CircleAvatar(
+                                    radius: 40,
+                                    backgroundColor: Colors.blue[50],
+                                  ),
+                                Text(school.name)]),
+                              onTap: (){
+                      final schoolProvider = Provider.of<SchoolProvider>(
                             context,
                             listen: false);
-                        //schoolProvider.setCurrentlySelectedSchool(con.school);
-                        Navigator.push(
+                        schoolProvider.setCurrentlySelectedSchool(school);
+                                Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => HomePage()));
-                      },
+                              },
+                            );
+                        }).toList(),),
                     );
+                   
                   });
                   }
             }
