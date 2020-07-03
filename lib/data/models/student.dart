@@ -27,8 +27,8 @@ class Student extends ParseObject implements ParseCloneable {
   num get age => get<num>(keyAge);
   set age(num age) => set<num>(keyAge, age);
 
-  String get image => get<String>(keyImage);
-  set image(String image) => set<String>(keyImage, image);
+  ParseFile get image => get<ParseFile>(keyImage);
+  set image(ParseFile image) => set<ParseFile>(keyImage, image);
 
   String get gender => get<String>(keyGender);
   set gender(String image) => set<String>(keyGender, image);
