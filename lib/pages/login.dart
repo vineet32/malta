@@ -1,4 +1,6 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:malta/pages/register.dart';
 import 'package:provider/provider.dart';
 import 'package:malta/data/repositories/user/user_contract.dart';
 import 'package:malta/data/base/api_response.dart';
@@ -11,13 +13,13 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  String _email, _password,_errorMessage;
-  bool _error=false;
+  String _email, _password, _errorMessage;
+  bool _error = false;
   @override
   Widget build(BuildContext context) {
     final FocusNode _emailFocus = FocusNode();
     final FocusNode _passwordFocus = FocusNode();
-    final UserContract userContract=Provider.of<UserContract>(context);
+    final UserContract userContract = Provider.of<UserContract>(context);
     return Scaffold(
       backgroundColor: Colors.white,
       body: Padding(
@@ -71,25 +73,51 @@ class _LoginState extends State<Login> {
                 ),
               ),
             ),
-            _error==true?Text(_errorMessage,style: TextStyle(color: Colors.red),):Text(''),
+            _error == true
+                ? Text(
+                    _errorMessage,
+                    style: TextStyle(color: Colors.red),
+                  )
+                : Text(''),
             SizedBox(
               height: 30.0,
             ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: RichText(
+                text: TextSpan(
+                  children: <TextSpan>[
+                    TextSpan(
+                      text: 'Don\'t have account? ',
+                      style: TextStyle(color: Colors.black),
+                    ),
+                    TextSpan(
+                        text: 'Register',
+                        style: TextStyle(color: Colors.blue),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            Navigator.of(context)
+                                .push(MaterialPageRoute(builder: (s) {
+                              return Register();
+                            }));
+                          }),
+                  ],
+                ),
+              ),
+            ),
             RaisedButton(
-              onPressed: ()async {
-                User user=User(_email,_password,_email);
-                ApiResponse response =await userContract.login(user);
-                if(response.success){
+              onPressed: () async {
+                User user = User(_email, _password, _email);
+                ApiResponse response = await userContract.login(user);
+                if (response.success) {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) =>  DisplaySchool()),
                   );
-                }
-                else{
-
+                } else {
                   setState(() {
-                    _errorMessage=response.error.message;
-                    _error=true;
+                    _errorMessage = response.error.message;
+                    _error = true;
                   });
                 }
               },
