@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:malta/data/repositories/class/class_api.dart';
 import 'package:malta/data/repositories/class/class_contract.dart';
+import 'package:malta/data/repositories/connection/connection_api.dart';
+import 'package:malta/data/repositories/connection/connection_contract.dart';
 import 'package:malta/data/repositories/section/section_api.dart';
 import 'package:malta/data/repositories/section/section_contract.dart';
 import 'package:malta/data/repositories/student/student_api.dart';
@@ -27,6 +29,7 @@ void main() async {
       Provider<SubjectContract>(create: (_) => SubjectApi()),
       ChangeNotifierProvider<SchoolProvider>(create: (_) => SchoolProvider()),
        Provider<UserProvider>(create: (_) => UserProvider()),
+      Provider<ConnectionContract>(create: (_) => ConnectionApi()),
     ],
     child: MyApp(),
   ));
