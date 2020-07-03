@@ -27,4 +27,18 @@ class ConnectionApi implements ConnectionContract{
     return getApiResponse<Connection>(await queryBuilder.query());
   }
 
+  @override
+  Future<ApiResponse> getUserByUserName(String userName)async {
+
+    QueryBuilder<User> queryBuilder=QueryBuilder<User>(User('d','d','d'))
+      ..whereEqualTo('username', userName);
+
+    return getApiResponse<User>(await queryBuilder.query());
+  }
+
+  @override
+  Future<ApiResponse> add(Connection connection) async{
+    return getApiResponse<Connection>(await connection.save());
+  }
+
 }
