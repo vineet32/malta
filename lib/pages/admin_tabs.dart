@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:malta/domain/constants/role_constants.dart';
+import 'package:malta/pages/display_subjects.dart';
 import 'package:malta/pages/edit_school.dart';
 import 'package:malta/pages/section_list.dart';
 import 'package:malta/widgets/admin_tab/show_user_list.dart';
@@ -54,11 +55,7 @@ class AdminTabs extends StatelessWidget {
           children: [
             EditSchool(),
             SectionList(),
-            //Icon(Icons.directions_bike),
-            // Icon(Icons.directions_car),
-            // Icon(Icons.directions_transit),
-            // Icon(Icons.directions_bike),
-            Icon(Icons.directions_bike),
+            DisplaySubjects(),
             ShowUserList(keyPrincipal),
             ShowUserList(keyTeacher),
             ShowUserList(keyCoordinator),

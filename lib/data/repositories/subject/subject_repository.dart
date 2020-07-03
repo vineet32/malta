@@ -1,5 +1,6 @@
 import 'package:malta/data/base/api_response.dart';
 import 'package:malta/data/models/school.dart';
+import 'package:malta/data/models/subject.dart';
 import 'package:malta/data/repositories/subject/subject_api.dart';
 import 'package:malta/data/repositories/subject/subject_contract.dart';
 
@@ -31,5 +32,10 @@ class SubjectRepository implements SubjectContract {
   @override
   Future<ApiResponse> getBySchoolId(School school) {
     return api.getBySchoolId(school);
+  }
+
+  @override
+  Future<ApiResponse> add(Subject subject) {
+    return api.add(subject);
   }
 }
