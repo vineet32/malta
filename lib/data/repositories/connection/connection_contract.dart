@@ -11,4 +11,5 @@ abstract class ConnectionContract {
   Future<ApiResponse> add(Connection connection);
 
   Future<ApiResponse> getUserByUserName(String userName);
+
 }
