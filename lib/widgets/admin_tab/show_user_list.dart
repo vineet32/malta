@@ -30,8 +30,7 @@ class ShowUserList extends StatelessWidget {
                     spacing: 20,
                     children: snapshot.data.results.map<Widget>((connection) {
                       return ShowUserWidget(
-                        image: connection.user.image?.url,
-                        name: connection.user.name,
+                        user: connection.user,
                       );
                     }).toList(),
                   ),

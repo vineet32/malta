@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:malta/data/models/user.dart';
 
 class ShowUserWidget extends StatelessWidget {
-  final String image;
-  final String name;
+  final User user;
 
-  const ShowUserWidget({Key key, this.image, this.name}) : super(key: key);
+  const ShowUserWidget({
+    Key key,
+    this.user,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -12,13 +15,13 @@ class ShowUserWidget extends StatelessWidget {
       child: Column(
         children: [
           ClipOval(
-            child: image == null
+            child: user.image == null
                 ? Icon(
                     Icons.person,
                     size: 100,
                   )
                 : Image.network(
-                    image,
+                    user.image.url,
                     width: 100,
                     height: 100,
                     colorBlendMode: BlendMode.colorBurn,
@@ -40,7 +43,7 @@ class ShowUserWidget extends StatelessWidget {
                     },
                   ),
           ),
-          Text(name),
+          Text(user.name),
         ],
       ),
     );

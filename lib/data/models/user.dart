@@ -13,7 +13,7 @@ class User extends ParseUser implements ParseCloneable {
 
   static const String keySchools = 'schools';
   static const String keyImage = 'image';
-  static const String keyUserName = 'username';
+  static const String keyUsername = 'username';
 
   List get schools => get<List>(keySchools);
   set schools(List school) => set<List>(keySchools, school);
@@ -21,6 +21,6 @@ class User extends ParseUser implements ParseCloneable {
   ParseFile get image => get<ParseFile>(keyImage);
   set image(ParseFile image) => set<ParseFile>(keyImage, image);
 
-  String get name => get<String>(keyUserName);
-  set name(String userName) => set<String>(keyUserName, userName);
+  String get name => get<String>(keyUsername);
+  set name(String userName) => set<String>(keyUsername, userName);
 }
