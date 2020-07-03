@@ -33,7 +33,7 @@ class ConnectionApi implements ConnectionContract {
   @override
   Future<ApiResponse> getUserByUserName(String userName)async {
 
-    QueryBuilder<ParseObject> queryBuilder=QueryBuilder<ParseObject>(ParseObject('_User'))
+    QueryBuilder<User> queryBuilder=QueryBuilder<User>(User('','',''))
       ..whereEqualTo('username', userName);
 
     return getApiResponse<User>(await queryBuilder.query());
