@@ -24,7 +24,6 @@ import 'package:malta/story_board/story/display_school_test.dart';
 import 'package:malta/story_board/story/display_student_test.dart';
 import 'package:malta/story_board/story/home_page_story.dart';
 import 'package:malta/story_board/story/section_list_story.dart';
-import 'package:malta/story_board/story/students_in_section_story.dart';
 import 'package:malta/story_board/story/video_recorder_story.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
 import 'package:provider/provider.dart';
