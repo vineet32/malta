@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:malta/data/base/api_response.dart';
-import 'package:malta/data/models/connection.dart';
 import 'package:malta/data/models/school.dart';
 import 'package:malta/data/repositories/connection/connection_contract.dart';
-import 'package:malta/providers/school_provider.dart';
 import 'package:malta/widgets/User/show_user.dart';
-import 'package:parse_server_sdk/parse_server_sdk.dart';
-import 'package:provider/provider.dart';
+
 
 class AddConnection extends StatefulWidget{
   final String roleType;
