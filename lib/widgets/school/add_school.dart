@@ -10,7 +10,7 @@ import 'package:malta/data/models/user.dart';
 import 'package:malta/data/repositories/connection/connection_contract.dart';
 import 'package:malta/data/repositories/school/school_contract.dart';
 import 'package:malta/domain/constants/role_constants.dart';
-import 'package:malta/widgets/school/school_widget.dart';
+import 'package:malta/widgets/school/edit_school_widget.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
 import 'package:provider/provider.dart';
 
@@ -38,7 +38,7 @@ class _AddSchoolState extends State<AddSchool> {
             contentPadding: EdgeInsets.all(20),
             content: SingleChildScrollView(
               child: Center(
-                child: SchoolWidget(
+                child: EditSchoolWidget(
                   onSchoolNameChange: (name) => _schoolName = name,
                   onImagePicked: (image) {
                     setState(() {

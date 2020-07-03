@@ -4,14 +4,14 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-class SchoolWidget extends StatelessWidget {
+class EditSchoolWidget extends StatelessWidget {
   final bool editMode;
   final File schoolImage;
   final String schoolImageUrl;
   final Function(File image) onImagePicked;
   final Function(String name) onSchoolNameChange;
   final String schoolName;
-  SchoolWidget({
+  EditSchoolWidget({
     Key key,
     this.editMode: false,
     this.schoolImage,

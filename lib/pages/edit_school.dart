@@ -5,7 +5,7 @@ import 'package:malta/data/models/school.dart';
 import 'package:malta/data/repositories/school/school_contract.dart';
 import 'package:malta/providers/school_provider.dart';
 import 'package:malta/widgets/school/add_school.dart';
-import 'package:malta/widgets/school/school_widget.dart';
+import 'package:malta/widgets/school/edit_school_widget.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
 import 'package:provider/provider.dart';
 
@@ -71,7 +71,7 @@ class _EditSchoolState extends State<EditSchool> {
               scrollDirection: Axis.vertical,
               child: Column(
                 children: [
-                  SchoolWidget(
+                  EditSchoolWidget(
                     editMode: editMode,
                     onImagePicked: (image) {
                       setState(() {
