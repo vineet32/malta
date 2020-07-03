@@ -9,6 +9,11 @@ class StudentApi implements StudentContract {
   StudentApi();
 
   @override
+  Future<ApiResponse> update(Student item) async {
+    return getApiResponse<Student>(await item.save());
+  }
+
+  @override
   Future<ApiResponse> getAll() async {
     return getApiResponse<Student>(await Student().getAll());
   }

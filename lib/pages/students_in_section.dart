@@ -3,6 +3,8 @@ import 'package:malta/data/base/api_response.dart';
 import 'package:malta/data/models/section.dart';
 import 'package:malta/data/models/student.dart';
 import 'package:malta/data/repositories/student/student_contract.dart';
+import 'package:malta/pages/add_student.dart';
+import 'package:malta/pages/edit_student.dart';
 import 'package:provider/provider.dart';
 import 'package:malta/widgets/section/edit_section.dart';
 
@@ -25,17 +27,6 @@ class StudentsInSection extends StatelessWidget {
                     });
               },
             ),
-            Padding(padding: EdgeInsets.only(right: 6.0)),
-            InkWell(
-              child: CircleAvatar(child: Icon(Icons.add)),
-              onTap: () async {
-                showDialog(
-                    context: context,
-                    builder: (_) {
-                      
-                    });
-              },
-            )
           ],
       ),
       body: Container(
@@ -64,12 +55,12 @@ class StudentsInSection extends StatelessWidget {
                               Text(student.name),
                             ],
                           ),
-                          onTap: () {
-                            // Navigator.push(
-                            //     context,
-                            //     MaterialPageRoute(
-                            //         builder: (context) =>
-                            //             StudentsInSection(section: section)));
+                          onTap: () async {
+                            showDialog(
+                                context: context,
+                                builder: (_) {
+                                  return EditStudent(section: section,student: student);
+                                });
                           },
                         );
                       });
@@ -81,7 +72,15 @@ class StudentsInSection extends StatelessWidget {
                   ));
                 }
               }),
-        )
+        ),
+        floatingActionButton: FloatingActionButton(onPressed: () async {
+          showDialog(
+                    context: context,
+                    builder: (_) {
+                      return AddStudent(section: section,);
+                    });
+        },
+        child: Icon(Icons.add)),
     );
   }
 }
