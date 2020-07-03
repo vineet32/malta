@@ -6,7 +6,7 @@ import 'package:malta/data/models/school.dart';
 import 'package:malta/data/models/subject.dart';
 import 'package:malta/data/repositories/subject/subject_contract.dart';
 import 'package:malta/providers/school_provider.dart';
-import 'package:malta/widgets/admin_tab/subject_edit_widget.dart';
+import 'package:malta/widgets/admin_tab/edit_subject_widget.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
 import 'package:provider/provider.dart';
 
@@ -34,7 +34,7 @@ class _AddSubjectState extends State<AddSubject> {
             contentPadding: EdgeInsets.all(20),
             content: SingleChildScrollView(
               child: Center(
-                child: SubjectEditWidget(
+                child: EditSubjectWidget(
                   onSubjectNameChange: (name) => _subjectName = name,
                   onImagePicked: (image) {
                     setState(() {
