@@ -72,6 +72,8 @@ Future<SubjectContract> getMockSubjectApi() async {
       Future<ApiResponse>.value(ApiResponse(true, 200, mockList, null)));
   when(repositoryApi.getBySchoolId(any)).thenAnswer((_) async =>
       Future<ApiResponse>.value(ApiResponse(true, 200, mockList, null)));
+  when(repositoryApi.add(any)).thenAnswer((_) async =>
+      Future<ApiResponse>.value(ApiResponse(true, 200, mockList, null)));
   return repositoryApi;
 }
 
@@ -123,7 +125,6 @@ Future<SchoolContract> getMockSchoolApi() async {
   final School item5 = getDummySchool(schoolName: "Govt. school")
     ..objectId = '${objectIdPrefix}4';
   final List<School> mockList = List<School>()
-    
     ..add(item1)
     ..add(item2)
     ..add(item3)
@@ -142,16 +143,15 @@ Future<SchoolContract> getMockSchoolApi() async {
   return repositoryApi;
 }
 
-
 Future<StudentContract> getMockStudentApi() async {
   final StudentContract repositoryApi = RepositoryMockStudent();
 
   const String objectIdPrefix = '12345abc';
-  final Student item0 = getDummyStudent() ..objectId = '${objectIdPrefix}0';
-  final Student item1 = getDummyStudent() ..objectId = '${objectIdPrefix}1';
-  final Student item2 = getDummyStudent() ..objectId = '${objectIdPrefix}2';
-  final Student item3 = getDummyStudent() ..objectId = '${objectIdPrefix}3';
-  final Student item4 = getDummyStudent() ..objectId = '${objectIdPrefix}4';
+  final Student item0 = getDummyStudent()..objectId = '${objectIdPrefix}0';
+  final Student item1 = getDummyStudent()..objectId = '${objectIdPrefix}1';
+  final Student item2 = getDummyStudent()..objectId = '${objectIdPrefix}2';
+  final Student item3 = getDummyStudent()..objectId = '${objectIdPrefix}3';
+  final Student item4 = getDummyStudent()..objectId = '${objectIdPrefix}4';
   final List<Student> mockList = List<Student>()
     ..add(item0)
     ..add(item1)
@@ -159,13 +159,13 @@ Future<StudentContract> getMockStudentApi() async {
     ..add(item3)
     ..add(item4);
 
-
   when(repositoryApi.getById(any)).thenAnswer((_) async =>
-  Future<ApiResponse>.value(ApiResponse(true, 200, mockList, null)));
+      Future<ApiResponse>.value(ApiResponse(true, 200, mockList, null)));
   when(repositoryApi.getAll()).thenAnswer((_) async =>
+  Future<ApiResponse>.value(ApiResponse(true, 200, mockList, null)));
+  when(repositoryApi.getBySection(any)).thenAnswer((_) async =>
   Future<ApiResponse>.value(ApiResponse(true, 200, mockList, null)));
   when(repositoryApi.getParticularSectionsStudents(any,any)).thenAnswer((_) async =>
   Future<ApiResponse>.value(ApiResponse(true, 200, mockList, null)));
   return repositoryApi;
-  
 }

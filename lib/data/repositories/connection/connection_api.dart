@@ -12,6 +12,7 @@ class ConnectionApi implements ConnectionContract {
         QueryBuilder<Connection>(Connection())
           ..whereEqualTo('user', user)
           ..includeObject([Connection.keySchool]);
+         // ..whereNotEqualTo(School.keyTableName, Connection.keySchool)
 
     return getApiResponse<Connection>(await queryBuilder.query());
   }
