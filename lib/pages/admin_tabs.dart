@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:malta/pages/edit_school.dart';
 import 'package:md2_tab_indicator/md2_tab_indicator.dart';
 
 class AdminTabs extends StatelessWidget {
@@ -48,7 +49,7 @@ class AdminTabs extends StatelessWidget {
         ),
         body: TabBarView(
           children: [
-            Icon(Icons.directions_car),
+            EditSchool(),
             Icon(Icons.directions_transit),
             Icon(Icons.directions_bike),
             Icon(Icons.directions_car),
