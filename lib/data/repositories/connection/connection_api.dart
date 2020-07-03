@@ -18,14 +18,6 @@ class ConnectionApi implements ConnectionContract {
   }
 
   @override
-  Future<ApiResponse> getUserSchools(Connection conn) async {
-    QueryBuilder<School> queryBuilder = QueryBuilder<School>(School())
-    ..whereNotEqualTo(School.keyTableName, conn)
-    ..includeObject([School.keyName]);
-    return getApiResponse<School>(await queryBuilder.query());
-  }
-
-  @override
   Future<ApiResponse> getAllUsers(School school, String role) async {
     QueryBuilder<Connection> queryBuilder =
         QueryBuilder<Connection>(Connection())
