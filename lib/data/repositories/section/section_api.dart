@@ -18,10 +18,20 @@ class SectionApi implements SectionContract {
   }
 
   @override
-  Future<ApiResponse> getBySchoolId(School school) async {
+  Future<ApiResponse> getBySchool(School school) async {
     QueryBuilder<Section> queryBuilder = QueryBuilder<Section>(Section())
       ..whereEqualTo(Section.keySchool, school)
       ..includeObject([Section.keySchool]);
     return getApiResponse<Section>(await queryBuilder.query());
+  }
+
+  @override
+  Future<ApiResponse> add(Section item) async {
+    return getApiResponse<Section>(await item.save());
+  }
+
+  @override
+  Future<ApiResponse> update(Section item) async {
+    return getApiResponse<Section>(await item.save());
   }
 }

@@ -125,6 +125,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_plugin_android_lifecycle:
+    dependency: transitive
+    description:
+      name: flutter_plugin_android_lifecycle
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.8"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -149,6 +156,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.1.4"
+  image_picker:
+    dependency: "direct main"
+    description:
+      name: image_picker
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.6.7+2"
+  image_picker_platform_interface:
+    dependency: transitive
+    description:
+      name: image_picker_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.0"
   intl:
     dependency: transitive
     description:
@@ -163,6 +184,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.12.6"
+  md2_tab_indicator:
+    dependency: "direct main"
+    description:
+      name: md2_tab_indicator
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.2"
   meta:
     dependency: transitive
     description:
@@ -377,7 +405,7 @@ packages:
       name: test_api
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.16"
+    version: "0.2.15"
   typed_data:
     dependency: transitive
     description:
