@@ -12,4 +12,6 @@ abstract class ConnectionContract {
 
   Future<ApiResponse> getUserByUserName(String userName);
 
+  Future<ApiResponse> delete(User user,String role,School school);
+
 }
