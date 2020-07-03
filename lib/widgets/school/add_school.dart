@@ -58,7 +58,7 @@ class _AddSchoolState extends State<AddSchool> {
               FlatButton(
                 child: Text('Add'),
                 onPressed: () async {
-                  if (_schoolImage != null) {
+                  if (_schoolName != null) {
                     ApiResponse response = await addNewSchool();
                     setState(() {
                       _loading = false;
