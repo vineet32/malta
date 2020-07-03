@@ -162,9 +162,10 @@ Future<StudentContract> getMockStudentApi() async {
   when(repositoryApi.getById(any)).thenAnswer((_) async =>
       Future<ApiResponse>.value(ApiResponse(true, 200, mockList, null)));
   when(repositoryApi.getAll()).thenAnswer((_) async =>
-      Future<ApiResponse>.value(ApiResponse(true, 200, mockList, null)));
-  when(repositoryApi.getParticularSectionsStudents(any, any)).thenAnswer(
-      (_) async =>
-          Future<ApiResponse>.value(ApiResponse(true, 200, mockList, null)));
+  Future<ApiResponse>.value(ApiResponse(true, 200, mockList, null)));
+  when(repositoryApi.getBySection(any)).thenAnswer((_) async =>
+  Future<ApiResponse>.value(ApiResponse(true, 200, mockList, null)));
+  when(repositoryApi.getParticularSectionsStudents(any,any)).thenAnswer((_) async =>
+  Future<ApiResponse>.value(ApiResponse(true, 200, mockList, null)));
   return repositoryApi;
 }

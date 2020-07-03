@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:malta/domain/constants/role_constants.dart';
 import 'package:malta/pages/display_subjects.dart';
 import 'package:malta/pages/edit_school.dart';
+import 'package:malta/pages/section_list.dart';
 import 'package:malta/widgets/admin_tab/show_user_list.dart';
 import 'package:md2_tab_indicator/md2_tab_indicator.dart';
 
@@ -53,7 +54,7 @@ class AdminTabs extends StatelessWidget {
         body: TabBarView(
           children: [
             EditSchool(),
-            Icon(Icons.directions_bike),
+            SectionList(),
             DisplaySubjects(),
             ShowUserList(keyPrincipal),
             ShowUserList(keyTeacher),
