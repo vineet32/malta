@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:malta/pages/administer.dart';
+import 'package:malta/pages/admin_tabs.dart';
 import 'package:malta/pages/current_class.dart';
 import 'package:malta/providers/school_provider.dart';
-import 'package:malta/widgets/section/add_section.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
@@ -30,7 +29,8 @@ class HomePage extends StatelessWidget {
           body: TabBarView(
             children: [
               CurrentClass(),
-              Administer(),
+              // Administer(),
+              AdminTabs(),
               Icon(Icons.playlist_add_check),
             ],
           ),
