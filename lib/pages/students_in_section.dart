@@ -51,6 +51,8 @@ class StudentsInSection extends StatelessWidget {
                               CircleAvatar(
                                 radius: 40,
                                 backgroundColor: Colors.blue[50],
+                                backgroundImage: NetworkImage(student.image != null?student.image.url:
+                                  'https://webstockreview.net/images/kid-clipart-4.jpg'),
                               ),
                               Text(student.name),
                             ],

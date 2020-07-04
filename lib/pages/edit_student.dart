@@ -1,12 +1,11 @@
-import 'dart:io';
-import 'package:flutter/services.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:malta/data/models/school.dart';
 import 'package:malta/data/models/section.dart';
 import 'package:malta/data/models/student.dart';
 import 'package:malta/data/repositories/student/student_contract.dart';
 import 'package:malta/providers/school_provider.dart';
+import 'package:malta/widgets/student/student_image_widget.dart';
+import 'package:malta/widgets/student/student_input_widget.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
 import 'package:provider/provider.dart';
 
@@ -23,34 +22,10 @@ class _EditStudentState extends State<EditStudent> {
   Section section;
   Student student;
   _EditStudentState({this.section, this.student});
-  
-  static PickedFile image;
-  final ImagePicker _picker = ImagePicker();
-  Future<File> getImage() async {
-    image = await _picker.getImage(source: ImageSource.gallery);
-    setState((){});
-    return File(image?.path != null?image?.path: null);
-  }
-  static File studentImage;
   ParseFile studentImg;
-
   String studentName;
   String gender;
   int studentAge;
-  TextEditingController studentNameController = TextEditingController();
-  TextEditingController studentAgeController = TextEditingController();
-
-  @override 
-  void initState(){
-    super.initState();
-    gender = student.gender;
-  }
-
-  void setGender(String value) {
-    setState(() {
-      gender = value;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,19 +35,7 @@ class _EditStudentState extends State<EditStudent> {
     return AlertDialog(
       scrollable: true,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      title: InkWell(
-              child: CircleAvatar(
-          child: image == null?Icon(
-            Icons.photo_camera,
-            size: 20,
-          ):Image.file(File(image.path)),
-          radius: 30,
-        ),
-        onTap: () async {
-          studentImage = await getImage();
-          studentImg = ParseFile(studentImage);
-        }
-      ),
+      title: StudentImageWidget(onImageSelect: (value) {studentImg = value;},),
       actions: [
         ButtonBar(children: [
           FlatButton(
@@ -105,44 +68,13 @@ class _EditStudentState extends State<EditStudent> {
         ])
       ],
       content: SingleChildScrollView(
-        child: Container(
-      child: Column(
-        children:[
-      TextField(
-        controller: studentNameController..text = student.name,
-        decoration: InputDecoration(
-            labelText: 'Name',
-            border: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.black))),
-        onChanged: (value) {
-          studentName = value;
-        },
-      ),
-      
-      ButtonBar(children: [
-        Text('Male'),
-        Radio(value: 'male', groupValue: gender, onChanged: (value){setGender(value);}),
-        Text('Female'),
-        Radio(value: 'female', groupValue: gender, onChanged: (value){setGender(value);})
-      ]),
-
-      TextField(
-        controller: studentAgeController..text = student.age.toString(),
-        keyboardType: TextInputType.number,
-        inputFormatters: <TextInputFormatter>[
-        WhitelistingTextInputFormatter.digitsOnly],
-        decoration: InputDecoration(
-            labelText: 'Age',
-            border: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.black))),
-        onChanged: (value) {
-          studentAge = int.parse(value);
-        },
-      ),
-        ]
-      ),
-      
-    ),
+        child: StudentInputWidget(
+          onNameChange: (name) {studentName = name;},
+          onRadioSwitched: (value) {gender = value;},
+          onAgeChange: (age) {studentAge = age;},
+          studentName: student.name,studentAge: student.age,
+          studentGender: student.gender,
+        ),
       )
     );
   }
