@@ -41,6 +41,8 @@ class SectionList extends StatelessWidget {
                                 CircleAvatar(
                                   radius: 40,
                                   backgroundColor: Colors.blue[50],
+                                  backgroundImage: NetworkImage(section.image != null?section.image.url:
+                                  'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSz-9LnJRG68QfsPgJoA8UzO-Qiwl-FqvB6iQ&usqp=CAU'),
                                 ),
                                 Text(section.name),
                               ],

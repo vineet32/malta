@@ -7,7 +7,7 @@ abstract class StudentContract {
 
   // Future<ApiResponse> addAll(List<Student> items);
 
-  // Future<ApiResponse> update(Student item);
+  Future<ApiResponse> update(Student item);
 
   // Future<ApiResponse> updateAll(List<Student> items);
 
