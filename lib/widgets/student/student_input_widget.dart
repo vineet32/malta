@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:parse_server_sdk/parse_server_sdk.dart';
 
 class StudentInputWidget extends StatefulWidget {
   final Function(String studentName) onNameChange;
@@ -8,12 +12,13 @@ class StudentInputWidget extends StatefulWidget {
   final String studentName;
   final int studentAge;
   final String studentGender;
+  final Function(ParseFile studentImage) onImageSelect;
   StudentInputWidget({this.onNameChange,this.onRadioSwitched,this.onAgeChange,
-    this.studentName, this.studentAge, this.studentGender});
+    this.studentName, this.studentAge, this.studentGender, this.onImageSelect});
   @override
   _StudentInputWidgetState createState() => _StudentInputWidgetState(onNameChange: onNameChange,
     onRadioSwitched: onRadioSwitched,onAgeChange: onAgeChange,studentName: studentName, 
-    studentAge: studentAge,studentGender: studentGender);
+    studentAge: studentAge,studentGender: studentGender,onImageSelect: onImageSelect);
 }
 
 class _StudentInputWidgetState extends State<StudentInputWidget> {
@@ -23,12 +28,23 @@ class _StudentInputWidgetState extends State<StudentInputWidget> {
   final String studentName;
   final int studentAge;
   final String studentGender;
+  Function(ParseFile studentImage) onImageSelect;
   _StudentInputWidgetState({this.onNameChange,this.onRadioSwitched,this.onAgeChange,
-    this.studentName, this.studentAge, this.studentGender});
+    this.studentName, this.studentAge, this.studentGender, this.onImageSelect});
   String gender;
 
   TextEditingController studentNameController = TextEditingController();
   TextEditingController studentAgeController = TextEditingController();
+
+  static PickedFile image;
+  final ImagePicker _picker = ImagePicker();
+  Future<File> getImage() async {
+    image = await _picker.getImage(source: ImageSource.gallery);
+    setState((){});
+    return File(image?.path != null?image?.path: null);
+  }
+  static File studentImage;
+  ParseFile studentImg;
 
   @override 
   void initState(){
@@ -48,6 +64,20 @@ class _StudentInputWidgetState extends State<StudentInputWidget> {
     return Container(
       child: Column(
         children:[
+          InkWell(
+              child: CircleAvatar(
+          child: image == null?Icon(
+            Icons.photo_camera,
+            size: 20,
+          ):Image.file(File(image.path)),
+          radius: 30,
+        ),
+        onTap: () async {
+          studentImage = await getImage();
+          studentImg = ParseFile(studentImage);
+          onImageSelect(studentImg);
+        }
+    ),
       TextField(
         controller: studentNameController..text = studentName,
         decoration: InputDecoration(

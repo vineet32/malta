@@ -4,7 +4,6 @@ import 'package:malta/data/models/section.dart';
 import 'package:malta/data/models/student.dart';
 import 'package:malta/data/repositories/student/student_contract.dart';
 import 'package:malta/providers/school_provider.dart';
-import 'package:malta/widgets/student/student_image_widget.dart';
 import 'package:malta/widgets/student/student_input_widget.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
 import 'package:provider/provider.dart';
@@ -35,7 +34,7 @@ class _EditStudentState extends State<EditStudent> {
     return AlertDialog(
       scrollable: true,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      title: StudentImageWidget(onImageSelect: (value) {studentImg = value;},),
+      title: Text('Update student'),
       actions: [
         ButtonBar(children: [
           FlatButton(
@@ -74,6 +73,7 @@ class _EditStudentState extends State<EditStudent> {
           onAgeChange: (age) {studentAge = age;},
           studentName: student.name,studentAge: student.age,
           studentGender: student.gender,
+          onImageSelect: (value) {studentImg = value;},
         ),
       )
     );

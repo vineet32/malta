@@ -4,7 +4,6 @@ import 'package:malta/data/models/section.dart';
 import 'package:malta/data/models/student.dart';
 import 'package:malta/data/repositories/student/student_contract.dart';
 import 'package:malta/providers/school_provider.dart';
-import 'package:malta/widgets/student/student_image_widget.dart';
 import 'package:malta/widgets/student/student_input_widget.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
 import 'package:provider/provider.dart';
@@ -33,7 +32,7 @@ class _AddStudentState extends State<AddStudent> {
     return AlertDialog(
       scrollable: true,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      title: StudentImageWidget(onImageSelect: (value){studentImg = value;},),
+      title: Text('Add student'),
       actions: [
         ButtonBar(children: [
           FlatButton(
@@ -69,6 +68,7 @@ class _AddStudentState extends State<AddStudent> {
           onNameChange: (name) {studentName = name;},
           onRadioSwitched: (value) {gender = value;},
           onAgeChange: (age) {studentAge = age;},
+          onImageSelect: (value){studentImg = value;},
         )
       )
     );
