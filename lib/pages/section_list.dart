@@ -28,13 +28,13 @@ class SectionList extends StatelessWidget {
                 future: sectionContract.getBySchool(currentSchool),
                 builder: (context, AsyncSnapshot<ApiResponse> snapshot) {
                   if (snapshot.hasData && snapshot.data.results != null) {
-                    return GridView.builder(
-                        itemCount: snapshot.data.results.length,
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 3),
-                        itemBuilder: (BuildContext context, int index) {
-                          final Section section = snapshot.data.results[index];
-                          return InkWell(
+                    return SingleChildScrollView(
+                      child: Wrap(
+                        runSpacing: 20,
+                        spacing: 20,
+                        children: snapshot.data.results.map((e){
+                          Section section = e;
+                           return InkWell(
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -55,7 +55,10 @@ class SectionList extends StatelessWidget {
                                           StudentsInSection(section: section)));
                             },
                           );
-                        });
+                        }).toList(),
+                          //final Section section = snapshot.data.results[index];
+                         
+                      ));
                   } else {
                     return Center(
                         child: Text(
