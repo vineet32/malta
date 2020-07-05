@@ -22,8 +22,6 @@ jobs:
         with:
           flutter-version: "1.20.x" # you can use 1.12
           channel: "dev" # Currently you have to use beta channel for Flutter web.
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Build Test cases
         run: flutter test
       - name: Enable Web
