@@ -14,8 +14,9 @@ class StudentInputWidget extends StatefulWidget {
   final int studentAge;
   final String studentGender;
   final Function(ParseFile studentImage) onImageSelect;
+  final bool isEdit;
   StudentInputWidget({this.onNameChange,this.onRadioSwitched,this.onAgeChange,
-    this.studentName, this.studentAge, this.studentGender, this.onImageSelect});
+    this.studentName, this.studentAge, this.studentGender, this.onImageSelect, this.isEdit});
   @override
   _StudentInputWidgetState createState() => _StudentInputWidgetState(onNameChange: onNameChange,
     onRadioSwitched: onRadioSwitched,onAgeChange: onAgeChange,studentName: studentName, 
@@ -107,7 +108,8 @@ class _StudentInputWidgetState extends State<StudentInputWidget> {
       ]),
 
       TextField(
-        controller: studentAgeController..text = studentAge.toString(),
+        controller: widget.isEdit?(studentAgeController..text = studentAge.toString()):
+        (studentAgeController..text = ''),
         keyboardType: TextInputType.number,
         inputFormatters: <TextInputFormatter>[
         WhitelistingTextInputFormatter.digitsOnly],

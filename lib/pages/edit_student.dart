@@ -8,19 +8,10 @@ import 'package:malta/widgets/student/student_input_widget.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
 import 'package:provider/provider.dart';
 
-class EditStudent extends StatefulWidget {
+class EditStudent extends StatelessWidget {
   final Section section;
   final Student student;
   EditStudent({this.section, this.student});
-  
-  @override
-  _EditStudentState createState() => _EditStudentState(section: section, student: student);
-}
-
-class _EditStudentState extends State<EditStudent> {
-  Section section;
-  Student student;
-  _EditStudentState({this.section, this.student});
   ParseFile studentImg;
   String studentName;
   String gender;
@@ -51,7 +42,7 @@ class _EditStudentState extends State<EditStudent> {
             onPressed: () async {
               await studentContract.update(
                   Student()
-                  ..objectId = widget.student.objectId
+                  ..objectId = student.objectId
                   ..set(Student.keyName, studentName)
                   ..set(Student.keyImage, studentImg)
                   ..set(Student.keySchool, { "__type": "Pointer", "className": "School", 
@@ -74,6 +65,7 @@ class _EditStudentState extends State<EditStudent> {
           studentName: student.name,studentAge: student.age,
           studentGender: student.gender,
           onImageSelect: (value) {studentImg = value;},
+          isEdit: true,
         ),
       )
     );
