@@ -16,6 +16,7 @@ class DisplaySchool extends StatelessWidget {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
     User user = userProvider.getCurrentUser;
     final connectionContract = Provider.of<ConnectionContract>(context);
+    
     if (user != null) {
       return FutureBuilder<ApiResponse>(
         future: connectionContract.getAllSchools(user),
@@ -50,7 +51,7 @@ class DisplaySchool extends StatelessWidget {
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
             child: Center(
-              child: CircularProgressIndicator(),
+              child: Text('No School found....'),
             ),
           );
         },
@@ -60,7 +61,7 @@ class DisplaySchool extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
       child: Center(
-        child: Text('No schools found'),
+        child: Text('No School found'),
       ),
     );
   }

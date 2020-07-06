@@ -1,31 +1,14 @@
-import 'dart:io';
-import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:malta/data/models/school.dart';
 import 'package:malta/data/models/section.dart';
 import 'package:malta/data/repositories/section/section_contract.dart';
 import 'package:malta/providers/school_provider.dart';
+import 'package:malta/widgets/section/section_input_widget.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
 import 'package:provider/provider.dart';
 
-class AddSection extends StatefulWidget {
-  
-  @override
-  _AddSectionState createState() => _AddSectionState();
-}
-
-class _AddSectionState extends State<AddSection> {
+class AddSection extends StatelessWidget {
   String section;
-  TextEditingController sectionController = TextEditingController();
-
-  static PickedFile image;
-  final ImagePicker _picker = ImagePicker();
-  Future<File> getImage() async {
-    image = await _picker.getImage(source: ImageSource.gallery);
-    setState((){});
-    return File(image?.path);
-  }
-  static File sectionImage;
   ParseFile sectionImg;
 
   @override
@@ -37,19 +20,7 @@ class _AddSectionState extends State<AddSection> {
     return AlertDialog(
       scrollable: true,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      title: InkWell(
-              child: CircleAvatar(
-          child: image == null?Icon(
-            Icons.photo_camera,
-            size: 20,
-          ):Image.file(File(image.path)),
-          radius: 30,
-        ),
-        onTap: () async {
-          sectionImage = await getImage();
-          sectionImg = ParseFile(sectionImage);
-        }
-      ),
+      title: Text('Add section'),
       actions: [
         ButtonBar(children: [
           FlatButton(
@@ -75,16 +46,10 @@ class _AddSectionState extends State<AddSection> {
           )
         ])
       ],
-      content: TextField(
-        controller: sectionController,
-        decoration: InputDecoration(
-            labelText: 'Section',
-            border: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.black))),
-        onChanged: (value) {
-          section = value;
-        },
-      ),
+      content: SingleChildScrollView(child: SectionInputWidget(
+        onNameChange: (name) {section = name;},
+        onImageSelect: (value) {sectionImg = value;},
+      ))
       
     );
   }

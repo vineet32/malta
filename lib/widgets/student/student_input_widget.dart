@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
@@ -39,9 +40,16 @@ class _StudentInputWidgetState extends State<StudentInputWidget> {
   static PickedFile image;
   final ImagePicker _picker = ImagePicker();
   Future<File> getImage() async {
-    image = await _picker.getImage(source: ImageSource.gallery);
+    try{
+      image = await _picker.getImage(source: ImageSource.gallery);
+    }on Exception catch(e){
+      print(e);
+    }
     setState((){});
-    return File(image?.path != null?image?.path: null);
+    if(image?.path != null){
+      return File(image?.path);
+    }
+    return null;
   }
   static File studentImage;
   ParseFile studentImg;
@@ -73,9 +81,11 @@ class _StudentInputWidgetState extends State<StudentInputWidget> {
           radius: 30,
         ),
         onTap: () async {
+          if(!kIsWeb){
           studentImage = await getImage();
           studentImg = ParseFile(studentImage);
           onImageSelect(studentImg);
+          }
         }
     ),
       TextField(
