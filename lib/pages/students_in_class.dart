@@ -4,6 +4,7 @@ import 'package:malta/data/base/api_response.dart';
 import 'package:malta/data/models/student.dart';
 import 'package:malta/data/repositories/student/student_contract.dart';
 import 'package:malta/pages/camera_screen.dart';
+import 'package:malta/providers/school_provider.dart';
 import 'package:malta/widgets/student/student_details_card.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
 import 'package:provider/provider.dart';
@@ -12,13 +13,15 @@ class StudentsInClass extends StatelessWidget {
   //final List<Student> student;
   StudentContract _studentApi;
   final String subject;
-  final List<String> sections;
-  final String schoolId;
+  final List sections;
+  String schoolId;
 
-  StudentsInClass({this.sections, this.schoolId, this.subject});
+  StudentsInClass({this.sections, this.subject});
   @override
   Widget build(BuildContext context) {
     _studentApi = Provider.of<StudentContract>(context);
+   // schoolId=Provider.of<SchoolProvider>(context).getCurrentlySelectedSchool['ObjectId'];
+    schoolId='EXWWaUQGmd';
     return Scaffold(
       appBar: AppBar(
         title: Text(
