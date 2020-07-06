@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:malta/data/base/api_response.dart';
 import 'package:malta/data/repositories/connection/connection_contract.dart';
+import 'package:malta/pages/add_connection.dart';
 import 'package:malta/providers/school_provider.dart';
 import 'package:malta/widgets/admin_tab/show_user_widget.dart';
 import 'package:provider/provider.dart';
@@ -16,34 +17,43 @@ class ShowUserList extends StatelessWidget {
     final _connectionApi = Provider.of<ConnectionContract>(context);
     final _school = Provider.of<SchoolProvider>(context);
 
-    return FutureBuilder<ApiResponse>(
-        future: _connectionApi.getAllUsers(
-            _school.getCurrentlySelectedSchool, role),
-        builder: (BuildContext context, AsyncSnapshot<ApiResponse> snapshot) {
-          if (snapshot.hasData) {
-            if (snapshot.data.results != null) {
-              return SingleChildScrollView(
-                scrollDirection: Axis.vertical,
-                child: Center(
-                  child: Wrap(
-                    runSpacing: 20,
-                    spacing: 20,
-                    children: snapshot.data.results.map<Widget>((connection) {
-                      return ShowUserWidget(
-                        user: connection.user,
-                      );
-                    }).toList(),
+    return Scaffold(
+      body: FutureBuilder<ApiResponse>(
+          future: _connectionApi.getAllUsers(
+              _school.getCurrentlySelectedSchool, role),
+          builder: (BuildContext context, AsyncSnapshot<ApiResponse> snapshot) {
+            if (snapshot.hasData) {
+              if (snapshot.data.results != null) {
+                return SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  child: Center(
+                    child: Wrap(
+                      runSpacing: 20,
+                      spacing: 20,
+                      children: snapshot.data.results.map<Widget>((connection) {
+                        return ShowUserWidget(
+                          user: connection.user,
+                          role: role,
+                        );
+                      }).toList(),
+                    ),
                   ),
-                ),
-              );
+                );
+              } else {
+                return Center(child: Text("$role 's are Empty "));
+              }
             } else {
-              return Center(child: Text("$role 's are Empty "));
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
             }
-          } else {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-        });
+          }),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>AddConnection(roleType: role,)));
+        },
+        child: Icon(Icons.add),
+      ),
+    );
   }
 }
