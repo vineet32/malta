@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:parse_server_sdk/parse_server_sdk.dart';
 
 
 
 class StudentDetailsCard extends StatelessWidget {
-  final String imageLink;
+  final ParseFile image;
   final String name;
   final String section;
-  StudentDetailsCard({this.name,this.section,this.imageLink});
+  StudentDetailsCard({this.name,this.section,this.image});
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -17,7 +18,7 @@ class StudentDetailsCard extends StatelessWidget {
             radius: 40,
             backgroundColor: Colors.teal,
             child: CircleAvatar(
-              backgroundImage: NetworkImage(imageLink),
+              backgroundImage: NetworkImage(image.url),
               backgroundColor: Colors.red,
               radius: 30,
             ),

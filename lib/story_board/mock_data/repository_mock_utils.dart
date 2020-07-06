@@ -78,9 +78,7 @@ School getDummySchool({String schoolName: "Tilak Nagar school"}) {
     ..set("objectId", "G1eMjzxDIv")
     ..set(keyVarUpdatedAt, DateTime.now())
     ..name = schoolName
-    ..image = ParseFile(File(''))
-    ..image.url =
-        "https://image.shutterstock.com/image-vector/vector-illustration-education-elements-260nw-1242560170.jpg";
+    ..image = ParseFile(File(''));
   return school;
 }
 Student getDummyStudent() {
@@ -90,7 +88,7 @@ Student getDummyStudent() {
     ..name = 'Rahul'
     ..gender='male'
     ..age=22
-    ..image=ParseFile(File(''))
+    ..image = ParseFile(File(""))
     ..image.url =
         "https://image.shutterstock.com/image-vector/vector-illustration-education-elements-260nw-1242560170.jpg"
     ..school=School()
