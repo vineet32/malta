@@ -5,6 +5,7 @@ import 'package:malta/data/models/student.dart';
 import 'package:malta/data/repositories/student/student_contract.dart';
 import 'package:malta/pages/camera_screen.dart';
 import 'package:malta/widgets/student/student_details_card.dart';
+import 'package:parse_server_sdk/parse_server_sdk.dart';
 import 'package:provider/provider.dart';
 
 class StudentsInClass extends StatelessWidget {
@@ -95,11 +96,11 @@ class StudentsInClass extends StatelessWidget {
                   //   final String id = student.objectId;
                   final String name = student.name;
                   //  final String gender = student.gender;
-                  final String image = student.image;
+                  final ParseFile image = student.image;
                   //   final String section =student.section;
                   return StudentDetailsCard(
                     name: name,
-                    imageLink: image,
+                    image: image,
                     section: section,
                   );
                 },

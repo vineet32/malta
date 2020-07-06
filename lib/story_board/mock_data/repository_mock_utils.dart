@@ -88,7 +88,9 @@ Student getDummyStudent() {
     ..name = 'Rahul'
     ..gender='male'
     ..age=22
-    ..image='https://i.pinimg.com/474x/57/53/74/575374bf227f9845685a2950dd976f88--cartoon-characters-remember-this.jpg'
+    ..image = ParseFile(File(""))
+    ..image.url =
+        "https://image.shutterstock.com/image-vector/vector-illustration-education-elements-260nw-1242560170.jpg"
     ..school=School()
     ..section=Section();
   return student;

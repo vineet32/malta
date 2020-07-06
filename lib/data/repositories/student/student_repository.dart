@@ -1,4 +1,3 @@
-
 import 'package:malta/data/base/api_response.dart';
 import 'package:malta/data/models/section.dart';
 import 'package:malta/data/models/student.dart';
@@ -23,6 +22,13 @@ class StudentRepository implements StudentContract{
       Student item,
       ) async {
     return await api.add(item);
+  }
+
+  @override
+  Future<ApiResponse> update(
+    Student item,
+  ) async {
+    return await api.update(item);
   }
 
   @override

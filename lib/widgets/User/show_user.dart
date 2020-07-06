@@ -1,30 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:malta/data/models/user.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
 
 
 
-class StudentDetailsCard extends StatelessWidget {
-  final ParseFile image;
-  final String name;
-  final String section;
-  StudentDetailsCard({this.name,this.section,this.image});
+class ShowUser extends StatelessWidget {
+  final User user;
+  ShowUser({this.user});
   @override
   Widget build(BuildContext context) {
+    ParseFile file=user['image'];
+    String name=user['username'];
     return Card(
+      elevation: 0.0,
+      color: Colors.transparent,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           CircleAvatar(
-            radius: 40,
+            radius: 50,
             backgroundColor: Colors.teal,
             child: CircleAvatar(
-              backgroundImage: NetworkImage(image.url),
+              backgroundImage: NetworkImage(file.url),
               backgroundColor: Colors.red,
-              radius: 30,
+              radius: 45,
             ),
           ),
-          Text(name),
-          Text('$section'),
+          Text('$name'),
         ],
       ),
     );

@@ -9,4 +9,9 @@ abstract class ConnectionContract {
   Future<ApiResponse> getAllSchools(User user);
 
   Future<ApiResponse> add(Connection connection);
+
+  Future<ApiResponse> getUserByUserName(String userName);
+
+  Future<ApiResponse> delete(User user,String role,School school);
+
 }
