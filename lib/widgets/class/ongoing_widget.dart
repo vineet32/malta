@@ -26,11 +26,9 @@ class OngoingWidget extends StatelessWidget {
       onPressed: () {
         String selectedSubject=subject['name'];
         List sectionsName=[];
-        print('------------------------------------------->');
         for(var section in sections){
           sectionsName.add(section['name']);
         }
-        print('------------------------------------------->');
        Navigator.push(context, MaterialPageRoute(builder: (context)=> StudentsInClass(subject: selectedSubject,sections: sectionsName,)));
         print('ongoing..................');
       },

@@ -20,8 +20,7 @@ class StudentsInClass extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     _studentApi = Provider.of<StudentContract>(context);
-   // schoolId=Provider.of<SchoolProvider>(context).getCurrentlySelectedSchool['ObjectId'];
-    schoolId='EXWWaUQGmd';
+    schoolId=Provider.of<SchoolProvider>(context).getCurrentlySelectedSchool['ObjectId'];
     return Scaffold(
       appBar: AppBar(
         title: Text(
