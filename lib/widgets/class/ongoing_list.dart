@@ -18,7 +18,7 @@ class OngoingList extends StatelessWidget {
           return OngoingWidget(
             subject: element.subject,
             user: element.teacher,
-            sections: element.sections,
+            currentClass: element,
           );
         }).toList(),
       ),

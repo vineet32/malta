@@ -1,10 +1,12 @@
 import 'package:malta/data/base/api_response.dart';
 import 'package:malta/data/models/class.dart';
+import 'package:malta/data/models/monitor.dart';
 import 'package:malta/data/models/school.dart';
 import 'package:malta/data/models/section.dart';
 import 'package:malta/data/models/student.dart';
 import 'package:malta/data/models/subject.dart';
 import 'package:malta/data/repositories/class/class_contract.dart';
+import 'package:malta/data/repositories/monitor/monitor_contract.dart';
 import 'package:malta/data/repositories/school/school_contract.dart';
 import 'package:malta/data/repositories/section/section_contract.dart';
 import 'package:malta/data/repositories/student/student_contract.dart';
@@ -146,7 +148,7 @@ Future<SchoolContract> getMockSchoolApi() async {
 Future<StudentContract> getMockStudentApi() async {
   final StudentContract repositoryApi = RepositoryMockStudent();
 
-  const String objectIdPrefix = '12345abc';
+  const String objectIdPrefix = '12345abcr';
   final Student item0 = getDummyStudent()..objectId = '${objectIdPrefix}0';
   final Student item1 = getDummyStudent()..objectId = '${objectIdPrefix}1';
   final Student item2 = getDummyStudent()..objectId = '${objectIdPrefix}2';
@@ -166,6 +168,26 @@ Future<StudentContract> getMockStudentApi() async {
   when(repositoryApi.getBySection(any)).thenAnswer((_) async =>
   Future<ApiResponse>.value(ApiResponse(true, 200, mockList, null)));
   when(repositoryApi.getParticularSectionsStudents(any,any)).thenAnswer((_) async =>
+  Future<ApiResponse>.value(ApiResponse(true, 200, mockList, null)));
+  return repositoryApi;
+}
+Future<MonitorContract> getMockMonitorApi() async {
+  final MonitorContract repositoryApi = RepositoryMockMonitor();
+
+  const String objectIdPrefix = '12345ab';
+  final Monitor item0 = getDummyMonitorValue()..objectId = '${objectIdPrefix}0';
+  final Monitor item1 = getDummyMonitorValue()..objectId = '${objectIdPrefix}1';
+  final Monitor item2 = getDummyMonitorValue()..objectId = '${objectIdPrefix}2';
+  final Monitor item3 = getDummyMonitorValue()..objectId = '${objectIdPrefix}3';
+  final Monitor item4 = getDummyMonitorValue()..objectId = '${objectIdPrefix}4';
+  final List<Monitor> mockList = List<Monitor>()
+    ..add(item0)
+    ..add(item1)
+    ..add(item2)
+    ..add(item3)
+    ..add(item4);
+
+  when(repositoryApi.getAllStudents(any,any,any)).thenAnswer((_) async =>
   Future<ApiResponse>.value(ApiResponse(true, 200, mockList, null)));
   return repositoryApi;
 }

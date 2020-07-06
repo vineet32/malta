@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:malta/data/models/class.dart';
 import 'package:malta/data/models/subject.dart';
 import 'package:malta/data/models/user.dart';
 import 'package:malta/pages/students_in_class.dart';
@@ -8,13 +9,13 @@ import 'package:random_color/random_color.dart';
 class OngoingWidget extends StatelessWidget {
   final Subject subject;
   final User user;
-  final List sections;
+  final Class currentClass;
 
   const OngoingWidget({
     Key key,
     this.subject,
     this.user,
-    this.sections
+    this.currentClass
   }) : super(key: key);
 
   @override
@@ -24,13 +25,8 @@ class OngoingWidget extends StatelessWidget {
         _randomColor.randomColor(colorBrightness: ColorBrightness.light);
     return FlatButton(
       onPressed: () {
-        String selectedSubject=subject['name'];
-        List sectionsName=[];
-        for(var section in sections){
-          sectionsName.add(section['name']);
-        }
-       Navigator.push(context, MaterialPageRoute(builder: (context)=> StudentsInClass(subject: selectedSubject,sections: sectionsName,)));
-        print('ongoing..................');
+       Navigator.push(context, MaterialPageRoute(builder: (context)=> StudentsInClass(currentClass: currentClass,)));
+       print('ongoing..................');
       },
       child: Container(
         decoration: BoxDecoration(

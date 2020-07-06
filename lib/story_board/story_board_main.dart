@@ -5,6 +5,8 @@ import 'package:malta/data/models/section.dart';
 import 'package:malta/data/models/user.dart';
 import 'package:malta/data/repositories/class/class_contract.dart';
 import 'package:malta/data/repositories/class/class_repository.dart';
+import 'package:malta/data/repositories/monitor/monitor_api.dart';
+import 'package:malta/data/repositories/monitor/monitor_contract.dart';
 import 'package:malta/data/repositories/school/school_contract.dart';
 import 'package:malta/data/repositories/section/section_contract.dart';
 import 'package:malta/data/repositories/section/section_repository.dart';
@@ -72,6 +74,7 @@ void main() async {
         Provider<School>(create: (_) => school),
         Provider<Section>(create: (_) => section,),
         Provider<UserContract>(create: (_) => UserApi()),
+        Provider<MonitorContract>(create: (_) => MonitorApi())
       ],
       child: MaterialApp(
         home: StoryboardApp([
@@ -82,7 +85,7 @@ void main() async {
           SectionListStory(),
           //StudentsInSectionStory(),
           DisplayLoginStory(),
-          StudentsInClassStory(),
+        //  StudentsInClassStory(),
         ]),
       ),
     ),

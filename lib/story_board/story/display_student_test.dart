@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:malta/data/models/class.dart';
 import 'package:malta/pages/students_in_class.dart';
 import 'package:storyboard/storyboard.dart';
 
@@ -9,7 +10,7 @@ class StudentsInClassStory extends Story {
   @override
   List<Widget> get storyContent {
     return [
-      StudentsInClass(sections: ['Class-1A','Class-1B'],subject: 'English',)
+      StudentsInClass(currentClass: Class(),)
     ];
   }
 }
