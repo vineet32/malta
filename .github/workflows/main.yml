@@ -27,6 +27,9 @@ jobs:
       - name: Enable Web
         run: flutter config --enable-web
         working-directory: .
+      - name: Flutter clean
+        run: flutter clean
+        working-directory: .
       - name: Install Dependencies
         run: flutter packages get -v
         working-directory: .
