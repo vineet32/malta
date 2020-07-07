@@ -11,7 +11,7 @@ abstract class UserContract {
   Future<ApiResponse> getCurrentUserFromServer();
   Future<ApiResponse> requestPasswordReset(User user);
   Future<ApiResponse> verificationEmailRequest(User user);
-  Future<ApiResponse> save(User user);
+  Future<ApiResponse> save(User user, {String sessionToken});
   Future<ApiResponse> destroy(User user);
   Future<ApiResponse> allUsers();
 }
