@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:malta/data/models/user.dart';
+import 'package:malta/pages/user_details_page.dart';
 
 class ShowUserWidget extends StatelessWidget {
   final User user;
-
+  final String role;
   const ShowUserWidget({
     Key key,
     this.user,
+    this.role
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -15,6 +17,7 @@ class ShowUserWidget extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           print("pressed");
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>UserDetailsPage(user: user,role: role,)));
         },
         child: Column(
           children: [

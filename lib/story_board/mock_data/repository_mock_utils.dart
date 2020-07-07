@@ -1,12 +1,14 @@
 import 'dart:io';
 
 import 'package:malta/data/models/class.dart';
+import 'package:malta/data/models/monitor.dart';
 import 'package:malta/data/models/school.dart';
 import 'package:malta/data/models/section.dart';
 import 'package:malta/data/models/student.dart';
 import 'package:malta/data/models/subject.dart';
 import 'package:malta/data/models/user.dart';
 import 'package:malta/data/repositories/class/class_contract.dart';
+import 'package:malta/data/repositories/monitor/monitor_contract.dart';
 import 'package:malta/data/repositories/school/school_contract.dart';
 import 'package:malta/data/repositories/section/section_contract.dart';
 import 'package:malta/data/repositories/student/student_contract.dart';
@@ -19,6 +21,7 @@ class RepositoryMockSubject extends Mock implements SubjectContract {}
 class RepositoryMockSection extends Mock implements SectionContract {}
 class RepositoryMockSchool extends Mock implements SchoolContract {}
 class RepositoryMockStudent extends Mock implements StudentContract{}
+class RepositoryMockMonitor extends Mock implements MonitorContract{}
 
 Class getDummyClass(
     {String subjectName: "English", String sectionName: "Class-1A"}) {
@@ -94,4 +97,16 @@ Student getDummyStudent() {
     ..school=School()
     ..section=Section();
   return student;
+}
+Monitor getDummyMonitorValue() {
+  Student s=getDummyStudent();
+  Class c=getDummyClass();
+  School school=getDummySchool();
+  Monitor monitor = Monitor()
+    ..set('objectId', '1234Monitor')
+    ..set(keyVarUpdatedAt, DateTime.now())
+    ..student=s
+    ..currentClass=c
+    ..school=school;
+  return monitor;
 }
