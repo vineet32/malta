@@ -54,7 +54,7 @@ class _AddSubjectState extends State<AddSubject> {
               FlatButton(
                 child: Text('Add'),
                 onPressed: () async {
-                  if (_subjectName != null) {
+                  if (_subjectName != null && _subjectName.isNotEmpty) {
                     ApiResponse response = await addNewSubject();
                     setState(() {
                       _loading = false;
