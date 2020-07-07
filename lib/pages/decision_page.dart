@@ -1,19 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:malta/data/models/school.dart';
 import 'package:malta/data/models/user.dart';
-import 'package:malta/data/repositories/connection/connection_api.dart';
-//import 'package:malta/data/base/api_response.dart';
-//import 'package:malta/data/repositories/school/school_contract.dart';
 import 'package:malta/domain/constants/application_constants.dart';
 import 'package:malta/pages/login.dart';
 import 'package:malta/providers/user_provider.dart';
-//import 'package:malta/pages/current_class.dart';
-//import 'package:malta/providers/school_provider.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
 import 'package:malta/pages/display_school.dart';
 import 'package:provider/provider.dart';
-//import 'package:provider/provider.dart';
-//import 'package:malta/providers/user_provider.dart';
 
 class DecisionPage extends StatefulWidget {
   @override
@@ -22,7 +14,6 @@ class DecisionPage extends StatefulWidget {
 
 class _DecisionPageState extends State<DecisionPage> {
   String _parseServerState = 'Checking Parse Server...';
-  
 
   @override
   void initState() {
@@ -57,7 +48,10 @@ class _DecisionPageState extends State<DecisionPage> {
                 height: 20,
               ),
               Center(
-                child: Text(_parseServerState,key: Key('serverStateText'),),
+                child: Text(
+                  _parseServerState,
+                  key: Key('serverStateText'),
+                ),
               ),
             ],
           ),
@@ -69,19 +63,31 @@ class _DecisionPageState extends State<DecisionPage> {
   Future<void> _initParse() async {
     try {
       await Parse().initialize(
-        keyParseApplicationId,keyParseServerUrl,
-      debug: true,appName: keyApplicationName,clientKey: clientId,
-        );
+        keyParseApplicationId,
+        keyParseServerUrl,
+        debug: true,
+        appName: keyApplicationName,
+        clientKey: clientId,
+      );
       var response = await Parse().healthCheck();
       if (response.success) {
-        final User user = await ParseUser.currentUser(customUserObject: User.clone());
-        UserProvider provider=Provider.of<UserProvider>(context,listen: false);
+        final User user =
+            await ParseUser.currentUser(customUserObject: User.clone());
+        UserProvider provider =
+            Provider.of<UserProvider>(context, listen: false);
         provider.setCurrentUser(user);
         if (user != null) {
-          _redirectToPage(context, DisplaySchool());
-        }
-        else{
-          _redirectToPage(context, Login());
+          // _redirectToPage(context, DisplaySchool());
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => DisplaySchool()),
+          );
+        } else {
+          // _redirectToPage(context, Login());
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => Login()),
+          );
         }
       } else {
         setState(() {
@@ -93,17 +99,6 @@ class _DecisionPageState extends State<DecisionPage> {
       setState(() {
         _parseServerState = e.toString();
       });
-    }
-  }
-
-  Future<void> _redirectToPage(BuildContext context, Widget page) async {
-    final MaterialPageRoute<bool> newRoute =
-        MaterialPageRoute<bool>(builder: (BuildContext context) => page,fullscreenDialog: true);
-
-    final bool nav = await Navigator.of(context)
-        .pushAndRemoveUntil<bool>(newRoute, ModalRoute.withName('/'));
-    if (nav == true) {
-      _initParse();
     }
   }
 }

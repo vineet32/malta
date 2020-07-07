@@ -14,8 +14,9 @@ class DisplaySchoolWidget extends StatelessWidget {
         CircleAvatar(
           radius: 40,
           backgroundColor: Colors.blue[50],
-          backgroundImage: NetworkImage(school.image != null?
-            school.image.url:'https://webstockreview.net/images/school-clipart-5.jpg'),
+          backgroundImage: NetworkImage(school.image != null
+              ? school.image.url
+              : 'https://webstockreview.net/images/school-clipart-5.jpg'),
         ),
         Text(school.name)
       ]),
@@ -23,7 +24,7 @@ class DisplaySchoolWidget extends StatelessWidget {
         final schoolProvider =
             Provider.of<SchoolProvider>(context, listen: false);
         schoolProvider.setCurrentlySelectedSchool(school);
-        Navigator.push(
+        Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (context) => HomePage()));
       },
     );

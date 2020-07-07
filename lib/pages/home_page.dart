@@ -3,31 +3,8 @@ import 'package:malta/pages/admin_tabs.dart';
 import 'package:malta/pages/current_class.dart';
 import 'package:malta/providers/school_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:back_button_interceptor/back_button_interceptor.dart';
 
-class HomePage extends StatefulWidget {
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  @override
-  void initState() {
-    super.initState();
-    BackButtonInterceptor.add(myInterceptor);
-  }
-
-  @override
-  void dispose() {
-    BackButtonInterceptor.remove(myInterceptor);
-    super.dispose();
-  }
-
-  bool myInterceptor(bool stopDefaultButtonEvent) {
-    print("BACK BUTTON!"); // Do some stuff.
-    return true;
-  }
-
+class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final schoolProvider = Provider.of<SchoolProvider>(context);
