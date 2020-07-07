@@ -100,7 +100,7 @@ class _EditSchoolState extends State<EditSchool> {
                       ? RaisedButton(
                           child: Text("update"),
                           onPressed: () async {
-                            if (schoolName != null) {
+                            if (schoolName != null && schoolName.isNotEmpty) {
                               await updateSchool();
                               print("update");
                               setState(() {

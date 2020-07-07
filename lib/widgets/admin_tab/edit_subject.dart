@@ -80,7 +80,7 @@ class _EditSubjectState extends State<EditSubject> {
                       ? RaisedButton(
                           child: Text("update"),
                           onPressed: () async {
-                            if (subjectName != null) {
+                            if (subjectName != null && subjectName.isNotEmpty) {
                               await updateSubject();
                               print("update");
                               setState(() {
