@@ -1,8 +1,9 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:malta/pick_file.dart';
 
 class EditSubjectWidget extends StatelessWidget {
   final bool editMode;
@@ -10,7 +11,9 @@ class EditSubjectWidget extends StatelessWidget {
   final String subjectImageUrl;
   final Function(File image) onImagePicked;
   final Function(String name) onSubjectNameChange;
+  final Function(Uint8List image, String name) onImagePickedBytes;
   final String subjectName;
+  final Uint8List webImage;
   EditSubjectWidget({
     Key key,
     this.editMode: false,
@@ -19,6 +22,8 @@ class EditSubjectWidget extends StatelessWidget {
     this.onImagePicked,
     this.subjectName: '',
     this.onSubjectNameChange,
+    this.onImagePickedBytes,
+    this.webImage,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -34,39 +39,50 @@ class EditSubjectWidget extends StatelessWidget {
             children: [
               ClipOval(
                 child: subjectImage == null
-                    ? subjectImageUrl == null
-                        ? Container(
-                            width: 200,
-                            height: 200,
-                            padding: EdgeInsets.all(5),
-                            child: Icon(
-                              Icons.person,
-                              size: 100,
-                            ),
-                          )
-                        : Image.network(
-                            subjectImageUrl,
+                    ? webImage != null
+                        ? Image.memory(
+                            webImage,
                             width: 200,
                             height: 200,
                             colorBlendMode: BlendMode.colorBurn,
                             fit: BoxFit.cover,
-                            loadingBuilder: (BuildContext context, Widget child,
-                                ImageChunkEvent loadingProgress) {
-                              if (loadingProgress == null) return child;
-                              return Container(
+                          )
+                        : subjectImageUrl == null
+                            ? Container(
                                 width: 200,
                                 height: 200,
                                 padding: EdgeInsets.all(5),
-                                child: CircularProgressIndicator(
-                                  value: loadingProgress.expectedTotalBytes !=
-                                          null
-                                      ? loadingProgress.cumulativeBytesLoaded /
-                                          loadingProgress.expectedTotalBytes
-                                      : null,
+                                child: Icon(
+                                  Icons.person,
+                                  size: 100,
                                 ),
-                              );
-                            },
-                          )
+                              )
+                            : Image.network(
+                                subjectImageUrl,
+                                width: 200,
+                                height: 200,
+                                colorBlendMode: BlendMode.colorBurn,
+                                fit: BoxFit.cover,
+                                loadingBuilder: (BuildContext context,
+                                    Widget child,
+                                    ImageChunkEvent loadingProgress) {
+                                  if (loadingProgress == null) return child;
+                                  return Container(
+                                    width: 200,
+                                    height: 200,
+                                    padding: EdgeInsets.all(5),
+                                    child: CircularProgressIndicator(
+                                      value: loadingProgress
+                                                  .expectedTotalBytes !=
+                                              null
+                                          ? loadingProgress
+                                                  .cumulativeBytesLoaded /
+                                              loadingProgress.expectedTotalBytes
+                                          : null,
+                                    ),
+                                  );
+                                },
+                              )
                     : Image.file(
                         subjectImage,
                         width: 200,
@@ -75,13 +91,20 @@ class EditSubjectWidget extends StatelessWidget {
                         fit: BoxFit.cover,
                       ),
               ),
-              editMode && !kIsWeb
+              editMode
                   ? IconButton(
                       icon: Icon(Icons.edit),
                       onPressed: () async {
-                        File image = await getImage();
-                        if (image != null) {
-                          onImagePicked(image);
+                        if (kIsWeb) {
+                          Map image = await PickFile().getImageFromBrowser();
+                          if (image != null) {
+                            onImagePickedBytes(image['image'], image['name']);
+                          }
+                        } else {
+                          File image = await PickFile().getImage();
+                          if (image != null) {
+                            onImagePicked(image);
+                          }
                         }
                       },
                     )
@@ -135,14 +158,5 @@ class EditSubjectWidget extends StatelessWidget {
         ),
       ],
     );
-  }
-
-  Future<File> getImage() async {
-    final _picker = ImagePicker();
-    PickedFile pickedFile = await _picker.getImage(source: ImageSource.gallery);
-    if (pickedFile != null) {
-      return File(pickedFile.path);
-    }
-    return null;
   }
 }

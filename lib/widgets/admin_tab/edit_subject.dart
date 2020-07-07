@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:malta/data/base/api_response.dart';
 import 'package:malta/data/models/subject.dart';
@@ -23,6 +24,8 @@ class _EditSubjectState extends State<EditSubject> {
   bool editMode = false;
   String subjectName;
   File pickedImage;
+  Uint8List webImage;
+  String webImageName;
   bool _loading = false;
   @override
   Widget build(BuildContext context) {
@@ -51,6 +54,13 @@ class _EditSubjectState extends State<EditSubject> {
                     padding: const EdgeInsets.all(8.0),
                     child: EditSubjectWidget(
                       editMode: editMode,
+                      webImage: webImage,
+                      onImagePickedBytes: (image, name) {
+                        setState(() {
+                          webImage = image;
+                        });
+                        webImageName = name;
+                      },
                       onImagePicked: (image) {
                         setState(() {
                           pickedImage = image;
@@ -70,7 +80,7 @@ class _EditSubjectState extends State<EditSubject> {
                       ? RaisedButton(
                           child: Text("update"),
                           onPressed: () async {
-                            if (subjectName != null) {
+                            if (subjectName != null && subjectName.isNotEmpty) {
                               await updateSubject();
                               print("update");
                               setState(() {
@@ -93,7 +103,11 @@ class _EditSubjectState extends State<EditSubject> {
     });
     final _subjectApi = Provider.of<SubjectContract>(context, listen: false);
 
-    ParseFile parseFile = pickedImage != null ? ParseFile(pickedImage) : null;
+    ParseFile parseFile = pickedImage != null
+        ? ParseFile(pickedImage)
+        : webImage != null
+            ? ParseFile(null, byteFile: webImage, name: webImageName)
+            : null;
     if (parseFile != null) {
       widget.subject.set(Subject.keyImage, parseFile);
     }

@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'dart:io';
+import 'dart:typed_data';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:malta/data/base/api_response.dart';
 import 'package:malta/data/models/connection.dart';
 import 'package:malta/data/models/school.dart';
@@ -26,6 +26,9 @@ class _AddSchoolState extends State<AddSchool> {
   File _schoolImage;
   String _schoolName;
   bool _loading = false;
+  // Map webImage;
+  Uint8List webImage;
+  String webImageName;
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +43,13 @@ class _AddSchoolState extends State<AddSchool> {
               child: Center(
                 child: EditSchoolWidget(
                   onSchoolNameChange: (name) => _schoolName = name,
+                  webImage: webImage,
+                  onImagePickedBytes: (image, name) {
+                    setState(() {
+                      webImage = image;
+                    });
+                    webImageName = name;
+                  },
                   onImagePicked: (image) {
                     setState(() {
                       _schoolImage = image;
@@ -58,7 +68,7 @@ class _AddSchoolState extends State<AddSchool> {
               FlatButton(
                 child: Text('Add'),
                 onPressed: () async {
-                  if (_schoolName != null) {
+                  if (_schoolName != null && _schoolName.isNotEmpty) {
                     ApiResponse response = await addNewSchool();
                     setState(() {
                       _loading = false;
@@ -71,15 +81,6 @@ class _AddSchoolState extends State<AddSchool> {
           );
   }
 
-  Future<File> getImage() async {
-    final _picker = ImagePicker();
-    PickedFile pickedFile = await _picker.getImage(source: ImageSource.gallery);
-    if (pickedFile != null) {
-      return File(pickedFile?.path);
-    }
-    return null;
-  }
-
   Future<ApiResponse> addNewSchool() async {
     setState(() {
       _loading = true;
@@ -90,7 +91,11 @@ class _AddSchoolState extends State<AddSchool> {
     final User user =
         await ParseUser.currentUser(customUserObject: User.clone());
 
-    ParseFile parseFile = _schoolImage != null ? ParseFile(_schoolImage) : null;
+    ParseFile parseFile = _schoolImage != null
+        ? ParseFile(_schoolImage)
+        : kIsWeb && webImage != null
+            ? ParseFile(null, byteFile: webImage, name: webImageName)
+            : null;
     School _school = School()
       ..set(School.keyImage, parseFile)
       ..set(School.keyName, _schoolName);

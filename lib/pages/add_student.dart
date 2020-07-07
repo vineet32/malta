@@ -8,17 +8,9 @@ import 'package:malta/widgets/student/student_input_widget.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
 import 'package:provider/provider.dart';
 
-class AddStudent extends StatefulWidget {
+class AddStudent extends StatelessWidget {
   final Section section;
   AddStudent({this.section});
-  
-  @override
-  _AddStudentState createState() => _AddStudentState(section: section);
-}
-
-class _AddStudentState extends State<AddStudent> {
-  Section section;
-  _AddStudentState({this.section});
   ParseFile studentImg;
   String studentName;
   String gender;
@@ -69,6 +61,7 @@ class _AddStudentState extends State<AddStudent> {
           onRadioSwitched: (value) {gender = value;},
           onAgeChange: (age) {studentAge = age;},
           onImageSelect: (value){studentImg = value;},
+          isEdit: false,
         )
       )
     );

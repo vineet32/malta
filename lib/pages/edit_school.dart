@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:malta/data/base/api_response.dart';
 import 'package:malta/data/models/school.dart';
@@ -23,6 +24,8 @@ class _EditSchoolState extends State<EditSchool> {
   String schoolName;
   File pickedImage;
   bool _loading = false;
+  Uint8List webImage;
+  String webImageName;
   School school;
   @override
   Widget build(BuildContext context) {
@@ -72,6 +75,13 @@ class _EditSchoolState extends State<EditSchool> {
               child: Column(
                 children: [
                   EditSchoolWidget(
+                    onImagePickedBytes: (image, name) {
+                      setState(() {
+                        webImage = image;
+                      });
+                      webImageName = name;
+                    },
+                    webImage: webImage,
                     editMode: editMode,
                     onImagePicked: (image) {
                       setState(() {
@@ -90,7 +100,7 @@ class _EditSchoolState extends State<EditSchool> {
                       ? RaisedButton(
                           child: Text("update"),
                           onPressed: () async {
-                            if (schoolName != null) {
+                            if (schoolName != null && schoolName.isNotEmpty) {
                               await updateSchool();
                               print("update");
                               setState(() {
@@ -113,7 +123,11 @@ class _EditSchoolState extends State<EditSchool> {
     });
     final _schoolApi = Provider.of<SchoolContract>(context, listen: false);
 
-    ParseFile parseFile = pickedImage != null ? ParseFile(pickedImage) : null;
+    ParseFile parseFile = pickedImage != null
+        ? ParseFile(pickedImage)
+        : webImage != null
+            ? ParseFile(null, byteFile: webImage, name: webImageName)
+            : null;
     if (parseFile != null) {
       school.set(School.keyImage, parseFile);
     }
