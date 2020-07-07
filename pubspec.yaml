@@ -21,6 +21,7 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
+  back_button_interceptor: ^4.2.4
   image_picker: ^0.6.7+2
   md2_tab_indicator: ^1.0.2
   camera: ^0.5.6+3
