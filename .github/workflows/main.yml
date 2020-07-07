@@ -28,10 +28,10 @@ jobs:
         run: flutter config --enable-web
         working-directory: .
       - name: Install Dependencies
-        run: flutter packages get
+        run: flutter packages get -v
         working-directory: .
       - name: Build Web
-        run: flutter build web
+        run: flutter build web -v
         working-directory: .
       - name: Deploy
         run: |
