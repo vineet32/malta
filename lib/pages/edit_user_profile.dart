@@ -52,11 +52,10 @@ class _UserProfileState extends State<UserProfile> {
               RaisedButton(
                 color: Colors.blue,
                 onPressed: () async {
-                  User user1 = User(username != null?username:user.username,
+                  await userContract.save(User(username != null?username:user.username,
                        user.password, emailAddress != null?emailAddress:user.emailAddress)
                     ..objectId = user.objectId
-                    ..set(User.keyImage, userImg != null?userImg:user.image);
-                  await userContract.save(user1, sessionToken:user.sessionToken).then((value) {
+                    ..set(User.keyImage, userImg != null?userImg:user.image), sessionToken:user.sessionToken).then((value) {
                     (value.success)?print('Success'):print(value.error);
                   });
                     
