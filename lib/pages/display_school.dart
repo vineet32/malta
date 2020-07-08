@@ -16,7 +16,7 @@ class DisplaySchool extends StatelessWidget {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
     User user = userProvider.getCurrentUser;
     final connectionContract = Provider.of<ConnectionContract>(context);
-    
+
     if (user != null) {
       return FutureBuilder<ApiResponse>(
         future: connectionContract.getAllSchools(user),
@@ -30,7 +30,7 @@ class DisplaySchool extends StatelessWidget {
                 final schoolProvider =
                     Provider.of<SchoolProvider>(context, listen: false);
                 schoolProvider.setCurrentlySelectedSchool(school);
-                Navigator.push(context,
+                Navigator.pushReplacement(context,
                     MaterialPageRoute(builder: (context) => HomePage()));
               } else {
                 return SingleChildScrollView(

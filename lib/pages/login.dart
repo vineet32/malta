@@ -1,6 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:malta/pages/register.dart';
+import 'package:malta/providers/user_provider.dart';
+import 'package:parse_server_sdk/parse_server_sdk.dart';
 import 'package:provider/provider.dart';
 import 'package:malta/data/repositories/user/user_contract.dart';
 import 'package:malta/data/base/api_response.dart';
@@ -110,9 +112,14 @@ class _LoginState extends State<Login> {
                 User user = User(_email, _password, _email);
                 ApiResponse response = await userContract.login(user);
                 if (response.success) {
-                  Navigator.push(
+                  final User user = await ParseUser.currentUser(
+                      customUserObject: User.clone());
+                  UserProvider provider =
+                      Provider.of<UserProvider>(context, listen: false);
+                  provider.setCurrentUser(user);
+                  Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) =>  DisplaySchool()),
+                    MaterialPageRoute(builder: (context) => DisplaySchool()),
                   );
                 } else {
                   setState(() {

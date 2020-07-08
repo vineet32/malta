@@ -4,6 +4,8 @@ import 'package:malta/data/base/api_response.dart';
 import 'package:malta/data/models/user.dart';
 import 'package:malta/data/repositories/user/user_contract.dart';
 import 'package:malta/pages/display_school.dart';
+import 'package:malta/providers/user_provider.dart';
+import 'package:parse_server_sdk/parse_server_sdk.dart';
 import 'package:provider/provider.dart';
 
 class Register extends StatefulWidget {
@@ -196,9 +198,16 @@ class _RegisterState extends State<Register> {
         _loading = false;
       });
       if (response.success) {
-        Navigator.push(
+        final User user =
+            await ParseUser.currentUser(customUserObject: User.clone());
+        UserProvider provider =
+            Provider.of<UserProvider>(context, listen: false);
+        provider.setCurrentUser(user);
+        Navigator.of(context).popUntil((route) => route.isFirst);
+
+        await Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => DisplaySchool()),
+          MaterialPageRoute(builder: (_) => DisplaySchool()),
         );
       } else {
         setState(() {
