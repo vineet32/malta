@@ -11,12 +11,8 @@ class User extends ParseUser implements ParseCloneable {
   @override
   User clone(Map<String, dynamic> map) => User.clone()..fromJson(map);
 
-  static const String keySchools = 'schools';
   static const String keyImage = 'image';
   static const String keyUsername = 'username';
-
-  List get schools => get<List>(keySchools);
-  set schools(List school) => set<List>(keySchools, school);
 
   ParseFile get image => get<ParseFile>(keyImage);
   set image(ParseFile image) => set<ParseFile>(keyImage, image);

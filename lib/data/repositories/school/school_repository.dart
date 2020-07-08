@@ -1,7 +1,6 @@
 import 'dart:core';
 import 'package:malta/data/models/school.dart';
 import 'package:malta/data/base/api_response.dart';
-import 'package:malta/data/models/user.dart';
 import 'package:malta/data/repositories/school/school_api.dart';
 import 'package:malta/data/repositories/school/school_contract.dart';
 
@@ -36,11 +35,6 @@ class SchoolRepository implements SchoolContract {
     @override
     Future<ApiResponse> getById(String id) async {
       return await api.getById(id);
-    }
-
-    @override
-    Future<ApiResponse> getByUser(User item) async {
-      return await api.getByUser(item);
     }
   
     @override
