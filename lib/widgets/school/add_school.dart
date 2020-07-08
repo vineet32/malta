@@ -94,7 +94,7 @@ class _AddSchoolState extends State<AddSchool> {
     ParseFile parseFile = _schoolImage != null
         ? ParseFile(_schoolImage)
         : kIsWeb && webImage != null
-            ? ParseFile(null, byteFile: webImage, name: webImageName)
+            ? ParseFile(null, name: webImageName)
             : null;
     School _school = School()
       ..set(School.keyImage, parseFile)

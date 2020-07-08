@@ -250,11 +250,9 @@ packages:
   parse_server_sdk:
     dependency: "direct main"
     description:
-      path: "."
-      ref: Bhanu
-      resolved-ref: "38d6c487e9cc05c972296d7dd8c6d80855e11ee3"
-      url: "https://github.com/chimple/Parse-SDK-Flutter"
-    source: git
+      name: parse_server_sdk
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "1.0.26"
   path:
     dependency: transitive

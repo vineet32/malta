@@ -125,9 +125,7 @@ class _EditSchoolState extends State<EditSchool> {
 
     ParseFile parseFile = pickedImage != null
         ? ParseFile(pickedImage)
-        : webImage != null
-            ? ParseFile(null, byteFile: webImage, name: webImageName)
-            : null;
+        : webImage != null ? ParseFile(null, name: webImageName) : null;
     if (parseFile != null) {
       school.set(School.keyImage, parseFile);
     }

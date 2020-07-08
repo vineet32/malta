@@ -23,9 +23,9 @@ environment:
 dependencies:
   universal_html: ^1.2.3
   parse_server_sdk:
-    git:
-      url: https://github.com/chimple/Parse-SDK-Flutter
-      ref: Bhanu
+    # git:
+    #   url: https://github.com/chimple/Parse-SDK-Flutter
+    #   ref: Bhanu
   image_picker: ^0.6.7+2
   md2_tab_indicator: ^1.0.2
   camera: ^0.5.6+3

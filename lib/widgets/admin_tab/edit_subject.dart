@@ -106,7 +106,7 @@ class _EditSubjectState extends State<EditSubject> {
     ParseFile parseFile = pickedImage != null
         ? ParseFile(pickedImage)
         : webImage != null
-            ? ParseFile(null, byteFile: webImage, name: webImageName)
+            ? ParseFile(null,  name: webImageName)
             : null;
     if (parseFile != null) {
       widget.subject.set(Subject.keyImage, parseFile);
