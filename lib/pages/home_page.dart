@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:malta/pages/admin_tabs.dart';
 import 'package:malta/pages/current_class.dart';
 import 'package:malta/providers/school_provider.dart';
+import 'package:malta/widgets/user_profile_drawer.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
@@ -34,6 +35,7 @@ class HomePage extends StatelessWidget {
               Icon(Icons.playlist_add_check),
             ],
           ),
+          drawer: UserProfileDrawer(),
         ),
       ),
     );

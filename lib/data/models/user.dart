@@ -3,7 +3,7 @@ import 'dart:core';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
 
 class User extends ParseUser implements ParseCloneable {
-  User(String username, String password, String emailAddress)
+  User(String username, String password, String emailAddress, {String sessionToken})
       : super(username, password, emailAddress);
 
   User.clone() : this(null, null, null);

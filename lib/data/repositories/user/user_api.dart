@@ -38,7 +38,7 @@ class UserApi implements UserContract {
   }
 
   @override
-  Future<ApiResponse> save(User user) async {
+  Future<ApiResponse> save(User user, {String sessionToken}) async {
     return getApiResponse<User>(await user.save());
   }
 
