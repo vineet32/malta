@@ -4,7 +4,7 @@ import 'package:malta/data/models/user.dart';
 import 'package:malta/data/repositories/connection/connection_contract.dart';
 import 'package:malta/data/repositories/user/user_contract.dart';
 import 'package:malta/pages/login.dart';
-import 'package:malta/pages/user_profile.dart';
+import 'package:malta/pages/edit_user_profile.dart';
 import 'package:malta/providers/school_provider.dart';
 import 'package:malta/providers/user_provider.dart';
 import 'package:malta/widgets/school/switch_school_widget.dart';
